@@ -23,6 +23,9 @@ import { ViewState, Position, GraphBounds } from '../models/view-state.model';
 // yFiles imports - uncomment when yFiles is installed
 // CORRECTED: Use HierarchicalLayout (not HierarchicLayout)
 // CORRECTED: Use HierarchicalLayoutData (not HierarchicLayoutData)
+// NOTE: GraphViewerInputMode and GraphEditorInputMode are both imported
+//       GraphEditorInputMode is used in the implementation (has moveInputMode property)
+//       GraphViewerInputMode is kept for reference and potential future use
 /*
 import {
   GraphComponent,
