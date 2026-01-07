@@ -1,0 +1,35 @@
+<div class="legend">
+  <div class="legend-header">
+    <h4>Legend</h4>
+  </div>
+
+  <div class="legend-content">
+    <section class="legend-section">
+      <h5>Node Types</h5>
+      <ul class="legend-items">
+        <li *ngFor="let type of nodeTypes" class="legend-item">
+          <span class="node-symbol" [style.background-color]="type.color"></span>
+          <span class="legend-label">{{ type.label }}</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="legend-section">
+      <h5>Cable Types</h5>
+      <ul class="legend-items">
+        <li *ngFor="let cable of cableTypes" class="legend-item">
+          <svg class="edge-symbol" width="32" height="12" viewBox="0 0 32 12">
+            <line
+              x1="0" y1="6" x2="32" y2="6"
+              [attr.stroke]="cable.color"
+              [attr.stroke-width]="cable.width"
+              [attr.stroke-dasharray]="cable.dashed ? '4 2' : null"
+              stroke-linecap="round">
+            </line>
+          </svg>
+          <span class="legend-label">{{ cable.label }}</span>
+        </li>
+      </ul>
+    </section>
+  </div>
+</div>

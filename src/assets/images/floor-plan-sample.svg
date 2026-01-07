@@ -1,0 +1,89 @@
+<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="800" fill="#f8fafc"/>
+
+  <!-- Grid Pattern -->
+  <defs>
+    <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#e2e8f0" stroke-width="1"/>
+    </pattern>
+    <pattern id="smallGrid" width="10" height="10" patternUnits="userSpaceOnUse">
+      <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#f1f5f9" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="800" fill="url(#smallGrid)"/>
+  <rect width="1200" height="800" fill="url(#grid)"/>
+
+  <!-- Floor Plan Outline -->
+  <rect x="50" y="50" width="1100" height="700" fill="none" stroke="#94a3b8" stroke-width="3"/>
+
+  <!-- Room 1: Server Room -->
+  <g id="server-room">
+    <rect x="100" y="100" width="300" height="250" fill="#e0e7ff" stroke="#6366f1" stroke-width="2" stroke-dasharray="5,5"/>
+    <text x="250" y="130" text-anchor="middle" font-size="18" font-weight="bold" fill="#4338ca">Server Room</text>
+    <text x="250" y="155" text-anchor="middle" font-size="14" fill="#6366f1">DC-A</text>
+  </g>
+
+  <!-- Room 2: Network Closet -->
+  <g id="network-closet">
+    <rect x="450" y="100" width="200" height="150" fill="#dbeafe" stroke="#3b82f6" stroke-width="2" stroke-dasharray="5,5"/>
+    <text x="550" y="130" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e40af">Network Closet</text>
+    <text x="550" y="150" text-anchor="middle" font-size="12" fill="#3b82f6">Room 101</text>
+  </g>
+
+  <!-- Room 3: Office Area -->
+  <g id="office-area">
+    <rect x="100" y="400" width="550" height="300" fill="#f0fdf4" stroke="#22c55e" stroke-width="2" stroke-dasharray="5,5"/>
+    <text x="375" y="430" text-anchor="middle" font-size="18" font-weight="bold" fill="#15803d">Floor 1 - Office Area</text>
+
+    <!-- Desk positions -->
+    <circle cx="150" cy="480" r="15" fill="#86efac" stroke="#22c55e" stroke-width="2"/>
+    <text x="150" y="515" text-anchor="middle" font-size="11" fill="#15803d">WS-101</text>
+
+    <circle cx="250" cy="480" r="15" fill="#86efac" stroke="#22c55e" stroke-width="2"/>
+    <text x="250" y="515" text-anchor="middle" font-size="11" fill="#15803d">WS-102</text>
+
+    <circle cx="350" cy="480" r="15" fill="#86efac" stroke="#22c55e" stroke-width="2"/>
+    <text x="350" y="515" text-anchor="middle" font-size="11" fill="#15803d">WS-103</text>
+
+    <!-- Printer -->
+    <rect x="550" y="480" width="30" height="30" fill="#fed7aa" stroke="#f97316" stroke-width="2"/>
+    <text x="565" y="525" text-anchor="middle" font-size="11" fill="#c2410c">Printer</text>
+  </g>
+
+  <!-- Room 4: Conference Room -->
+  <g id="conference">
+    <rect x="700" y="100" width="400" height="250" fill="#fef3c7" stroke="#eab308" stroke-width="2" stroke-dasharray="5,5"/>
+    <text x="900" y="130" text-anchor="middle" font-size="18" font-weight="bold" fill="#854d0e">Conference Room</text>
+    <ellipse cx="900" cy="225" rx="120" ry="60" fill="#fde68a" stroke="#ca8a04" stroke-width="1.5"/>
+    <text x="900" y="230" text-anchor="middle" font-size="12" fill="#713f12">Conference Table</text>
+  </g>
+
+  <!-- Labels and Legend -->
+  <g id="legend" transform="translate(750, 450)">
+    <rect x="0" y="0" width="300" height="220" fill="white" stroke="#cbd5e1" stroke-width="2" rx="8"/>
+    <text x="150" y="25" text-anchor="middle" font-size="16" font-weight="bold" fill="#0f172a">Building Legend</text>
+
+    <circle cx="30" cy="50" r="8" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+    <text x="50" y="55" font-size="13" fill="#334155">Server Room / Data Center</text>
+
+    <circle cx="30" cy="75" r="8" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+    <text x="50" y="80" font-size="13" fill="#334155">Network Equipment</text>
+
+    <circle cx="30" cy="100" r="8" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+    <text x="50" y="105" font-size="13" fill="#334155">Office / Workspace</text>
+
+    <circle cx="30" cy="125" r="8" fill="#fef3c7" stroke="#eab308" stroke-width="2"/>
+    <text x="50" y="130" font-size="13" fill="#334155">Meeting / Common Area</text>
+
+    <line x1="20" y1="145" x2="280" y2="145" stroke="#e2e8f0" stroke-width="1"/>
+
+    <text x="30" y="165" font-size="11" fill="#64748b">Building: Office Complex A</text>
+    <text x="30" y="182" font-size="11" fill="#64748b">Floor: 1</text>
+    <text x="30" y="199" font-size="11" fill="#64748b">Scale: 1:100</text>
+  </g>
+
+  <!-- Title -->
+  <text x="600" y="30" text-anchor="middle" font-size="22" font-weight="bold" fill="#1e293b">Network Topology - Floor Plan View</text>
+</svg>

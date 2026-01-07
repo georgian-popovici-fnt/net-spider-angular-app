@@ -1,0 +1,330 @@
+{
+  "nodes": [
+    {
+      "id": "core-router-1",
+      "label": "Core Router 1",
+      "type": "router",
+      "metadata": {
+        "ip": "10.0.0.1",
+        "model": "Cisco ASR 9000",
+        "location": "Data Center A - Rack 1"
+      }
+    },
+    {
+      "id": "dist-switch-1",
+      "label": "Distribution Switch 1",
+      "type": "switch",
+      "groupId": "floor-1",
+      "metadata": {
+        "ip": "10.0.1.1",
+        "model": "Catalyst 3850",
+        "ports": 48,
+        "location": "Floor 1 - Room 101"
+      }
+    },
+    {
+      "id": "dist-switch-2",
+      "label": "Distribution Switch 2",
+      "type": "switch",
+      "groupId": "floor-1",
+      "metadata": {
+        "ip": "10.0.1.2",
+        "model": "Catalyst 3850",
+        "ports": 48,
+        "location": "Floor 1 - Room 102"
+      }
+    },
+    {
+      "id": "access-switch-1",
+      "label": "Access Switch 1",
+      "type": "switch",
+      "groupId": "floor-1",
+      "metadata": {
+        "ip": "10.0.2.1",
+        "model": "Catalyst 2960",
+        "ports": 24,
+        "location": "Floor 1 - Room 105"
+      }
+    },
+    {
+      "id": "server-1",
+      "label": "Database Server",
+      "type": "server",
+      "groupId": "server-room",
+      "metadata": {
+        "ip": "10.0.3.10",
+        "os": "Linux Ubuntu 22.04",
+        "purpose": "Primary Database",
+        "cpu": "Intel Xeon Gold",
+        "ram": "128GB"
+      }
+    },
+    {
+      "id": "server-2",
+      "label": "Web Server",
+      "type": "server",
+      "groupId": "server-room",
+      "metadata": {
+        "ip": "10.0.3.11",
+        "os": "Linux Ubuntu 22.04",
+        "purpose": "Web Application",
+        "cpu": "Intel Xeon Gold",
+        "ram": "64GB"
+      }
+    },
+    {
+      "id": "server-3",
+      "label": "File Server",
+      "type": "server",
+      "groupId": "server-room",
+      "metadata": {
+        "ip": "10.0.3.12",
+        "os": "Windows Server 2022",
+        "purpose": "File Storage",
+        "storage": "20TB"
+      }
+    },
+    {
+      "id": "workstation-1",
+      "label": "WS-101",
+      "type": "workstation",
+      "groupId": "floor-1",
+      "metadata": {
+        "ip": "10.0.10.101",
+        "user": "Engineering Team",
+        "room": "101",
+        "os": "Windows 11"
+      }
+    },
+    {
+      "id": "workstation-2",
+      "label": "WS-102",
+      "type": "workstation",
+      "groupId": "floor-1",
+      "metadata": {
+        "ip": "10.0.10.102",
+        "user": "Design Team",
+        "room": "102",
+        "os": "macOS"
+      }
+    },
+    {
+      "id": "workstation-3",
+      "label": "WS-103",
+      "type": "workstation",
+      "groupId": "floor-1",
+      "metadata": {
+        "ip": "10.0.10.103",
+        "user": "Management",
+        "room": "103",
+        "os": "Windows 11"
+      }
+    },
+    {
+      "id": "device-1",
+      "label": "Network Printer",
+      "type": "device",
+      "groupId": "floor-1",
+      "metadata": {
+        "ip": "10.0.20.5",
+        "model": "HP LaserJet Pro",
+        "type": "Printer"
+      }
+    },
+    {
+      "id": "device-2",
+      "label": "IP Camera",
+      "type": "device",
+      "groupId": "floor-1",
+      "metadata": {
+        "ip": "10.0.20.10",
+        "model": "Axis P3245-V",
+        "type": "Security Camera"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge-1",
+      "sourceId": "core-router-1",
+      "targetId": "dist-switch-1",
+      "cableType": "fiber",
+      "parallelIndex": 0,
+      "label": "10Gbps",
+      "metadata": {
+        "bandwidth": "10Gbps",
+        "length": "50m",
+        "purpose": "Primary Link"
+      }
+    },
+    {
+      "id": "edge-2",
+      "sourceId": "core-router-1",
+      "targetId": "dist-switch-1",
+      "cableType": "fiber",
+      "parallelIndex": 1,
+      "label": "10Gbps (Backup)",
+      "metadata": {
+        "bandwidth": "10Gbps",
+        "length": "50m",
+        "purpose": "Redundancy"
+      }
+    },
+    {
+      "id": "edge-3",
+      "sourceId": "core-router-1",
+      "targetId": "dist-switch-2",
+      "cableType": "fiber",
+      "parallelIndex": 0,
+      "label": "10Gbps",
+      "metadata": {
+        "bandwidth": "10Gbps",
+        "length": "55m"
+      }
+    },
+    {
+      "id": "edge-4",
+      "sourceId": "dist-switch-1",
+      "targetId": "dist-switch-2",
+      "cableType": "fiber",
+      "parallelIndex": 0,
+      "label": "Trunk",
+      "metadata": {
+        "bandwidth": "10Gbps",
+        "purpose": "Inter-switch trunk"
+      }
+    },
+    {
+      "id": "edge-5",
+      "sourceId": "dist-switch-1",
+      "targetId": "access-switch-1",
+      "cableType": "ethernet",
+      "label": "1Gbps",
+      "metadata": {
+        "bandwidth": "1Gbps"
+      }
+    },
+    {
+      "id": "edge-6",
+      "sourceId": "dist-switch-2",
+      "targetId": "access-switch-1",
+      "cableType": "ethernet",
+      "label": "1Gbps (Backup)",
+      "metadata": {
+        "bandwidth": "1Gbps",
+        "purpose": "Redundancy"
+      }
+    },
+    {
+      "id": "edge-7",
+      "sourceId": "dist-switch-1",
+      "targetId": "server-1",
+      "cableType": "fiber",
+      "label": "10Gbps",
+      "metadata": {
+        "bandwidth": "10Gbps",
+        "purpose": "Database high-speed link"
+      }
+    },
+    {
+      "id": "edge-8",
+      "sourceId": "dist-switch-1",
+      "targetId": "server-2",
+      "cableType": "ethernet",
+      "label": "1Gbps",
+      "metadata": {
+        "bandwidth": "1Gbps"
+      }
+    },
+    {
+      "id": "edge-9",
+      "sourceId": "dist-switch-2",
+      "targetId": "server-3",
+      "cableType": "ethernet",
+      "label": "1Gbps",
+      "metadata": {
+        "bandwidth": "1Gbps"
+      }
+    },
+    {
+      "id": "edge-10",
+      "sourceId": "server-1",
+      "targetId": "server-2",
+      "cableType": "fiber",
+      "parallelIndex": 0,
+      "label": "Direct Link",
+      "metadata": {
+        "bandwidth": "10Gbps",
+        "purpose": "DB-Web direct connection"
+      }
+    },
+    {
+      "id": "edge-11",
+      "sourceId": "access-switch-1",
+      "targetId": "workstation-1",
+      "cableType": "ethernet",
+      "label": "1Gbps",
+      "metadata": {
+        "bandwidth": "1Gbps",
+        "port": "Gi0/1"
+      }
+    },
+    {
+      "id": "edge-12",
+      "sourceId": "access-switch-1",
+      "targetId": "workstation-2",
+      "cableType": "ethernet",
+      "label": "1Gbps",
+      "metadata": {
+        "bandwidth": "1Gbps",
+        "port": "Gi0/2"
+      }
+    },
+    {
+      "id": "edge-13",
+      "sourceId": "access-switch-1",
+      "targetId": "workstation-3",
+      "cableType": "ethernet",
+      "label": "1Gbps",
+      "metadata": {
+        "bandwidth": "1Gbps",
+        "port": "Gi0/3"
+      }
+    },
+    {
+      "id": "edge-14",
+      "sourceId": "access-switch-1",
+      "targetId": "device-1",
+      "cableType": "ethernet",
+      "label": "100Mbps",
+      "metadata": {
+        "bandwidth": "100Mbps",
+        "port": "Gi0/10"
+      }
+    },
+    {
+      "id": "edge-15",
+      "sourceId": "access-switch-1",
+      "targetId": "device-2",
+      "cableType": "ethernet",
+      "label": "100Mbps",
+      "metadata": {
+        "bandwidth": "100Mbps",
+        "port": "Gi0/11",
+        "poe": "enabled"
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "floor-1",
+      "label": "Floor 1 Network",
+      "isCollapsed": false
+    },
+    {
+      "id": "server-room",
+      "label": "Server Room - DC-A",
+      "isCollapsed": false
+    }
+  ]
+}

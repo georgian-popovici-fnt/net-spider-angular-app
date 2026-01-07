@@ -1,0 +1,52 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.canvas-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.graph-container {
+  width: 100%;
+  height: 100%;
+  background: $panel-bg;
+  border: 1px solid $border-color;
+}
+
+.canvas-controls {
+  position: absolute;
+  bottom: $spacing-lg;
+  right: $spacing-lg;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  background: $panel-bg;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-md;
+  padding: $spacing-sm;
+  box-shadow: $shadow-md;
+}
+
+.control-btn {
+  @include button-secondary;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $border-radius-sm;
+
+  .icon {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1;
+  }
+
+  &:hover:not(:disabled) {
+    background: $primary-blue;
+    color: white;
+    border-color: $primary-blue;
+  }
+}

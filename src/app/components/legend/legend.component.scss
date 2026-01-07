@@ -1,0 +1,76 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.legend {
+  position: absolute;
+  bottom: $spacing-lg;
+  left: $spacing-lg;
+  background: $panel-bg;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-md;
+  box-shadow: $shadow-md;
+  padding: $spacing-md;
+  max-width: 250px;
+}
+
+.legend-header {
+  margin-bottom: $spacing-md;
+
+  h4 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: $text-primary;
+  }
+}
+
+.legend-content {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.legend-section {
+  h5 {
+    margin: 0 0 $spacing-sm 0;
+    font-size: 12px;
+    font-weight: 600;
+    color: $text-secondary;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+
+.legend-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  font-size: 13px;
+  color: $text-primary;
+}
+
+.node-symbol {
+  width: 20px;
+  height: 20px;
+  border-radius: $border-radius-sm;
+  flex-shrink: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.edge-symbol {
+  flex-shrink: 0;
+}
+
+.legend-label {
+  font-size: 13px;
+  color: $text-primary;
+}

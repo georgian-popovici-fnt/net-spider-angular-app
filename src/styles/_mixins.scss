@@ -1,0 +1,61 @@
+// NetSpider Pilot - SCSS Mixins
+@use 'variables' as *;
+
+@mixin panel-card {
+  background: $panel-bg;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-md;
+  box-shadow: $shadow-sm;
+}
+
+@mixin button-primary {
+  background: $primary-blue;
+  color: white;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $border-radius-sm;
+  font-weight: 500;
+  transition: background-color $transition-fast;
+
+  &:hover:not(:disabled) {
+    background: $primary-dark;
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+}
+
+@mixin button-secondary {
+  background: $panel-bg;
+  color: $text-primary;
+  padding: $spacing-sm $spacing-md;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-sm;
+  font-weight: 500;
+  transition: all $transition-fast;
+
+  &:hover:not(:disabled) {
+    background: $hover-bg;
+    border-color: $primary-blue;
+  }
+}
+
+@mixin scrollbar {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $background;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $border-color;
+    border-radius: 4px;
+
+    &:hover {
+      background: darken($border-color, 10%);
+    }
+  }
+}

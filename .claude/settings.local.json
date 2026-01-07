@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cat:*)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "Bash(npm install)",
+      "Bash(timeout 30 tail:*)",
+      "Bash(npm install:*)",
+      "Bash(npm start)"
+    ]
+  }
+}

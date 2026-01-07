@@ -1,0 +1,47 @@
+<div class="toolbar">
+  <div class="toolbar-section">
+    <button class="toolbar-btn primary" (click)="loadMockData()" [disabled]="loading$ | async">
+      <span class="icon">📊</span>
+      <span class="label">Load Mock Data</span>
+    </button>
+  </div>
+
+  <div class="toolbar-divider"></div>
+
+  <div class="toolbar-section">
+    <button class="toolbar-btn" (click)="applyLayout()" [disabled]="loading$ | async">
+      <span class="icon">🔄</span>
+      <span class="label">Auto Layout</span>
+    </button>
+    <button class="toolbar-btn" (click)="rerouteEdges()" [disabled]="loading$ | async">
+      <span class="icon">↔️</span>
+      <span class="label">Re-route Edges</span>
+    </button>
+    <button class="toolbar-btn" (click)="resetView()" [disabled]="loading$ | async">
+      <span class="icon">⊡</span>
+      <span class="label">Reset View</span>
+    </button>
+  </div>
+
+  <div class="toolbar-divider"></div>
+
+  <div class="toolbar-section">
+    <button class="toolbar-btn" (click)="toggleBackground()" [disabled]="loading$ | async">
+      <span class="icon">🖼️</span>
+      <span class="label">Toggle Background</span>
+    </button>
+    <button class="toolbar-btn warning" (click)="clearPositions()" [disabled]="loading$ | async">
+      <span class="icon">🗑️</span>
+      <span class="label">Clear Positions</span>
+    </button>
+  </div>
+
+  <div class="toolbar-spacer"></div>
+
+  <div class="toolbar-section" *ngIf="loading$ | async">
+    <div class="loading-indicator">
+      <span class="spinner"></span>
+      <span class="label">Processing...</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+// NetSpider Pilot - SCSS Variables
+
+// Primary colors
+$primary-blue: #2563eb;
+$primary-dark: #1e40af;
+$primary-light: #60a5fa;
+
+// Node type colors
+$router-color: #ef4444;
+$switch-color: #3b82f6;
+$server-color: #8b5cf6;
+$device-color: #10b981;
+$workstation-color: #f59e0b;
+
+// Cable type colors
+$fiber-color: #ec4899;
+$ethernet-color: #3b82f6;
+$coaxial-color: #f59e0b;
+$serial-color: #6b7280;
+
+// UI colors
+$background: #f8fafc;
+$panel-bg: #ffffff;
+$border-color: #e2e8f0;
+$text-primary: #0f172a;
+$text-secondary: #64748b;
+$hover-bg: #f1f5f9;
+$selected-border: #2563eb;
+
+// Groups
+$group-bg: #f8fafc;
+$group-border: #cbd5e1;
+
+// Spacing
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+
+// Border radius
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;
+
+// Shadows
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+// Transitions
+$transition-fast: 150ms ease-in-out;
+$transition-normal: 250ms ease-in-out;
+$transition-slow: 350ms ease-in-out;

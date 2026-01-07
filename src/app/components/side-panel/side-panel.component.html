@@ -1,0 +1,44 @@
+<div class="side-panel">
+  <div class="panel-header">
+    <h3>Selection Details</h3>
+  </div>
+
+  <div class="panel-content">
+    <ng-container *ngIf="selection$ | async as selection; else noSelection">
+      <div class="selection-summary" *ngIf="selection.selectionType !== 'none'">
+        <div class="selection-badge" [attr.data-type]="selection.selectionType">
+          {{ formatSelectionType(selection.selectionType) }}
+        </div>
+        <div class="selection-count">
+          {{ getSelectionCount(selection) }} selected
+        </div>
+      </div>
+
+      <div class="details-content" *ngIf="details$ | async as details">
+        <div class="details-header">
+          <h4>{{ formatSelectionType(details.type) }}</h4>
+        </div>
+
+        <dl class="property-list">
+          <ng-container *ngFor="let prop of details.displayProperties">
+            <dt>{{ prop.label }}</dt>
+            <dd>{{ prop.value }}</dd>
+          </ng-container>
+        </dl>
+      </div>
+
+      <div class="multi-selection-note" *ngIf="getSelectionCount(selection) > 1 && !(details$ | async)">
+        <div class="note-icon">ℹ️</div>
+        <p>Multiple items selected. Select a single item to view details.</p>
+      </div>
+    </ng-container>
+
+    <ng-template #noSelection>
+      <div class="empty-state">
+        <div class="empty-icon">👆</div>
+        <p class="empty-title">No selection</p>
+        <p class="empty-description">Click a node or edge to view its details here.</p>
+      </div>
+    </ng-template>
+  </div>
+</div>
