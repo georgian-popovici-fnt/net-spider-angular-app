@@ -1,38 +1,58 @@
 <div class="toolbar">
   <div class="toolbar-section">
-    <button class="toolbar-btn primary" (click)="loadMockData()" [disabled]="loading$ | async">
-      <span class="icon">📊</span>
-      <span class="label">Load Mock Data</span>
-    </button>
+    <div class="data-selector">
+      <label for="topology-select">Network Topology:</label>
+      <select id="topology-select" [(ngModel)]="selectedTopology" class="topology-select">
+        <optgroup label="Basic Networks">
+          <option value="mock-graph-data">Enterprise Network (12 nodes)</option>
+          <option value="small-office-network">Small Office Network (13 nodes)</option>
+          <option value="home-office-network">Home Office Network (17 nodes)</option>
+        </optgroup>
+        <optgroup label="Enterprise & Service Provider">
+          <option value="data-center-network">Data Center Network (20 nodes)</option>
+          <option value="campus-network">Campus Network (21 nodes)</option>
+          <option value="isp-core-network">ISP Core Network (20 nodes)</option>
+        </optgroup>
+        <optgroup label="Complex Production Networks">
+          <option value="hybrid-cloud-network">Hybrid Cloud Network (25 nodes)</option>
+          <option value="financial-trading-network">Financial Trading Network (29 nodes)</option>
+          <option value="manufacturing-ics-network">Manufacturing ICS Network (29 nodes)</option>
+          <option value="healthcare-network">Healthcare Network (40 nodes)</option>
+          <option value="5g-mobile-core-network">5G Mobile Core Network (37 nodes)</option>
+        </optgroup>
+      </select>
+      <button class="toolbar-btn primary" (click)="loadMockData()" [disabled]="loading$ | async" title="Load selected topology">
+        <span class="icon">📊</span>
+        <span class="label">Load</span>
+      </button>
+    </div>
   </div>
 
   <div class="toolbar-divider"></div>
 
   <div class="toolbar-section">
-    <button class="toolbar-btn" (click)="applyLayout()" [disabled]="loading$ | async">
+    <button class="toolbar-btn" (click)="applyLayout()" [disabled]="loading$ | async" title="Auto Layout">
       <span class="icon">🔄</span>
-      <span class="label">Auto Layout</span>
     </button>
-    <button class="toolbar-btn" (click)="rerouteEdges()" [disabled]="loading$ | async">
+    <button class="toolbar-btn" (click)="rerouteEdges()" [disabled]="loading$ | async" title="Re-route Edges">
       <span class="icon">↔️</span>
-      <span class="label">Re-route Edges</span>
     </button>
-    <button class="toolbar-btn" (click)="resetView()" [disabled]="loading$ | async">
+    <button class="toolbar-btn" (click)="resetView()" [disabled]="loading$ | async" title="Reset View">
       <span class="icon">⊡</span>
-      <span class="label">Reset View</span>
+    </button>
+    <button class="toolbar-btn" (click)="toggleFilters()" [disabled]="loading$ | async" [title]="filterVisible() ? 'Hide Filters' : 'Show Filters'">
+      <span class="icon">🔍</span>
     </button>
   </div>
 
   <div class="toolbar-divider"></div>
 
   <div class="toolbar-section">
-    <button class="toolbar-btn" (click)="toggleBackground()" [disabled]="loading$ | async">
+    <button class="toolbar-btn" (click)="toggleBackground()" [disabled]="loading$ | async" title="Toggle Background">
       <span class="icon">🖼️</span>
-      <span class="label">Toggle Background</span>
     </button>
-    <button class="toolbar-btn warning" (click)="clearPositions()" [disabled]="loading$ | async">
+    <button class="toolbar-btn warning" (click)="clearPositions()" [disabled]="loading$ | async" title="Clear Positions">
       <span class="icon">🗑️</span>
-      <span class="label">Clear Positions</span>
     </button>
   </div>
 

@@ -1,0 +1,110 @@
+<div class="filter-sidebar" [class.collapsed]="isCollapsed()">
+  <!-- Header -->
+  <div class="filter-header">
+    <div class="filter-title">
+      <span class="filter-icon">🔍</span>
+      <h3>Filters</h3>
+    </div>
+    <button class="collapse-btn" (click)="toggleCollapse()" title="Toggle sidebar">
+      {{ isCollapsed() ? '▶' : '◀' }}
+    </button>
+  </div>
+
+  <!-- Content (hidden when collapsed) -->
+  <div class="filter-content" *ngIf="!isCollapsed()">
+    <!-- Statistics -->
+    <div class="filter-section stats-section">
+      <div class="section-header">
+        <span class="section-icon">📊</span>
+        <h4>Statistics</h4>
+      </div>
+      <div class="section-content">
+        <div class="stat-item">
+          <span class="stat-label">Nodes:</span>
+          <span class="stat-value">{{ stats().visibleNodes }} / {{ stats().totalNodes }}</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Edges:</span>
+          <span class="stat-value">{{ stats().visibleEdges }} / {{ stats().totalEdges }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Text Search -->
+    <div class="filter-section">
+      <div class="section-header">
+        <span class="section-icon">🔎</span>
+        <label class="checkbox-label">
+          <input
+            type="checkbox"
+            [(ngModel)]="textSearchEnabled"
+            (change)="onTextSearchToggle()"
+          />
+          <span>Text Search</span>
+        </label>
+      </div>
+      <div class="section-content" *ngIf="textSearchEnabled">
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Search by label or ID..."
+          [(ngModel)]="textSearchQuery"
+          (input)="onTextSearchQueryChange()"
+        />
+      </div>
+    </div>
+
+    <!-- Node Types -->
+    <div class="filter-section">
+      <div class="section-header">
+        <span class="section-icon">🔵</span>
+        <h4>Node Types</h4>
+      </div>
+      <div class="section-content">
+        <div class="type-filters">
+          <label
+            *ngFor="let type of nodeTypes"
+            class="checkbox-label"
+          >
+            <input
+              type="checkbox"
+              [checked]="selectedTypes.has(type)"
+              (change)="toggleNodeType(type)"
+            />
+            <span>{{ type | titlecase }}</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cable Types -->
+    <div class="filter-section">
+      <div class="section-header">
+        <span class="section-icon">🔗</span>
+        <h4>Cable Types</h4>
+      </div>
+      <div class="section-content">
+        <div class="type-filters">
+          <label
+            *ngFor="let type of cableTypes"
+            class="checkbox-label"
+          >
+            <input
+              type="checkbox"
+              [checked]="selectedCableTypes.has(type)"
+              (change)="toggleCableType(type)"
+            />
+            <span>{{ type | titlecase }}</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reset Button -->
+    <div class="filter-actions">
+      <button class="reset-btn" (click)="resetFilters()">
+        🔄 Reset All Filters
+      </button>
+    </div>
+  </div>
+</div>

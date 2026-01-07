@@ -1,0 +1,408 @@
+{
+  "nodes": [
+    {
+      "id": "internet-modem",
+      "label": "Cable Modem",
+      "type": "router",
+      "metadata": {
+        "model": "Arris SB8200",
+        "wan_ip": "Dynamic DHCP",
+        "download": "1Gbps",
+        "upload": "50Mbps",
+        "isp": "Cable Provider"
+      }
+    },
+    {
+      "id": "home-router",
+      "label": "Home WiFi Router",
+      "type": "router",
+      "metadata": {
+        "ip": "192.168.0.1",
+        "model": "ASUS RT-AX86U",
+        "wifi": "WiFi 6 (802.11ax)",
+        "location": "Living Room"
+      }
+    },
+    {
+      "id": "mesh-node-1",
+      "label": "Mesh Node - Office",
+      "type": "device",
+      "metadata": {
+        "ip": "192.168.0.10",
+        "model": "ASUS ZenWiFi AX",
+        "type": "Mesh WiFi Node",
+        "location": "Home Office"
+      }
+    },
+    {
+      "id": "mesh-node-2",
+      "label": "Mesh Node - Bedroom",
+      "type": "device",
+      "metadata": {
+        "ip": "192.168.0.11",
+        "model": "ASUS ZenWiFi AX",
+        "type": "Mesh WiFi Node",
+        "location": "Master Bedroom"
+      }
+    },
+    {
+      "id": "work-laptop",
+      "label": "Work Laptop",
+      "type": "workstation",
+      "metadata": {
+        "ip": "192.168.0.100",
+        "os": "Windows 11 Pro",
+        "user": "Remote Worker",
+        "connection": "WiFi",
+        "vpn": "Company VPN Active"
+      }
+    },
+    {
+      "id": "personal-desktop",
+      "label": "Gaming Desktop",
+      "type": "workstation",
+      "metadata": {
+        "ip": "192.168.0.101",
+        "os": "Windows 11",
+        "user": "Personal Use",
+        "connection": "Ethernet",
+        "specs": "RTX 4080, i9-13900K"
+      }
+    },
+    {
+      "id": "tablet",
+      "label": "iPad Pro",
+      "type": "workstation",
+      "metadata": {
+        "ip": "192.168.0.110",
+        "os": "iPadOS",
+        "connection": "WiFi",
+        "location": "Mobile"
+      }
+    },
+    {
+      "id": "smartphone",
+      "label": "iPhone",
+      "type": "device",
+      "metadata": {
+        "ip": "192.168.0.111",
+        "type": "Mobile Device",
+        "connection": "WiFi",
+        "location": "Mobile"
+      }
+    },
+    {
+      "id": "nas-home",
+      "label": "Home NAS",
+      "type": "server",
+      "metadata": {
+        "ip": "192.168.0.50",
+        "model": "Synology DS218+",
+        "purpose": "Media & Backup",
+        "storage": "8TB",
+        "location": "Office Closet"
+      }
+    },
+    {
+      "id": "smart-tv",
+      "label": "Smart TV",
+      "type": "device",
+      "metadata": {
+        "ip": "192.168.0.120",
+        "model": "LG OLED65C3",
+        "type": "Smart TV",
+        "connection": "WiFi",
+        "location": "Living Room"
+      }
+    },
+    {
+      "id": "streaming-device",
+      "label": "Apple TV 4K",
+      "type": "device",
+      "metadata": {
+        "ip": "192.168.0.121",
+        "type": "Streaming Device",
+        "connection": "Ethernet",
+        "location": "Living Room"
+      }
+    },
+    {
+      "id": "smart-speaker",
+      "label": "Smart Speaker",
+      "type": "device",
+      "metadata": {
+        "ip": "192.168.0.130",
+        "model": "Amazon Echo Studio",
+        "type": "IoT Device",
+        "connection": "WiFi"
+      }
+    },
+    {
+      "id": "smart-thermostat",
+      "label": "Smart Thermostat",
+      "type": "device",
+      "metadata": {
+        "ip": "192.168.0.131",
+        "model": "Nest Learning",
+        "type": "IoT Device",
+        "connection": "WiFi"
+      }
+    },
+    {
+      "id": "security-camera-1",
+      "label": "Front Door Camera",
+      "type": "device",
+      "metadata": {
+        "ip": "192.168.0.140",
+        "model": "Ring Video Doorbell Pro",
+        "type": "Security Camera",
+        "location": "Front Door"
+      }
+    },
+    {
+      "id": "security-camera-2",
+      "label": "Backyard Camera",
+      "type": "device",
+      "metadata": {
+        "ip": "192.168.0.141",
+        "model": "Arlo Pro 4",
+        "type": "Security Camera",
+        "location": "Backyard"
+      }
+    },
+    {
+      "id": "printer-home",
+      "label": "Home Printer",
+      "type": "device",
+      "metadata": {
+        "ip": "192.168.0.150",
+        "model": "HP OfficeJet Pro 9015e",
+        "type": "WiFi Printer",
+        "location": "Home Office"
+      }
+    },
+    {
+      "id": "guest-network",
+      "label": "Guest Network SSID",
+      "type": "device",
+      "metadata": {
+        "ssid": "Guest-WiFi",
+        "type": "Virtual Network",
+        "isolation": "Enabled",
+        "bandwidth_limit": "50Mbps"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge-modem-router",
+      "sourceId": "internet-modem",
+      "targetId": "home-router",
+      "cableType": "ethernet",
+      "label": "1Gbps",
+      "metadata": {
+        "bandwidth": "1Gbps",
+        "cable": "Cat6"
+      }
+    },
+    {
+      "id": "edge-router-mesh1",
+      "sourceId": "home-router",
+      "targetId": "mesh-node-1",
+      "cableType": "coaxial",
+      "label": "WiFi Backhaul",
+      "metadata": {
+        "connection": "5GHz Wireless",
+        "bandwidth": "1200Mbps"
+      }
+    },
+    {
+      "id": "edge-router-mesh2",
+      "sourceId": "home-router",
+      "targetId": "mesh-node-2",
+      "cableType": "coaxial",
+      "label": "WiFi Backhaul",
+      "metadata": {
+        "connection": "5GHz Wireless",
+        "bandwidth": "1200Mbps"
+      }
+    },
+    {
+      "id": "edge-mesh1-laptop",
+      "sourceId": "mesh-node-1",
+      "targetId": "work-laptop",
+      "cableType": "coaxial",
+      "label": "WiFi 6",
+      "metadata": {
+        "connection": "WiFi 6",
+        "bandwidth": "1200Mbps"
+      }
+    },
+    {
+      "id": "edge-router-desktop",
+      "sourceId": "home-router",
+      "targetId": "personal-desktop",
+      "cableType": "ethernet",
+      "label": "1Gbps",
+      "metadata": {
+        "bandwidth": "1Gbps",
+        "cable": "Cat6a"
+      }
+    },
+    {
+      "id": "edge-router-nas",
+      "sourceId": "home-router",
+      "targetId": "nas-home",
+      "cableType": "ethernet",
+      "label": "1Gbps",
+      "metadata": {
+        "bandwidth": "1Gbps",
+        "cable": "Cat6"
+      }
+    },
+    {
+      "id": "edge-router-appletv",
+      "sourceId": "home-router",
+      "targetId": "streaming-device",
+      "cableType": "ethernet",
+      "label": "1Gbps",
+      "metadata": {
+        "bandwidth": "1Gbps",
+        "cable": "Cat6"
+      }
+    },
+    {
+      "id": "edge-router-tablet",
+      "sourceId": "home-router",
+      "targetId": "tablet",
+      "cableType": "coaxial",
+      "label": "WiFi",
+      "metadata": {
+        "connection": "WiFi 6",
+        "bandwidth": "866Mbps"
+      }
+    },
+    {
+      "id": "edge-router-phone",
+      "sourceId": "home-router",
+      "targetId": "smartphone",
+      "cableType": "coaxial",
+      "label": "WiFi",
+      "metadata": {
+        "connection": "WiFi 6",
+        "bandwidth": "866Mbps"
+      }
+    },
+    {
+      "id": "edge-router-tv",
+      "sourceId": "home-router",
+      "targetId": "smart-tv",
+      "cableType": "coaxial",
+      "label": "WiFi",
+      "metadata": {
+        "connection": "WiFi 5",
+        "bandwidth": "433Mbps"
+      }
+    },
+    {
+      "id": "edge-mesh2-speaker",
+      "sourceId": "mesh-node-2",
+      "targetId": "smart-speaker",
+      "cableType": "coaxial",
+      "label": "WiFi",
+      "metadata": {
+        "connection": "WiFi 5",
+        "bandwidth": "300Mbps"
+      }
+    },
+    {
+      "id": "edge-router-thermostat",
+      "sourceId": "home-router",
+      "targetId": "smart-thermostat",
+      "cableType": "coaxial",
+      "label": "WiFi",
+      "metadata": {
+        "connection": "WiFi 4",
+        "bandwidth": "150Mbps"
+      }
+    },
+    {
+      "id": "edge-router-camera1",
+      "sourceId": "home-router",
+      "targetId": "security-camera-1",
+      "cableType": "coaxial",
+      "label": "WiFi",
+      "metadata": {
+        "connection": "WiFi 5",
+        "bandwidth": "300Mbps"
+      }
+    },
+    {
+      "id": "edge-router-camera2",
+      "sourceId": "home-router",
+      "targetId": "security-camera-2",
+      "cableType": "coaxial",
+      "label": "WiFi",
+      "metadata": {
+        "connection": "WiFi 5",
+        "bandwidth": "300Mbps"
+      }
+    },
+    {
+      "id": "edge-mesh1-printer",
+      "sourceId": "mesh-node-1",
+      "targetId": "printer-home",
+      "cableType": "coaxial",
+      "label": "WiFi",
+      "metadata": {
+        "connection": "WiFi 5",
+        "bandwidth": "300Mbps"
+      }
+    },
+    {
+      "id": "edge-router-guest",
+      "sourceId": "home-router",
+      "targetId": "guest-network",
+      "cableType": "coaxial",
+      "label": "Guest WiFi",
+      "metadata": {
+        "connection": "Virtual SSID",
+        "isolation": "Enabled"
+      }
+    },
+    {
+      "id": "edge-laptop-nas",
+      "sourceId": "work-laptop",
+      "targetId": "nas-home",
+      "cableType": "ethernet",
+      "label": "Backup",
+      "metadata": {
+        "protocol": "SMB",
+        "purpose": "Time Machine Backup"
+      }
+    },
+    {
+      "id": "edge-desktop-nas",
+      "sourceId": "personal-desktop",
+      "targetId": "nas-home",
+      "cableType": "ethernet",
+      "label": "Media",
+      "metadata": {
+        "protocol": "SMB",
+        "purpose": "Media Streaming"
+      }
+    },
+    {
+      "id": "edge-tv-nas",
+      "sourceId": "smart-tv",
+      "targetId": "nas-home",
+      "cableType": "coaxial",
+      "label": "Streaming",
+      "metadata": {
+        "protocol": "DLNA",
+        "purpose": "Media Streaming"
+      }
+    }
+  ],
+  "groups": []
+}

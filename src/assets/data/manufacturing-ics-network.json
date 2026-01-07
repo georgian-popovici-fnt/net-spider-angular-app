@@ -1,0 +1,682 @@
+{
+  "nodes": [
+    {
+      "id": "it-fw",
+      "label": "IT Firewall",
+      "type": "router",
+      "groupId": "it-network",
+      "metadata": {
+        "model": "Cisco Firepower 2130",
+        "ip": "10.0.0.1",
+        "zone": "Corporate IT",
+        "features": "VPN, IPS, URL filtering"
+      }
+    },
+    {
+      "id": "it-core-sw",
+      "label": "IT Core Switch",
+      "type": "switch",
+      "groupId": "it-network",
+      "metadata": {
+        "model": "Cisco Catalyst 9500",
+        "ip": "10.0.1.1",
+        "ports": "48x 10GbE"
+      }
+    },
+    {
+      "id": "erp-server",
+      "label": "ERP Server",
+      "type": "server",
+      "groupId": "it-network",
+      "metadata": {
+        "software": "SAP S/4HANA",
+        "ip": "10.0.10.50",
+        "cpu": "32 cores",
+        "ram": "512 GB",
+        "purpose": "Manufacturing, inventory, finance"
+      }
+    },
+    {
+      "id": "mes-server",
+      "label": "MES Server",
+      "type": "server",
+      "groupId": "it-network",
+      "metadata": {
+        "software": "Siemens Opcenter",
+        "ip": "10.0.10.100",
+        "purpose": "Manufacturing Execution System",
+        "integration": "SAP, SCADA, Historians"
+      }
+    },
+    {
+      "id": "file-server",
+      "label": "Engineering File Server",
+      "type": "server",
+      "groupId": "it-network",
+      "metadata": {
+        "ip": "10.0.10.200",
+        "storage": "100 TB",
+        "purpose": "CAD files, blueprints, docs"
+      }
+    },
+    {
+      "id": "dmz-fw",
+      "label": "DMZ Firewall",
+      "type": "router",
+      "groupId": "dmz",
+      "metadata": {
+        "model": "Fortinet FortiGate 600E",
+        "ip": "172.16.0.1",
+        "zone": "IT/OT DMZ",
+        "rules": "Unidirectional data flow to IT",
+        "purpose": "IT/OT segmentation"
+      }
+    },
+    {
+      "id": "data-diode",
+      "label": "Unidirectional Gateway",
+      "type": "router",
+      "groupId": "dmz",
+      "metadata": {
+        "model": "Waterfall Unidirectional Gateway",
+        "direction": "OT → IT only",
+        "purpose": "ICS security, prevent attacks from IT",
+        "certification": "IEC 62443"
+      }
+    },
+    {
+      "id": "historian",
+      "label": "Industrial Historian",
+      "type": "server",
+      "groupId": "dmz",
+      "metadata": {
+        "software": "OSIsoft PI System",
+        "ip": "172.16.1.50",
+        "data-points": "500,000",
+        "retention": "10 years",
+        "sources": "PLCs, SCADA, sensors"
+      }
+    },
+    {
+      "id": "hmi-server",
+      "label": "HMI Server",
+      "type": "server",
+      "groupId": "dmz",
+      "metadata": {
+        "software": "Wonderware System Platform",
+        "ip": "172.16.1.100",
+        "purpose": "Operator dashboards, alarms"
+      }
+    },
+    {
+      "id": "ot-fw",
+      "label": "OT Firewall",
+      "type": "router",
+      "groupId": "ot-network",
+      "metadata": {
+        "model": "Fortinet FortiGate 600E (OT)",
+        "ip": "192.168.0.1",
+        "zone": "OT Network",
+        "inspection": "Deep packet inspection for OT protocols",
+        "protocols": "Modbus, Profinet, EtherNet/IP"
+      }
+    },
+    {
+      "id": "scada-master",
+      "label": "SCADA Master Server",
+      "type": "server",
+      "groupId": "ot-network",
+      "metadata": {
+        "software": "Rockwell FactoryTalk",
+        "ip": "192.168.1.10",
+        "purpose": "Supervisory control",
+        "controlled-devices": "250+ PLCs/RTUs"
+      }
+    },
+    {
+      "id": "ot-core-sw",
+      "label": "OT Core Switch",
+      "type": "switch",
+      "groupId": "ot-network",
+      "metadata": {
+        "model": "Cisco IE-5000 (Industrial)",
+        "ip": "192.168.1.1",
+        "temp-rating": "-40°C to +75°C",
+        "certification": "IEC 61850"
+      }
+    },
+    {
+      "id": "assembly-sw",
+      "label": "Assembly Line Switch",
+      "type": "switch",
+      "groupId": "production-floor",
+      "metadata": {
+        "model": "Siemens SCALANCE X308-2",
+        "ip": "192.168.10.1",
+        "location": "Assembly Line A",
+        "ports": "8x GbE",
+        "certification": "IP65 rated"
+      }
+    },
+    {
+      "id": "welding-sw",
+      "label": "Welding Area Switch",
+      "type": "switch",
+      "groupId": "production-floor",
+      "metadata": {
+        "model": "Siemens SCALANCE X308-2",
+        "ip": "192.168.11.1",
+        "location": "Welding Station"
+      }
+    },
+    {
+      "id": "painting-sw",
+      "label": "Painting Area Switch",
+      "type": "switch",
+      "groupId": "production-floor",
+      "metadata": {
+        "model": "Siemens SCALANCE X308-2",
+        "ip": "192.168.12.1",
+        "location": "Paint Booth"
+      }
+    },
+    {
+      "id": "packaging-sw",
+      "label": "Packaging Line Switch",
+      "type": "switch",
+      "groupId": "production-floor",
+      "metadata": {
+        "model": "Siemens SCALANCE X308-2",
+        "ip": "192.168.13.1",
+        "location": "Packaging & Shipping"
+      }
+    },
+    {
+      "id": "robot-plc-1",
+      "label": "Robot Controller 1-5",
+      "type": "device",
+      "groupId": "production-floor",
+      "metadata": {
+        "model": "ABB IRC5",
+        "ip": "192.168.10.10-14",
+        "robots": "5x 6-axis robots",
+        "purpose": "Pick & place, assembly",
+        "protocol": "EtherNet/IP"
+      }
+    },
+    {
+      "id": "welding-plc",
+      "label": "Welding Robot PLC",
+      "type": "device",
+      "groupId": "production-floor",
+      "metadata": {
+        "model": "Siemens S7-1500",
+        "ip": "192.168.11.10",
+        "purpose": "Control 3x welding robots",
+        "protocol": "Profinet"
+      }
+    },
+    {
+      "id": "conveyor-plc",
+      "label": "Conveyor System PLC",
+      "type": "device",
+      "groupId": "production-floor",
+      "metadata": {
+        "model": "Allen-Bradley ControlLogix",
+        "ip": "192.168.10.20",
+        "purpose": "3.5 km of conveyors",
+        "vfd": "120 variable frequency drives",
+        "protocol": "EtherNet/IP"
+      }
+    },
+    {
+      "id": "painting-plc",
+      "label": "Paint Booth PLC",
+      "type": "device",
+      "groupId": "production-floor",
+      "metadata": {
+        "model": "Siemens S7-1200",
+        "ip": "192.168.12.10",
+        "purpose": "Paint robots, HVAC, safety",
+        "sensors": "Temperature, humidity, VOC"
+      }
+    },
+    {
+      "id": "packaging-plc",
+      "label": "Packaging Line PLC",
+      "type": "device",
+      "groupId": "production-floor",
+      "metadata": {
+        "model": "Omron NJ-series",
+        "ip": "192.168.13.10",
+        "purpose": "Automated packaging, labeling",
+        "throughput": "120 units/minute"
+      }
+    },
+    {
+      "id": "vision-system",
+      "label": "Vision Inspection System",
+      "type": "device",
+      "groupId": "production-floor",
+      "metadata": {
+        "model": "Cognex In-Sight",
+        "ip": "192.168.10.50",
+        "cameras": "12x high-speed cameras",
+        "purpose": "Quality control, defect detection",
+        "ai": "Deep learning inspection"
+      }
+    },
+    {
+      "id": "agv-controller",
+      "label": "AGV Fleet Controller",
+      "type": "device",
+      "groupId": "production-floor",
+      "metadata": {
+        "model": "KUKA KMR Fleet Manager",
+        "ip": "192.168.10.100",
+        "vehicles": "20 AGVs",
+        "navigation": "Laser-guided",
+        "wifi": "Dedicated 5 GHz network"
+      }
+    },
+    {
+      "id": "energy-meter",
+      "label": "Energy Monitoring System",
+      "type": "device",
+      "groupId": "utilities",
+      "metadata": {
+        "model": "Schneider PowerLogic",
+        "ip": "192.168.20.10",
+        "purpose": "Real-time energy usage",
+        "meters": "150 circuits",
+        "protocol": "Modbus TCP"
+      }
+    },
+    {
+      "id": "hvac-plc",
+      "label": "HVAC Control System",
+      "type": "device",
+      "groupId": "utilities",
+      "metadata": {
+        "model": "Johnson Controls Metasys",
+        "ip": "192.168.20.20",
+        "zones": "40 climate zones",
+        "purpose": "Temperature, air quality"
+      }
+    },
+    {
+      "id": "compressor-controller",
+      "label": "Compressed Air System",
+      "type": "device",
+      "groupId": "utilities",
+      "metadata": {
+        "model": "Atlas Copco Optimizer",
+        "ip": "192.168.20.30",
+        "compressors": "6x 250 HP",
+        "pressure": "7 bar",
+        "purpose": "Pneumatic tools, robots"
+      }
+    },
+    {
+      "id": "safety-plc",
+      "label": "Safety System PLC",
+      "type": "device",
+      "groupId": "safety",
+      "metadata": {
+        "model": "Pilz PSS 4000",
+        "ip": "192.168.30.10",
+        "certification": "SIL 3, PLe",
+        "purpose": "Emergency stops, light curtains",
+        "inputs": "500+ safety devices"
+      }
+    },
+    {
+      "id": "fire-panel",
+      "label": "Fire Alarm Panel",
+      "type": "device",
+      "groupId": "safety",
+      "metadata": {
+        "model": "Siemens Cerberus PRO",
+        "ip": "192.168.30.20",
+        "zones": "80 detection zones",
+        "integration": "BMS, emergency shutdown"
+      }
+    },
+    {
+      "id": "internet",
+      "label": "Internet",
+      "type": "device",
+      "metadata": {
+        "bandwidth": "1 Gbps",
+        "provider": "Business fiber"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "sourceId": "internet",
+      "targetId": "it-fw",
+      "cableType": "fiber",
+      "label": "1G",
+      "metadata": { "bandwidth": "1 Gbps" }
+    },
+    {
+      "id": "e2",
+      "sourceId": "it-fw",
+      "targetId": "it-core-sw",
+      "cableType": "fiber",
+      "label": "10G",
+      "metadata": { "bandwidth": "10 Gbps" }
+    },
+    {
+      "id": "e3",
+      "sourceId": "it-core-sw",
+      "targetId": "erp-server",
+      "cableType": "ethernet",
+      "label": "10G",
+      "metadata": { "bandwidth": "10 Gbps" }
+    },
+    {
+      "id": "e4",
+      "sourceId": "it-core-sw",
+      "targetId": "mes-server",
+      "cableType": "ethernet",
+      "label": "10G",
+      "metadata": { "bandwidth": "10 Gbps" }
+    },
+    {
+      "id": "e5",
+      "sourceId": "it-core-sw",
+      "targetId": "file-server",
+      "cableType": "ethernet",
+      "metadata": { "bandwidth": "10 Gbps" }
+    },
+    {
+      "id": "e6",
+      "sourceId": "it-core-sw",
+      "targetId": "dmz-fw",
+      "cableType": "fiber",
+      "label": "10G",
+      "metadata": { "bandwidth": "10 Gbps", "direction": "Bidirectional" }
+    },
+    {
+      "id": "e7",
+      "sourceId": "dmz-fw",
+      "targetId": "historian",
+      "cableType": "ethernet",
+      "label": "1G",
+      "metadata": { "bandwidth": "1 Gbps" }
+    },
+    {
+      "id": "e8",
+      "sourceId": "dmz-fw",
+      "targetId": "hmi-server",
+      "cableType": "ethernet",
+      "label": "1G",
+      "metadata": { "bandwidth": "1 Gbps" }
+    },
+    {
+      "id": "e9",
+      "sourceId": "historian",
+      "targetId": "mes-server",
+      "cableType": "serial",
+      "label": "Data Export",
+      "metadata": { "protocol": "PI to PI", "frequency": "5-minute intervals" }
+    },
+    {
+      "id": "e10",
+      "sourceId": "historian",
+      "targetId": "data-diode",
+      "cableType": "fiber",
+      "label": "Receive from OT",
+      "metadata": { "direction": "OT → IT only", "bandwidth": "1 Gbps" }
+    },
+    {
+      "id": "e11",
+      "sourceId": "data-diode",
+      "targetId": "ot-fw",
+      "cableType": "fiber",
+      "label": "Unidirectional",
+      "metadata": { "hardware": "Fiber TX only", "tamper-proof": "Yes" }
+    },
+    {
+      "id": "e12",
+      "sourceId": "dmz-fw",
+      "targetId": "ot-fw",
+      "cableType": "ethernet",
+      "label": "Controlled Access",
+      "metadata": { "purpose": "Engineer remote access", "mfa": "Required" }
+    },
+    {
+      "id": "e13",
+      "sourceId": "ot-fw",
+      "targetId": "ot-core-sw",
+      "cableType": "fiber",
+      "label": "10G",
+      "metadata": { "bandwidth": "10 Gbps" }
+    },
+    {
+      "id": "e14",
+      "sourceId": "ot-core-sw",
+      "targetId": "scada-master",
+      "cableType": "fiber",
+      "label": "10G",
+      "metadata": { "bandwidth": "10 Gbps", "redundant": "Dual NICs" }
+    },
+    {
+      "id": "e15",
+      "sourceId": "ot-core-sw",
+      "targetId": "assembly-sw",
+      "cableType": "fiber",
+      "label": "1G",
+      "metadata": { "bandwidth": "1 Gbps", "cable": "Armored fiber" }
+    },
+    {
+      "id": "e16",
+      "sourceId": "ot-core-sw",
+      "targetId": "welding-sw",
+      "cableType": "fiber",
+      "label": "1G",
+      "metadata": { "bandwidth": "1 Gbps", "cable": "Armored fiber" }
+    },
+    {
+      "id": "e17",
+      "sourceId": "ot-core-sw",
+      "targetId": "painting-sw",
+      "cableType": "fiber",
+      "label": "1G",
+      "metadata": { "bandwidth": "1 Gbps", "cable": "Armored fiber" }
+    },
+    {
+      "id": "e18",
+      "sourceId": "ot-core-sw",
+      "targetId": "packaging-sw",
+      "cableType": "fiber",
+      "label": "1G",
+      "metadata": { "bandwidth": "1 Gbps", "cable": "Armored fiber" }
+    },
+    {
+      "id": "e19",
+      "sourceId": "scada-master",
+      "targetId": "assembly-sw",
+      "cableType": "ethernet",
+      "label": "SCADA Poll",
+      "metadata": { "protocol": "Modbus TCP", "interval": "100ms" }
+    },
+    {
+      "id": "e20",
+      "sourceId": "scada-master",
+      "targetId": "welding-sw",
+      "cableType": "ethernet",
+      "label": "SCADA Poll",
+      "metadata": { "protocol": "Profinet" }
+    },
+    {
+      "id": "e21",
+      "sourceId": "scada-master",
+      "targetId": "painting-sw",
+      "cableType": "ethernet",
+      "label": "SCADA Poll",
+      "metadata": { "protocol": "Profinet" }
+    },
+    {
+      "id": "e22",
+      "sourceId": "scada-master",
+      "targetId": "packaging-sw",
+      "cableType": "ethernet",
+      "label": "SCADA Poll",
+      "metadata": { "protocol": "EtherNet/IP" }
+    },
+    {
+      "id": "e23",
+      "sourceId": "assembly-sw",
+      "targetId": "robot-plc-1",
+      "cableType": "ethernet",
+      "metadata": { "protocol": "EtherNet/IP", "deterministic": "Yes" }
+    },
+    {
+      "id": "e24",
+      "sourceId": "assembly-sw",
+      "targetId": "conveyor-plc",
+      "cableType": "ethernet",
+      "metadata": { "protocol": "EtherNet/IP" }
+    },
+    {
+      "id": "e25",
+      "sourceId": "assembly-sw",
+      "targetId": "vision-system",
+      "cableType": "ethernet",
+      "metadata": { "bandwidth": "1 Gbps", "purpose": "Image transfer" }
+    },
+    {
+      "id": "e26",
+      "sourceId": "assembly-sw",
+      "targetId": "agv-controller",
+      "cableType": "coaxial",
+      "label": "WiFi Uplink",
+      "metadata": { "frequency": "5 GHz", "standard": "802.11ac" }
+    },
+    {
+      "id": "e27",
+      "sourceId": "welding-sw",
+      "targetId": "welding-plc",
+      "cableType": "ethernet",
+      "metadata": { "protocol": "Profinet", "cycle-time": "4ms" }
+    },
+    {
+      "id": "e28",
+      "sourceId": "painting-sw",
+      "targetId": "painting-plc",
+      "cableType": "ethernet",
+      "metadata": { "protocol": "Profinet" }
+    },
+    {
+      "id": "e29",
+      "sourceId": "packaging-sw",
+      "targetId": "packaging-plc",
+      "cableType": "ethernet",
+      "metadata": { "protocol": "EtherNet/IP" }
+    },
+    {
+      "id": "e30",
+      "sourceId": "ot-core-sw",
+      "targetId": "energy-meter",
+      "cableType": "ethernet",
+      "metadata": { "protocol": "Modbus TCP" }
+    },
+    {
+      "id": "e31",
+      "sourceId": "ot-core-sw",
+      "targetId": "hvac-plc",
+      "cableType": "ethernet",
+      "metadata": { "protocol": "BACnet/IP" }
+    },
+    {
+      "id": "e32",
+      "sourceId": "ot-core-sw",
+      "targetId": "compressor-controller",
+      "cableType": "ethernet",
+      "metadata": { "protocol": "Modbus TCP" }
+    },
+    {
+      "id": "e33",
+      "sourceId": "ot-core-sw",
+      "targetId": "safety-plc",
+      "cableType": "ethernet",
+      "label": "Safety Network",
+      "metadata": { "protocol": "PROFIsafe", "certification": "SIL 3" }
+    },
+    {
+      "id": "e34",
+      "sourceId": "ot-core-sw",
+      "targetId": "fire-panel",
+      "cableType": "ethernet",
+      "metadata": { "protocol": "BACnet/IP" }
+    },
+    {
+      "id": "e35",
+      "sourceId": "safety-plc",
+      "targetId": "assembly-sw",
+      "cableType": "serial",
+      "label": "E-Stop Network",
+      "metadata": { "protocol": "Safety I/O", "response-time": "< 10ms" }
+    },
+    {
+      "id": "e36",
+      "sourceId": "safety-plc",
+      "targetId": "welding-sw",
+      "cableType": "serial",
+      "label": "E-Stop Network",
+      "metadata": { "protocol": "Safety I/O" }
+    },
+    {
+      "id": "e37",
+      "sourceId": "safety-plc",
+      "targetId": "painting-sw",
+      "cableType": "serial",
+      "label": "E-Stop Network",
+      "metadata": { "protocol": "Safety I/O" }
+    },
+    {
+      "id": "e38",
+      "sourceId": "scada-master",
+      "targetId": "historian",
+      "cableType": "serial",
+      "label": "Data Collection",
+      "metadata": { "protocol": "OPC UA", "frequency": "1-second samples" }
+    }
+  ],
+  "groups": [
+    {
+      "id": "it-network",
+      "label": "IT Network (Corporate)",
+      "isCollapsed": false
+    },
+    {
+      "id": "dmz",
+      "label": "IT/OT DMZ (Demilitarized Zone)",
+      "isCollapsed": false
+    },
+    {
+      "id": "ot-network",
+      "label": "OT Network (Operations)",
+      "isCollapsed": false
+    },
+    {
+      "id": "production-floor",
+      "label": "Production Floor (Level 1)",
+      "isCollapsed": false
+    },
+    {
+      "id": "utilities",
+      "label": "Building Systems",
+      "isCollapsed": false
+    },
+    {
+      "id": "safety",
+      "label": "Safety Systems",
+      "isCollapsed": false
+    }
+  ]
+}

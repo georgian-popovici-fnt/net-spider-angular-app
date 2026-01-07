@@ -31,7 +31,7 @@
   display: flex;
   align-items: center;
   gap: $spacing-sm;
-  padding: $spacing-sm $spacing-md;
+  padding: $spacing-sm;
   background: $panel-bg;
   border: 1px solid $border-color;
   border-radius: $border-radius-sm;
@@ -39,9 +39,12 @@
   font-weight: 500;
   transition: all $transition-fast;
   cursor: pointer;
+  min-width: 36px;
+  min-height: 36px;
+  justify-content: center;
 
   .icon {
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1;
   }
 
@@ -49,10 +52,21 @@
     font-size: 14px;
   }
 
+  // When button has a label, add horizontal padding
+  &:has(.label) {
+    padding: $spacing-sm $spacing-md;
+  }
+
   &:hover:not(:disabled) {
     background: $hover-bg;
     border-color: $primary-blue;
     color: $primary-blue;
+    transform: translateY(-1px);
+    box-shadow: $shadow-sm;
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
   }
 
   &:disabled {
@@ -102,5 +116,45 @@
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+.data-selector {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+
+  label {
+    font-size: 14px;
+    font-weight: 500;
+    color: $text-primary;
+    white-space: nowrap;
+  }
+
+  .topology-select {
+    padding: $spacing-sm $spacing-md;
+    background: $panel-bg;
+    border: 1px solid $border-color;
+    border-radius: $border-radius-sm;
+    color: $text-primary;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all $transition-fast;
+    min-width: 200px;
+
+    &:hover {
+      border-color: $primary-blue;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $primary-blue;
+      box-shadow: 0 0 0 3px rgba($primary-blue, 0.1);
+    }
+
+    option {
+      padding: $spacing-sm;
+    }
   }
 }

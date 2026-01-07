@@ -62,6 +62,8 @@ export class GraphStateService {
   loadGraphData(data: GraphData): void {
     this.loadingSubject.next(true);
 
+    console.log('[GraphState] Loading graph data:', data.nodes.length, 'nodes,', data.edges.length, 'edges');
+
     // Merge persisted positions into node data
     data.nodes.forEach(node => {
       const persistedPos = this.nodePositions.get(node.id);
@@ -72,6 +74,7 @@ export class GraphStateService {
     });
 
     this.graphDataSubject.next(data);
+    console.log('[GraphState] Graph data set. Current value:', this.graphDataSubject.value ? 'EXISTS' : 'NULL');
     this.loadingSubject.next(false);
   }
 
@@ -79,13 +82,18 @@ export class GraphStateService {
    * Update selection state
    */
   setSelection(nodeIds: string[], edgeIds: string[]): void {
+    console.log('[GraphState] setSelection called with:', { nodeIds, edgeIds });
+
     const data = this.graphDataSubject.value;
     if (!data) {
+      console.log('[GraphState] No graph data available');
       return;
     }
 
     const selectedNodes = data.nodes.filter(n => nodeIds.includes(n.id));
     const selectedEdges = data.edges.filter(e => edgeIds.includes(e.id));
+
+    console.log('[GraphState] Found nodes:', selectedNodes.length, 'edges:', selectedEdges.length);
 
     let selectionType: SelectionState['selectionType'] = 'none';
     if (selectedNodes.length > 0 && selectedEdges.length === 0) {
@@ -96,11 +104,14 @@ export class GraphStateService {
       selectionType = 'mixed';
     }
 
-    this.selectionSubject.next({
+    const newSelection = {
       selectedNodes,
       selectedEdges,
       selectionType
-    });
+    };
+
+    console.log('[GraphState] Setting selection state:', newSelection);
+    this.selectionSubject.next(newSelection);
   }
 
   /**
@@ -255,7 +266,9 @@ export class GraphStateService {
    * Get current graph data
    */
   getCurrentGraphData(): GraphData | null {
-    return this.graphDataSubject.value;
+    const data = this.graphDataSubject.value;
+    console.log('[GraphState] getCurrentGraphData called. Data:', data ? `${data.nodes.length} nodes` : 'NULL');
+    return data;
   }
 
   // ========== Persistence ==========
@@ -305,23 +318,65 @@ export class GraphStateService {
       { label: 'Type', value: this.formatNodeType(node.type) }
     ];
 
+    // Position information
     if (node.x !== undefined && node.y !== undefined) {
+      properties.push({
+        label: 'Position X',
+        value: `${Math.round(node.x)} px`
+      });
+      properties.push({
+        label: 'Position Y',
+        value: `${Math.round(node.y)} px`
+      });
       properties.push({
         label: 'Position',
         value: `(${Math.round(node.x)}, ${Math.round(node.y)})`
       });
     }
 
+    // Group information
     if (node.groupId) {
-      properties.push({ label: 'Group', value: node.groupId });
+      properties.push({ label: 'Group ID', value: node.groupId });
+
+      // Try to find group label
+      const graphData = this.graphDataSubject.value;
+      if (graphData?.groups) {
+        const group = graphData.groups.find(g => g.id === node.groupId);
+        if (group) {
+          properties.push({ label: 'Group Name', value: group.label });
+          if (group.isCollapsed !== undefined) {
+            properties.push({ label: 'Group Collapsed', value: group.isCollapsed ? 'Yes' : 'No' });
+          }
+        }
+      }
     }
 
-    // Add metadata properties
+    // Count connections
+    const graphData = this.graphDataSubject.value;
+    if (graphData) {
+      const incomingEdges = graphData.edges.filter(e => e.targetId === node.id);
+      const outgoingEdges = graphData.edges.filter(e => e.sourceId === node.id);
+
+      properties.push({
+        label: 'Incoming Connections',
+        value: String(incomingEdges.length)
+      });
+      properties.push({
+        label: 'Outgoing Connections',
+        value: String(outgoingEdges.length)
+      });
+      properties.push({
+        label: 'Total Connections',
+        value: String(incomingEdges.length + outgoingEdges.length)
+      });
+    }
+
+    // Add ALL metadata properties with better formatting
     if (node.metadata) {
       Object.entries(node.metadata).forEach(([key, value]) => {
         properties.push({
           label: this.formatPropertyLabel(key),
-          value: String(value)
+          value: this.formatPropertyValue(value)
         });
       });
     }
@@ -331,29 +386,70 @@ export class GraphStateService {
 
   private buildEdgeProperties(edge: EdgeData): DisplayProperty[] {
     const properties: DisplayProperty[] = [
-      { label: 'ID', value: edge.id },
-      { label: 'Source', value: edge.sourceId },
-      { label: 'Target', value: edge.targetId },
-      { label: 'Cable Type', value: this.formatCableType(edge.cableType) }
+      { label: 'ID', value: edge.id }
     ];
 
     if (edge.label) {
       properties.push({ label: 'Label', value: edge.label });
     }
 
+    properties.push({ label: 'Cable Type', value: this.formatCableType(edge.cableType) });
+
+    // Source node information
+    properties.push({ label: 'Source ID', value: edge.sourceId });
+    const graphData = this.graphDataSubject.value;
+    if (graphData) {
+      const sourceNode = graphData.nodes.find(n => n.id === edge.sourceId);
+      if (sourceNode) {
+        properties.push({ label: 'Source Label', value: sourceNode.label });
+        properties.push({ label: 'Source Type', value: this.formatNodeType(sourceNode.type) });
+      }
+    }
+
+    // Target node information
+    properties.push({ label: 'Target ID', value: edge.targetId });
+    if (graphData) {
+      const targetNode = graphData.nodes.find(n => n.id === edge.targetId);
+      if (targetNode) {
+        properties.push({ label: 'Target Label', value: targetNode.label });
+        properties.push({ label: 'Target Type', value: this.formatNodeType(targetNode.type) });
+      }
+    }
+
+    // Connection direction
+    properties.push({
+      label: 'Direction',
+      value: `${edge.sourceId} → ${edge.targetId}`
+    });
+
+    // Parallel edge information
     if (edge.parallelIndex !== undefined) {
       properties.push({
         label: 'Parallel Index',
         value: String(edge.parallelIndex)
       });
+
+      // Count total parallel edges
+      if (graphData) {
+        const parallelEdges = graphData.edges.filter(
+          e => (e.sourceId === edge.sourceId && e.targetId === edge.targetId) ||
+               (e.sourceId === edge.targetId && e.targetId === edge.sourceId)
+        );
+        if (parallelEdges.length > 1) {
+          properties.push({
+            label: 'Parallel Edges Count',
+            value: String(parallelEdges.length)
+          });
+        }
+      }
     }
 
-    // Add metadata properties
+    // Add ALL metadata properties with better formatting
     if (edge.metadata) {
       Object.entries(edge.metadata).forEach(([key, value]) => {
         properties.push({
           label: this.formatPropertyLabel(key),
-          value: String(value)
+          value: this.formatPropertyValue(value)
         });
       });
     }
@@ -374,7 +470,45 @@ export class GraphStateService {
     return key
       .replace(/([A-Z])/g, ' $1')
       .replace(/_/g, ' ')
+      .replace(/-/g, ' ')
       .replace(/^./, str => str.toUpperCase())
       .trim();
+  }
+
+  private formatPropertyValue(value: any): string {
+    if (value === null || value === undefined) {
+      return 'N/A';
+    }
+
+    // Handle arrays
+    if (Array.isArray(value)) {
+      if (value.length === 0) {
+        return '[]';
+      }
+      // If array of primitives, join them
+      if (value.every(v => typeof v !== 'object')) {
+        return value.join(', ');
+      }
+      // If array of objects, stringify
+      return JSON.stringify(value, null, 2);
+    }
+
+    // Handle objects
+    if (typeof value === 'object') {
+      return JSON.stringify(value, null, 2);
+    }
+
+    // Handle booleans
+    if (typeof value === 'boolean') {
+      return value ? 'Yes' : 'No';
+    }
+
+    // Handle numbers
+    if (typeof value === 'number') {
+      return String(value);
+    }
+
+    // Handle strings
+    return String(value);
   }
 }

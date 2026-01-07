@@ -15,16 +15,155 @@
       </div>
 
       <div class="details-content" *ngIf="details$ | async as details">
-        <div class="details-header">
-          <h4>{{ formatSelectionType(details.type) }}</h4>
+        <!-- Main Title -->
+        <div class="details-title">
+          <div class="title-icon" [attr.data-type]="details.type">
+            {{ getTypeIcon(details.type) }}
+          </div>
+          <div class="title-text">
+            <h4>{{ getMainLabel(details) }}</h4>
+            <span class="subtitle">{{ formatSelectionType(details.type) }}</span>
+          </div>
         </div>
 
-        <dl class="property-list">
-          <ng-container *ngFor="let prop of details.displayProperties">
-            <dt>{{ prop.label }}</dt>
-            <dd>{{ prop.value }}</dd>
-          </ng-container>
-        </dl>
+        <!-- Organized Property Sections -->
+        <div class="property-sections">
+          <!-- Basic Information Section -->
+          <div class="property-section" *ngIf="getBasicProperties(details).length > 0">
+            <div class="section-header">
+              <span class="section-icon">📋</span>
+              <h5>Basic Information</h5>
+            </div>
+            <dl class="property-list">
+              <ng-container *ngFor="let prop of getBasicProperties(details)">
+                <dt>
+                  <span class="prop-label">{{ prop.label }}</span>
+                </dt>
+                <dd>
+                  <span class="prop-value" [title]="prop.value" [class.is-multiline]="isMultilineValue(prop.value)">
+                    <pre *ngIf="isMultilineValue(prop.value)" class="multiline-value">{{ prop.value }}</pre>
+                    <span *ngIf="!isMultilineValue(prop.value)">{{ prop.value }}</span>
+                  </span>
+                  <button class="copy-btn" (click)="copyToClipboard(prop.value)" title="Copy to clipboard">
+                    📋
+                  </button>
+                </dd>
+              </ng-container>
+            </dl>
+          </div>
+
+          <!-- Connection Information (for edges) -->
+          <div class="property-section" *ngIf="details.type === 'edge' && getConnectionProperties(details).length > 0">
+            <div class="section-header">
+              <span class="section-icon">🔗</span>
+              <h5>Connection</h5>
+            </div>
+            <dl class="property-list">
+              <ng-container *ngFor="let prop of getConnectionProperties(details)">
+                <dt>
+                  <span class="prop-label">{{ prop.label }}</span>
+                </dt>
+                <dd>
+                  <span class="prop-value" [title]="prop.value" [class.is-multiline]="isMultilineValue(prop.value)">
+                    <pre *ngIf="isMultilineValue(prop.value)" class="multiline-value">{{ prop.value }}</pre>
+                    <span *ngIf="!isMultilineValue(prop.value)">{{ prop.value }}</span>
+                  </span>
+                  <button class="copy-btn" (click)="copyToClipboard(prop.value)" title="Copy to clipboard">
+                    📋
+                  </button>
+                </dd>
+              </ng-container>
+            </dl>
+          </div>
+
+          <!-- Technical Specifications Section -->
+          <div class="property-section" *ngIf="getTechnicalProperties(details).length > 0">
+            <div class="section-header">
+              <span class="section-icon">⚙️</span>
+              <h5>Technical Specifications</h5>
+            </div>
+            <dl class="property-list">
+              <ng-container *ngFor="let prop of getTechnicalProperties(details)">
+                <dt>
+                  <span class="prop-label">{{ prop.label }}</span>
+                </dt>
+                <dd>
+                  <span class="prop-value" [title]="prop.value" [class.is-multiline]="isMultilineValue(prop.value)">
+                    <pre *ngIf="isMultilineValue(prop.value)" class="multiline-value">{{ prop.value }}</pre>
+                    <span *ngIf="!isMultilineValue(prop.value)">{{ prop.value }}</span>
+                  </span>
+                  <button class="copy-btn" (click)="copyToClipboard(prop.value)" title="Copy to clipboard">
+                    📋
+                  </button>
+                </dd>
+              </ng-container>
+            </dl>
+          </div>
+
+          <!-- Position & Layout (for nodes) -->
+          <div class="property-section" *ngIf="details.type === 'node' && getPositionProperties(details).length > 0">
+            <div class="section-header">
+              <span class="section-icon">📍</span>
+              <h5>Position & Layout</h5>
+            </div>
+            <dl class="property-list">
+              <ng-container *ngFor="let prop of getPositionProperties(details)">
+                <dt>
+                  <span class="prop-label">{{ prop.label }}</span>
+                </dt>
+                <dd>
+                  <span class="prop-value" [title]="prop.value">{{ prop.value }}</span>
+                </dd>
+              </ng-container>
+            </dl>
+          </div>
+
+          <!-- Additional Metadata Section -->
+          <div class="property-section" *ngIf="getAdditionalProperties(details).length > 0">
+            <div class="section-header">
+              <span class="section-icon">📊</span>
+              <h5>Additional Information</h5>
+            </div>
+            <dl class="property-list">
+              <ng-container *ngFor="let prop of getAdditionalProperties(details)">
+                <dt>
+                  <span class="prop-label">{{ prop.label }}</span>
+                </dt>
+                <dd>
+                  <span class="prop-value" [title]="prop.value" [class.is-multiline]="isMultilineValue(prop.value)">
+                    <pre *ngIf="isMultilineValue(prop.value)" class="multiline-value">{{ prop.value }}</pre>
+                    <span *ngIf="!isMultilineValue(prop.value)">{{ prop.value }}</span>
+                  </span>
+                  <button class="copy-btn" (click)="copyToClipboard(prop.value)" title="Copy to clipboard">
+                    📋
+                  </button>
+                </dd>
+              </ng-container>
+            </dl>
+          </div>
+
+          <!-- Raw Data Section (collapsible) -->
+          <div class="property-section raw-data-section">
+            <div class="section-header clickable" (click)="toggleRawData()">
+              <span class="section-icon">{{ showRawData ? '🔽' : '▶️' }}</span>
+              <h5>Raw JSON Data</h5>
+            </div>
+            <div class="raw-data-content" *ngIf="showRawData">
+              <pre class="json-display">{{ formatRawData(details.data) }}</pre>
+              <button class="copy-btn-large" (click)="copyToClipboard(formatRawData(details.data))">
+                📋 Copy JSON
+              </button>
+            </div>
+          </div>
+
+          <!-- Property Count Summary -->
+          <div class="property-summary">
+            <span class="summary-icon">ℹ️</span>
+            <span class="summary-text">
+              Total properties: <strong>{{ details.displayProperties.length }}</strong>
+            </span>
+          </div>
+        </div>
       </div>
 
       <div class="multi-selection-note" *ngIf="getSelectionCount(selection) > 1 && !(details$ | async)">

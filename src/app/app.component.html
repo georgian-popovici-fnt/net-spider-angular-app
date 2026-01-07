@@ -1,11 +1,19 @@
-<div class="app-container">
-  <app-toolbar class="app-toolbar"></app-toolbar>
+<div class="app-layout">
+  <!-- Filter Sidebar (Left) - Conditionally shown -->
+  @if (filterSidebarVisible()) {
+    <app-filter-sidebar class="filter-sidebar"></app-filter-sidebar>
+  }
 
-  <div class="app-content">
-    <div class="app-canvas-wrapper">
-      <app-diagram-canvas class="app-canvas"></app-diagram-canvas>
-      <app-legend class="app-legend"></app-legend>
+  <!-- Main Content Area (Right) -->
+  <div class="app-container">
+    <app-toolbar class="app-toolbar"></app-toolbar>
+
+    <div class="app-content">
+      <div class="app-canvas-wrapper">
+        <app-diagram-canvas class="app-canvas"></app-diagram-canvas>
+        <app-legend class="app-legend"></app-legend>
+      </div>
+      <app-side-panel class="app-side-panel"></app-side-panel>
     </div>
-    <app-side-panel class="app-side-panel"></app-side-panel>
   </div>
 </div>

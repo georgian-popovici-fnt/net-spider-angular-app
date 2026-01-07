@@ -1,0 +1,569 @@
+{
+  "nodes": [
+    {
+      "id": "core-router-dc1",
+      "label": "Core Router DC1",
+      "type": "router",
+      "metadata": {
+        "ip": "10.1.0.1",
+        "model": "Cisco Nexus 9500",
+        "location": "Data Center 1 - Core",
+        "uptime": "99.99%"
+      }
+    },
+    {
+      "id": "core-router-dc2",
+      "label": "Core Router DC2",
+      "type": "router",
+      "metadata": {
+        "ip": "10.2.0.1",
+        "model": "Cisco Nexus 9500",
+        "location": "Data Center 2 - Core",
+        "uptime": "99.99%"
+      }
+    },
+    {
+      "id": "firewall-1",
+      "label": "Primary Firewall",
+      "type": "router",
+      "metadata": {
+        "ip": "10.1.0.254",
+        "model": "Palo Alto PA-5260",
+        "location": "Data Center 1 - DMZ",
+        "throughput": "100Gbps"
+      }
+    },
+    {
+      "id": "firewall-2",
+      "label": "Secondary Firewall",
+      "type": "router",
+      "metadata": {
+        "ip": "10.2.0.254",
+        "model": "Palo Alto PA-5260",
+        "location": "Data Center 2 - DMZ",
+        "throughput": "100Gbps"
+      }
+    },
+    {
+      "id": "spine-switch-1",
+      "label": "Spine Switch 1",
+      "type": "switch",
+      "groupId": "dc1-spine",
+      "metadata": {
+        "ip": "10.1.1.1",
+        "model": "Arista 7280R3",
+        "ports": 32,
+        "location": "DC1 - Spine Layer"
+      }
+    },
+    {
+      "id": "spine-switch-2",
+      "label": "Spine Switch 2",
+      "type": "switch",
+      "groupId": "dc1-spine",
+      "metadata": {
+        "ip": "10.1.1.2",
+        "model": "Arista 7280R3",
+        "ports": 32,
+        "location": "DC1 - Spine Layer"
+      }
+    },
+    {
+      "id": "leaf-switch-1",
+      "label": "Leaf Switch 1",
+      "type": "switch",
+      "groupId": "dc1-compute",
+      "metadata": {
+        "ip": "10.1.2.1",
+        "model": "Arista 7050X3",
+        "ports": 48,
+        "location": "DC1 - Row A"
+      }
+    },
+    {
+      "id": "leaf-switch-2",
+      "label": "Leaf Switch 2",
+      "type": "switch",
+      "groupId": "dc1-compute",
+      "metadata": {
+        "ip": "10.1.2.2",
+        "model": "Arista 7050X3",
+        "ports": 48,
+        "location": "DC1 - Row B"
+      }
+    },
+    {
+      "id": "leaf-switch-3",
+      "label": "Leaf Switch 3",
+      "type": "switch",
+      "groupId": "dc1-storage",
+      "metadata": {
+        "ip": "10.1.2.3",
+        "model": "Arista 7050X3",
+        "ports": 48,
+        "location": "DC1 - Storage Row"
+      }
+    },
+    {
+      "id": "web-server-1",
+      "label": "Web Server 01",
+      "type": "server",
+      "groupId": "dc1-compute",
+      "metadata": {
+        "ip": "10.1.10.11",
+        "os": "Ubuntu 22.04 LTS",
+        "purpose": "Frontend Web Server",
+        "cpu": "AMD EPYC 7763",
+        "ram": "256GB",
+        "status": "Active"
+      }
+    },
+    {
+      "id": "web-server-2",
+      "label": "Web Server 02",
+      "type": "server",
+      "groupId": "dc1-compute",
+      "metadata": {
+        "ip": "10.1.10.12",
+        "os": "Ubuntu 22.04 LTS",
+        "purpose": "Frontend Web Server",
+        "cpu": "AMD EPYC 7763",
+        "ram": "256GB",
+        "status": "Active"
+      }
+    },
+    {
+      "id": "app-server-1",
+      "label": "App Server 01",
+      "type": "server",
+      "groupId": "dc1-compute",
+      "metadata": {
+        "ip": "10.1.10.21",
+        "os": "Red Hat Enterprise Linux 9",
+        "purpose": "Application Server",
+        "cpu": "Intel Xeon Platinum 8380",
+        "ram": "512GB",
+        "status": "Active"
+      }
+    },
+    {
+      "id": "app-server-2",
+      "label": "App Server 02",
+      "type": "server",
+      "groupId": "dc1-compute",
+      "metadata": {
+        "ip": "10.1.10.22",
+        "os": "Red Hat Enterprise Linux 9",
+        "purpose": "Application Server",
+        "cpu": "Intel Xeon Platinum 8380",
+        "ram": "512GB",
+        "status": "Active"
+      }
+    },
+    {
+      "id": "db-server-1",
+      "label": "Database Primary",
+      "type": "server",
+      "groupId": "dc1-compute",
+      "metadata": {
+        "ip": "10.1.10.31",
+        "os": "Ubuntu 22.04 LTS",
+        "purpose": "PostgreSQL Primary",
+        "cpu": "AMD EPYC 7763",
+        "ram": "1TB",
+        "storage": "100TB NVMe",
+        "status": "Active"
+      }
+    },
+    {
+      "id": "db-server-2",
+      "label": "Database Secondary",
+      "type": "server",
+      "groupId": "dc1-compute",
+      "metadata": {
+        "ip": "10.1.10.32",
+        "os": "Ubuntu 22.04 LTS",
+        "purpose": "PostgreSQL Secondary",
+        "cpu": "AMD EPYC 7763",
+        "ram": "1TB",
+        "storage": "100TB NVMe",
+        "status": "Standby"
+      }
+    },
+    {
+      "id": "storage-server-1",
+      "label": "Storage Array 1",
+      "type": "server",
+      "groupId": "dc1-storage",
+      "metadata": {
+        "ip": "10.1.20.10",
+        "model": "NetApp AFF A800",
+        "purpose": "Primary Storage",
+        "storage": "500TB",
+        "protocol": "NFS/iSCSI"
+      }
+    },
+    {
+      "id": "storage-server-2",
+      "label": "Storage Array 2",
+      "type": "server",
+      "groupId": "dc1-storage",
+      "metadata": {
+        "ip": "10.1.20.11",
+        "model": "NetApp AFF A800",
+        "purpose": "Backup Storage",
+        "storage": "500TB",
+        "protocol": "NFS/iSCSI"
+      }
+    },
+    {
+      "id": "load-balancer-1",
+      "label": "Load Balancer 1",
+      "type": "device",
+      "groupId": "dc1-compute",
+      "metadata": {
+        "ip": "10.1.10.100",
+        "model": "F5 BIG-IP i5800",
+        "type": "Load Balancer",
+        "throughput": "40Gbps"
+      }
+    },
+    {
+      "id": "load-balancer-2",
+      "label": "Load Balancer 2",
+      "type": "device",
+      "groupId": "dc1-compute",
+      "metadata": {
+        "ip": "10.1.10.101",
+        "model": "F5 BIG-IP i5800",
+        "type": "Load Balancer",
+        "throughput": "40Gbps"
+      }
+    },
+    {
+      "id": "monitoring-server",
+      "label": "Monitoring System",
+      "type": "server",
+      "groupId": "dc1-management",
+      "metadata": {
+        "ip": "10.1.30.10",
+        "os": "Ubuntu 22.04 LTS",
+        "purpose": "Prometheus/Grafana",
+        "monitoring": "All DC1 Infrastructure"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge-core-dc1-dc2",
+      "sourceId": "core-router-dc1",
+      "targetId": "core-router-dc2",
+      "cableType": "fiber",
+      "parallelIndex": 0,
+      "label": "100Gbps",
+      "metadata": {
+        "bandwidth": "100Gbps",
+        "length": "15km",
+        "purpose": "Inter-DC Link"
+      }
+    },
+    {
+      "id": "edge-core-dc1-dc2-backup",
+      "sourceId": "core-router-dc1",
+      "targetId": "core-router-dc2",
+      "cableType": "fiber",
+      "parallelIndex": 1,
+      "label": "100Gbps Backup",
+      "metadata": {
+        "bandwidth": "100Gbps",
+        "length": "15km",
+        "purpose": "Redundant Link"
+      }
+    },
+    {
+      "id": "edge-core-fw1",
+      "sourceId": "core-router-dc1",
+      "targetId": "firewall-1",
+      "cableType": "fiber",
+      "label": "100Gbps",
+      "metadata": {
+        "bandwidth": "100Gbps"
+      }
+    },
+    {
+      "id": "edge-core-fw2",
+      "sourceId": "core-router-dc2",
+      "targetId": "firewall-2",
+      "cableType": "fiber",
+      "label": "100Gbps",
+      "metadata": {
+        "bandwidth": "100Gbps"
+      }
+    },
+    {
+      "id": "edge-fw-ha",
+      "sourceId": "firewall-1",
+      "targetId": "firewall-2",
+      "cableType": "fiber",
+      "label": "HA Sync",
+      "metadata": {
+        "bandwidth": "10Gbps",
+        "purpose": "High Availability"
+      }
+    },
+    {
+      "id": "edge-core-spine1",
+      "sourceId": "core-router-dc1",
+      "targetId": "spine-switch-1",
+      "cableType": "fiber",
+      "label": "100Gbps",
+      "metadata": {
+        "bandwidth": "100Gbps"
+      }
+    },
+    {
+      "id": "edge-core-spine2",
+      "sourceId": "core-router-dc1",
+      "targetId": "spine-switch-2",
+      "cableType": "fiber",
+      "label": "100Gbps",
+      "metadata": {
+        "bandwidth": "100Gbps"
+      }
+    },
+    {
+      "id": "edge-spine1-leaf1",
+      "sourceId": "spine-switch-1",
+      "targetId": "leaf-switch-1",
+      "cableType": "fiber",
+      "label": "100Gbps",
+      "metadata": {
+        "bandwidth": "100Gbps"
+      }
+    },
+    {
+      "id": "edge-spine1-leaf2",
+      "sourceId": "spine-switch-1",
+      "targetId": "leaf-switch-2",
+      "cableType": "fiber",
+      "label": "100Gbps",
+      "metadata": {
+        "bandwidth": "100Gbps"
+      }
+    },
+    {
+      "id": "edge-spine1-leaf3",
+      "sourceId": "spine-switch-1",
+      "targetId": "leaf-switch-3",
+      "cableType": "fiber",
+      "label": "100Gbps",
+      "metadata": {
+        "bandwidth": "100Gbps"
+      }
+    },
+    {
+      "id": "edge-spine2-leaf1",
+      "sourceId": "spine-switch-2",
+      "targetId": "leaf-switch-1",
+      "cableType": "fiber",
+      "label": "100Gbps",
+      "metadata": {
+        "bandwidth": "100Gbps"
+      }
+    },
+    {
+      "id": "edge-spine2-leaf2",
+      "sourceId": "spine-switch-2",
+      "targetId": "leaf-switch-2",
+      "cableType": "fiber",
+      "label": "100Gbps",
+      "metadata": {
+        "bandwidth": "100Gbps"
+      }
+    },
+    {
+      "id": "edge-spine2-leaf3",
+      "sourceId": "spine-switch-2",
+      "targetId": "leaf-switch-3",
+      "cableType": "fiber",
+      "label": "100Gbps",
+      "metadata": {
+        "bandwidth": "100Gbps"
+      }
+    },
+    {
+      "id": "edge-leaf1-lb1",
+      "sourceId": "leaf-switch-1",
+      "targetId": "load-balancer-1",
+      "cableType": "fiber",
+      "label": "40Gbps",
+      "metadata": {
+        "bandwidth": "40Gbps"
+      }
+    },
+    {
+      "id": "edge-leaf2-lb2",
+      "sourceId": "leaf-switch-2",
+      "targetId": "load-balancer-2",
+      "cableType": "fiber",
+      "label": "40Gbps",
+      "metadata": {
+        "bandwidth": "40Gbps"
+      }
+    },
+    {
+      "id": "edge-lb1-web1",
+      "sourceId": "load-balancer-1",
+      "targetId": "web-server-1",
+      "cableType": "fiber",
+      "label": "25Gbps",
+      "metadata": {
+        "bandwidth": "25Gbps"
+      }
+    },
+    {
+      "id": "edge-lb1-web2",
+      "sourceId": "load-balancer-1",
+      "targetId": "web-server-2",
+      "cableType": "fiber",
+      "label": "25Gbps",
+      "metadata": {
+        "bandwidth": "25Gbps"
+      }
+    },
+    {
+      "id": "edge-lb2-web1",
+      "sourceId": "load-balancer-2",
+      "targetId": "web-server-1",
+      "cableType": "fiber",
+      "label": "25Gbps",
+      "metadata": {
+        "bandwidth": "25Gbps"
+      }
+    },
+    {
+      "id": "edge-lb2-web2",
+      "sourceId": "load-balancer-2",
+      "targetId": "web-server-2",
+      "cableType": "fiber",
+      "label": "25Gbps",
+      "metadata": {
+        "bandwidth": "25Gbps"
+      }
+    },
+    {
+      "id": "edge-web1-app1",
+      "sourceId": "web-server-1",
+      "targetId": "app-server-1",
+      "cableType": "fiber",
+      "label": "25Gbps",
+      "metadata": {
+        "bandwidth": "25Gbps"
+      }
+    },
+    {
+      "id": "edge-web2-app2",
+      "sourceId": "web-server-2",
+      "targetId": "app-server-2",
+      "cableType": "fiber",
+      "label": "25Gbps",
+      "metadata": {
+        "bandwidth": "25Gbps"
+      }
+    },
+    {
+      "id": "edge-app1-db1",
+      "sourceId": "app-server-1",
+      "targetId": "db-server-1",
+      "cableType": "fiber",
+      "label": "25Gbps",
+      "metadata": {
+        "bandwidth": "25Gbps"
+      }
+    },
+    {
+      "id": "edge-app2-db1",
+      "sourceId": "app-server-2",
+      "targetId": "db-server-1",
+      "cableType": "fiber",
+      "label": "25Gbps",
+      "metadata": {
+        "bandwidth": "25Gbps"
+      }
+    },
+    {
+      "id": "edge-db1-db2",
+      "sourceId": "db-server-1",
+      "targetId": "db-server-2",
+      "cableType": "fiber",
+      "label": "Replication",
+      "metadata": {
+        "bandwidth": "100Gbps",
+        "purpose": "Database Replication"
+      }
+    },
+    {
+      "id": "edge-leaf3-storage1",
+      "sourceId": "leaf-switch-3",
+      "targetId": "storage-server-1",
+      "cableType": "fiber",
+      "label": "100Gbps",
+      "metadata": {
+        "bandwidth": "100Gbps"
+      }
+    },
+    {
+      "id": "edge-leaf3-storage2",
+      "sourceId": "leaf-switch-3",
+      "targetId": "storage-server-2",
+      "cableType": "fiber",
+      "label": "100Gbps",
+      "metadata": {
+        "bandwidth": "100Gbps"
+      }
+    },
+    {
+      "id": "edge-storage-ha",
+      "sourceId": "storage-server-1",
+      "targetId": "storage-server-2",
+      "cableType": "fiber",
+      "label": "Storage Sync",
+      "metadata": {
+        "bandwidth": "100Gbps",
+        "purpose": "HA Sync"
+      }
+    },
+    {
+      "id": "edge-leaf1-monitor",
+      "sourceId": "leaf-switch-1",
+      "targetId": "monitoring-server",
+      "cableType": "ethernet",
+      "label": "10Gbps",
+      "metadata": {
+        "bandwidth": "10Gbps"
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "dc1-spine",
+      "label": "DC1 Spine Layer",
+      "isCollapsed": false
+    },
+    {
+      "id": "dc1-compute",
+      "label": "DC1 Compute Zone",
+      "isCollapsed": false
+    },
+    {
+      "id": "dc1-storage",
+      "label": "DC1 Storage Zone",
+      "isCollapsed": false
+    },
+    {
+      "id": "dc1-management",
+      "label": "DC1 Management",
+      "isCollapsed": false
+    }
+  ]
+}

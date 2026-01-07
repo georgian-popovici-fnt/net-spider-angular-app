@@ -1,0 +1,287 @@
+{
+  "nodes": [
+    {
+      "id": "internet-gateway",
+      "label": "Internet Gateway",
+      "type": "router",
+      "metadata": {
+        "ip": "192.168.1.1",
+        "model": "Cisco RV340",
+        "wan_ip": "203.0.113.45",
+        "location": "Main Office - Network Closet"
+      }
+    },
+    {
+      "id": "main-switch",
+      "label": "Main Switch",
+      "type": "switch",
+      "metadata": {
+        "ip": "192.168.1.2",
+        "model": "Netgear GS724T",
+        "ports": 24,
+        "location": "Main Office - Network Closet"
+      }
+    },
+    {
+      "id": "wifi-ap-1",
+      "label": "WiFi AP Office",
+      "type": "device",
+      "metadata": {
+        "ip": "192.168.1.10",
+        "model": "UniFi AP AC Pro",
+        "type": "Wireless Access Point",
+        "location": "Main Office Area"
+      }
+    },
+    {
+      "id": "wifi-ap-2",
+      "label": "WiFi AP Conference",
+      "type": "device",
+      "metadata": {
+        "ip": "192.168.1.11",
+        "model": "UniFi AP AC Pro",
+        "type": "Wireless Access Point",
+        "location": "Conference Room"
+      }
+    },
+    {
+      "id": "nas-server",
+      "label": "NAS Server",
+      "type": "server",
+      "metadata": {
+        "ip": "192.168.1.50",
+        "model": "Synology DS920+",
+        "purpose": "File Storage & Backup",
+        "storage": "16TB",
+        "raid": "RAID 5"
+      }
+    },
+    {
+      "id": "print-server",
+      "label": "Print Server",
+      "type": "device",
+      "metadata": {
+        "ip": "192.168.1.100",
+        "model": "HP MFP E72535z",
+        "type": "Network Printer/Scanner"
+      }
+    },
+    {
+      "id": "desktop-1",
+      "label": "Manager Desktop",
+      "type": "workstation",
+      "metadata": {
+        "ip": "192.168.1.201",
+        "user": "Office Manager",
+        "os": "Windows 11 Pro",
+        "location": "Office 1"
+      }
+    },
+    {
+      "id": "desktop-2",
+      "label": "Sales Desktop",
+      "type": "workstation",
+      "metadata": {
+        "ip": "192.168.1.202",
+        "user": "Sales Team",
+        "os": "Windows 11 Pro",
+        "location": "Office 2"
+      }
+    },
+    {
+      "id": "desktop-3",
+      "label": "Accounting Desktop",
+      "type": "workstation",
+      "metadata": {
+        "ip": "192.168.1.203",
+        "user": "Accounting",
+        "os": "Windows 11 Pro",
+        "location": "Office 3"
+      }
+    },
+    {
+      "id": "laptop-1",
+      "label": "Executive Laptop",
+      "type": "workstation",
+      "metadata": {
+        "ip": "192.168.1.210",
+        "user": "CEO",
+        "os": "macOS Sonoma",
+        "connection": "WiFi"
+      }
+    },
+    {
+      "id": "voip-phone-1",
+      "label": "VoIP Phone 1",
+      "type": "device",
+      "metadata": {
+        "ip": "192.168.1.150",
+        "model": "Cisco 8841",
+        "type": "VoIP Phone",
+        "extension": "101"
+      }
+    },
+    {
+      "id": "voip-phone-2",
+      "label": "VoIP Phone 2",
+      "type": "device",
+      "metadata": {
+        "ip": "192.168.1.151",
+        "model": "Cisco 8841",
+        "type": "VoIP Phone",
+        "extension": "102"
+      }
+    },
+    {
+      "id": "security-camera",
+      "label": "Security Camera",
+      "type": "device",
+      "metadata": {
+        "ip": "192.168.1.180",
+        "model": "Hikvision DS-2CD2385",
+        "type": "IP Camera",
+        "location": "Main Entrance"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge-internet-router",
+      "sourceId": "internet-gateway",
+      "targetId": "main-switch",
+      "cableType": "ethernet",
+      "label": "1Gbps",
+      "metadata": {
+        "bandwidth": "1Gbps",
+        "purpose": "Internet Uplink"
+      }
+    },
+    {
+      "id": "edge-switch-nas",
+      "sourceId": "main-switch",
+      "targetId": "nas-server",
+      "cableType": "ethernet",
+      "label": "1Gbps",
+      "metadata": {
+        "bandwidth": "1Gbps",
+        "port": "Port 1"
+      }
+    },
+    {
+      "id": "edge-switch-printer",
+      "sourceId": "main-switch",
+      "targetId": "print-server",
+      "cableType": "ethernet",
+      "label": "1Gbps",
+      "metadata": {
+        "bandwidth": "1Gbps",
+        "port": "Port 2"
+      }
+    },
+    {
+      "id": "edge-switch-ap1",
+      "sourceId": "main-switch",
+      "targetId": "wifi-ap-1",
+      "cableType": "ethernet",
+      "label": "1Gbps PoE",
+      "metadata": {
+        "bandwidth": "1Gbps",
+        "port": "Port 10",
+        "poe": "enabled"
+      }
+    },
+    {
+      "id": "edge-switch-ap2",
+      "sourceId": "main-switch",
+      "targetId": "wifi-ap-2",
+      "cableType": "ethernet",
+      "label": "1Gbps PoE",
+      "metadata": {
+        "bandwidth": "1Gbps",
+        "port": "Port 11",
+        "poe": "enabled"
+      }
+    },
+    {
+      "id": "edge-switch-desktop1",
+      "sourceId": "main-switch",
+      "targetId": "desktop-1",
+      "cableType": "ethernet",
+      "label": "1Gbps",
+      "metadata": {
+        "bandwidth": "1Gbps",
+        "port": "Port 15"
+      }
+    },
+    {
+      "id": "edge-switch-desktop2",
+      "sourceId": "main-switch",
+      "targetId": "desktop-2",
+      "cableType": "ethernet",
+      "label": "1Gbps",
+      "metadata": {
+        "bandwidth": "1Gbps",
+        "port": "Port 16"
+      }
+    },
+    {
+      "id": "edge-switch-desktop3",
+      "sourceId": "main-switch",
+      "targetId": "desktop-3",
+      "cableType": "ethernet",
+      "label": "1Gbps",
+      "metadata": {
+        "bandwidth": "1Gbps",
+        "port": "Port 17"
+      }
+    },
+    {
+      "id": "edge-ap1-laptop",
+      "sourceId": "wifi-ap-1",
+      "targetId": "laptop-1",
+      "cableType": "coaxial",
+      "label": "WiFi",
+      "metadata": {
+        "connection": "Wireless",
+        "speed": "867Mbps"
+      }
+    },
+    {
+      "id": "edge-switch-voip1",
+      "sourceId": "main-switch",
+      "targetId": "voip-phone-1",
+      "cableType": "ethernet",
+      "label": "100Mbps PoE",
+      "metadata": {
+        "bandwidth": "100Mbps",
+        "port": "Port 20",
+        "poe": "enabled"
+      }
+    },
+    {
+      "id": "edge-switch-voip2",
+      "sourceId": "main-switch",
+      "targetId": "voip-phone-2",
+      "cableType": "ethernet",
+      "label": "100Mbps PoE",
+      "metadata": {
+        "bandwidth": "100Mbps",
+        "port": "Port 21",
+        "poe": "enabled"
+      }
+    },
+    {
+      "id": "edge-switch-camera",
+      "sourceId": "main-switch",
+      "targetId": "security-camera",
+      "cableType": "ethernet",
+      "label": "100Mbps PoE",
+      "metadata": {
+        "bandwidth": "100Mbps",
+        "port": "Port 24",
+        "poe": "enabled"
+      }
+    }
+  ],
+  "groups": []
+}

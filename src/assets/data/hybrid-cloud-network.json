@@ -1,0 +1,588 @@
+{
+  "nodes": [
+    {
+      "id": "on-prem-fw-1",
+      "label": "On-Prem Firewall 1",
+      "type": "router",
+      "groupId": "on-premise",
+      "metadata": {
+        "model": "Palo Alto PA-5220",
+        "ip": "10.0.0.1",
+        "location": "Corporate DC - Rack A1",
+        "throughput": "20 Gbps",
+        "features": "IPS, SSL inspection, VPN concentrator"
+      }
+    },
+    {
+      "id": "on-prem-fw-2",
+      "label": "On-Prem Firewall 2",
+      "type": "router",
+      "groupId": "on-premise",
+      "metadata": {
+        "model": "Palo Alto PA-5220",
+        "ip": "10.0.0.2",
+        "role": "HA Standby",
+        "location": "Corporate DC - Rack A2"
+      }
+    },
+    {
+      "id": "core-sw-1",
+      "label": "Core Switch 1",
+      "type": "switch",
+      "groupId": "on-premise",
+      "metadata": {
+        "model": "Cisco Nexus 9300",
+        "ip": "10.0.1.1",
+        "ports": "48x 10GbE + 6x 100GbE",
+        "vlan": "Trunk (1-4096)"
+      }
+    },
+    {
+      "id": "core-sw-2",
+      "label": "Core Switch 2",
+      "type": "switch",
+      "groupId": "on-premise",
+      "metadata": {
+        "model": "Cisco Nexus 9300",
+        "ip": "10.0.1.2",
+        "role": "HA Pair with Core-SW-1"
+      }
+    },
+    {
+      "id": "vpn-gateway",
+      "label": "Site-to-Site VPN",
+      "type": "router",
+      "groupId": "on-premise",
+      "metadata": {
+        "model": "Cisco ASR 1002-HX",
+        "ip": "10.0.0.10",
+        "tunnels": "IPsec to AWS, Azure, GCP",
+        "bandwidth": "10 Gbps aggregate"
+      }
+    },
+    {
+      "id": "sd-wan-1",
+      "label": "SD-WAN Edge 1",
+      "type": "router",
+      "groupId": "on-premise",
+      "metadata": {
+        "model": "Cisco Viptela vEdge",
+        "ip": "10.0.0.20",
+        "purpose": "Primary WAN link",
+        "uplink": "1 Gbps MPLS"
+      }
+    },
+    {
+      "id": "sd-wan-2",
+      "label": "SD-WAN Edge 2",
+      "type": "router",
+      "groupId": "on-premise",
+      "metadata": {
+        "model": "Cisco Viptela vEdge",
+        "ip": "10.0.0.21",
+        "purpose": "Secondary WAN link",
+        "uplink": "500 Mbps Internet"
+      }
+    },
+    {
+      "id": "on-prem-db",
+      "label": "Oracle Database",
+      "type": "server",
+      "groupId": "on-premise",
+      "metadata": {
+        "model": "Oracle Exadata X8M",
+        "ip": "10.0.10.50",
+        "database": "Oracle 19c RAC",
+        "storage": "384 TB NVMe",
+        "purpose": "Legacy ERP system"
+      }
+    },
+    {
+      "id": "on-prem-file",
+      "label": "File Server Cluster",
+      "type": "server",
+      "groupId": "on-premise",
+      "metadata": {
+        "model": "Dell EMC Unity XT",
+        "ip": "10.0.10.100",
+        "storage": "500 TB",
+        "protocol": "SMB/NFS"
+      }
+    },
+    {
+      "id": "backup-server",
+      "label": "Backup System",
+      "type": "server",
+      "groupId": "on-premise",
+      "metadata": {
+        "model": "Veeam + Dell DataDomain",
+        "ip": "10.0.10.200",
+        "storage": "1 PB deduplicated",
+        "schedule": "Hourly snapshots, daily to cloud"
+      }
+    },
+    {
+      "id": "aws-tgw",
+      "label": "AWS Transit Gateway",
+      "type": "router",
+      "groupId": "aws-cloud",
+      "metadata": {
+        "service": "AWS Transit Gateway",
+        "region": "us-east-1",
+        "cidr": "172.16.0.0/16",
+        "attachments": "4 VPCs, 1 VPN"
+      }
+    },
+    {
+      "id": "aws-vpc-prod",
+      "label": "AWS VPC - Production",
+      "type": "switch",
+      "groupId": "aws-cloud",
+      "metadata": {
+        "service": "AWS VPC",
+        "cidr": "172.16.0.0/20",
+        "az": "us-east-1a, us-east-1b",
+        "subnets": "Public, Private, Database"
+      }
+    },
+    {
+      "id": "aws-ec2-web",
+      "label": "EC2 Web Tier (ASG)",
+      "type": "server",
+      "groupId": "aws-cloud",
+      "metadata": {
+        "service": "EC2 Auto Scaling",
+        "instance": "c6i.2xlarge (8 vCPU, 16 GB)",
+        "min": "4 instances",
+        "max": "20 instances",
+        "app": "Node.js API servers"
+      }
+    },
+    {
+      "id": "aws-alb",
+      "label": "Application Load Balancer",
+      "type": "router",
+      "groupId": "aws-cloud",
+      "metadata": {
+        "service": "AWS ALB",
+        "dns": "api.company.com",
+        "ssl": "ACM Certificate",
+        "targets": "EC2 Web Tier"
+      }
+    },
+    {
+      "id": "aws-rds",
+      "label": "RDS PostgreSQL",
+      "type": "server",
+      "groupId": "aws-cloud",
+      "metadata": {
+        "service": "Amazon RDS",
+        "engine": "PostgreSQL 15",
+        "instance": "db.r6g.2xlarge",
+        "storage": "10 TB gp3",
+        "ha": "Multi-AZ deployment"
+      }
+    },
+    {
+      "id": "aws-s3",
+      "label": "S3 Data Lake",
+      "type": "server",
+      "groupId": "aws-cloud",
+      "metadata": {
+        "service": "Amazon S3",
+        "bucket": "company-datalake-prod",
+        "storage": "50 TB",
+        "purpose": "Analytics, ML datasets"
+      }
+    },
+    {
+      "id": "azure-vnet",
+      "label": "Azure VNet - DR",
+      "type": "switch",
+      "groupId": "azure-cloud",
+      "metadata": {
+        "service": "Azure Virtual Network",
+        "cidr": "172.17.0.0/16",
+        "region": "East US 2",
+        "purpose": "Disaster Recovery site"
+      }
+    },
+    {
+      "id": "azure-vm-dr",
+      "label": "Azure VM - DR Replicas",
+      "type": "server",
+      "groupId": "azure-cloud",
+      "metadata": {
+        "service": "Azure Virtual Machines",
+        "size": "Standard_D8s_v5",
+        "count": "6 VMs (powered off)",
+        "purpose": "Hot standby for failover"
+      }
+    },
+    {
+      "id": "azure-sql",
+      "label": "Azure SQL - DR",
+      "type": "server",
+      "groupId": "azure-cloud",
+      "metadata": {
+        "service": "Azure SQL Database",
+        "tier": "Business Critical",
+        "geo-replication": "From on-prem Oracle",
+        "rto": "< 1 hour"
+      }
+    },
+    {
+      "id": "azure-asr",
+      "label": "Azure Site Recovery",
+      "type": "device",
+      "groupId": "azure-cloud",
+      "metadata": {
+        "service": "Azure Site Recovery",
+        "protected": "50 on-prem servers",
+        "replication": "Continuous",
+        "failover": "Automated runbooks"
+      }
+    },
+    {
+      "id": "gcp-vpc",
+      "label": "GCP VPC - Analytics",
+      "type": "switch",
+      "groupId": "gcp-cloud",
+      "metadata": {
+        "service": "Google Cloud VPC",
+        "cidr": "172.18.0.0/16",
+        "region": "us-central1"
+      }
+    },
+    {
+      "id": "gcp-bigquery",
+      "label": "BigQuery Warehouse",
+      "type": "server",
+      "groupId": "gcp-cloud",
+      "metadata": {
+        "service": "Google BigQuery",
+        "dataset": "company_analytics",
+        "storage": "20 TB",
+        "queries": "~5000/day"
+      }
+    },
+    {
+      "id": "gcp-dataflow",
+      "label": "Cloud Dataflow",
+      "type": "server",
+      "groupId": "gcp-cloud",
+      "metadata": {
+        "service": "Cloud Dataflow",
+        "purpose": "ETL pipelines",
+        "source": "On-prem DB, AWS S3",
+        "workers": "Auto-scaling 10-100"
+      }
+    },
+    {
+      "id": "internet",
+      "label": "Internet",
+      "type": "device",
+      "metadata": {
+        "purpose": "External connectivity",
+        "providers": "Dual ISP, DIA circuits"
+      }
+    },
+    {
+      "id": "mpls-cloud",
+      "label": "MPLS Cloud",
+      "type": "device",
+      "metadata": {
+        "provider": "AT&T MPLS",
+        "bandwidth": "1 Gbps",
+        "sla": "99.95% uptime"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "sourceId": "internet",
+      "targetId": "on-prem-fw-1",
+      "cableType": "fiber",
+      "label": "DIA 10G",
+      "metadata": { "bandwidth": "10 Gbps", "provider": "Level3" }
+    },
+    {
+      "id": "e2",
+      "sourceId": "internet",
+      "targetId": "on-prem-fw-2",
+      "cableType": "fiber",
+      "label": "DIA 10G",
+      "metadata": { "bandwidth": "10 Gbps", "provider": "Lumen" }
+    },
+    {
+      "id": "e3",
+      "sourceId": "on-prem-fw-1",
+      "targetId": "core-sw-1",
+      "cableType": "fiber",
+      "label": "40G",
+      "metadata": { "bandwidth": "40 Gbps", "port": "Eth1/1" }
+    },
+    {
+      "id": "e4",
+      "sourceId": "on-prem-fw-2",
+      "targetId": "core-sw-2",
+      "cableType": "fiber",
+      "label": "40G",
+      "metadata": { "bandwidth": "40 Gbps", "port": "Eth1/1" }
+    },
+    {
+      "id": "e5",
+      "sourceId": "on-prem-fw-1",
+      "targetId": "on-prem-fw-2",
+      "cableType": "fiber",
+      "label": "HA Sync",
+      "metadata": { "bandwidth": "10 Gbps", "purpose": "Failover heartbeat" }
+    },
+    {
+      "id": "e6",
+      "sourceId": "core-sw-1",
+      "targetId": "core-sw-2",
+      "cableType": "fiber",
+      "label": "vPC Peer Link",
+      "metadata": { "bandwidth": "2x 100 Gbps", "port": "Eth1/49-50" }
+    },
+    {
+      "id": "e7",
+      "sourceId": "core-sw-1",
+      "targetId": "on-prem-db",
+      "cableType": "fiber",
+      "label": "10G",
+      "metadata": { "bandwidth": "10 Gbps" }
+    },
+    {
+      "id": "e8",
+      "sourceId": "core-sw-2",
+      "targetId": "on-prem-db",
+      "cableType": "fiber",
+      "label": "10G",
+      "metadata": { "bandwidth": "10 Gbps" }
+    },
+    {
+      "id": "e9",
+      "sourceId": "core-sw-1",
+      "targetId": "on-prem-file",
+      "cableType": "ethernet",
+      "metadata": { "bandwidth": "10 Gbps" }
+    },
+    {
+      "id": "e10",
+      "sourceId": "core-sw-1",
+      "targetId": "backup-server",
+      "cableType": "ethernet",
+      "metadata": { "bandwidth": "10 Gbps" }
+    },
+    {
+      "id": "e11",
+      "sourceId": "core-sw-1",
+      "targetId": "vpn-gateway",
+      "cableType": "fiber",
+      "label": "10G",
+      "metadata": { "bandwidth": "10 Gbps" }
+    },
+    {
+      "id": "e12",
+      "sourceId": "core-sw-2",
+      "targetId": "vpn-gateway",
+      "cableType": "fiber",
+      "label": "10G",
+      "metadata": { "bandwidth": "10 Gbps" }
+    },
+    {
+      "id": "e13",
+      "sourceId": "vpn-gateway",
+      "targetId": "aws-tgw",
+      "cableType": "serial",
+      "label": "IPsec VPN",
+      "metadata": { "bandwidth": "1.25 Gbps per tunnel", "tunnels": "2 active", "latency": "5ms" }
+    },
+    {
+      "id": "e14",
+      "sourceId": "vpn-gateway",
+      "targetId": "azure-vnet",
+      "cableType": "serial",
+      "label": "IPsec VPN",
+      "metadata": { "bandwidth": "1.25 Gbps", "latency": "8ms" }
+    },
+    {
+      "id": "e15",
+      "sourceId": "vpn-gateway",
+      "targetId": "gcp-vpc",
+      "cableType": "serial",
+      "label": "IPsec VPN",
+      "metadata": { "bandwidth": "1.25 Gbps", "latency": "6ms" }
+    },
+    {
+      "id": "e16",
+      "sourceId": "core-sw-1",
+      "targetId": "sd-wan-1",
+      "cableType": "ethernet",
+      "metadata": { "bandwidth": "1 Gbps" }
+    },
+    {
+      "id": "e17",
+      "sourceId": "core-sw-2",
+      "targetId": "sd-wan-2",
+      "cableType": "ethernet",
+      "metadata": { "bandwidth": "1 Gbps" }
+    },
+    {
+      "id": "e18",
+      "sourceId": "sd-wan-1",
+      "targetId": "mpls-cloud",
+      "cableType": "fiber",
+      "label": "MPLS 1G",
+      "metadata": { "bandwidth": "1 Gbps" }
+    },
+    {
+      "id": "e19",
+      "sourceId": "sd-wan-2",
+      "targetId": "internet",
+      "cableType": "ethernet",
+      "label": "Internet 500M",
+      "metadata": { "bandwidth": "500 Mbps" }
+    },
+    {
+      "id": "e20",
+      "sourceId": "aws-tgw",
+      "targetId": "aws-vpc-prod",
+      "cableType": "fiber",
+      "label": "TGW Attach",
+      "metadata": { "bandwidth": "50 Gbps", "type": "VPC attachment" }
+    },
+    {
+      "id": "e21",
+      "sourceId": "aws-vpc-prod",
+      "targetId": "aws-alb",
+      "cableType": "ethernet",
+      "metadata": { "subnet": "Public" }
+    },
+    {
+      "id": "e22",
+      "sourceId": "aws-alb",
+      "targetId": "aws-ec2-web",
+      "cableType": "ethernet",
+      "label": "Target Group",
+      "metadata": { "protocol": "HTTP/2", "health-check": "Every 30s" }
+    },
+    {
+      "id": "e23",
+      "sourceId": "aws-ec2-web",
+      "targetId": "aws-rds",
+      "cableType": "ethernet",
+      "label": "PostgreSQL",
+      "metadata": { "port": "5432", "subnet": "Private DB subnet" }
+    },
+    {
+      "id": "e24",
+      "sourceId": "aws-ec2-web",
+      "targetId": "aws-s3",
+      "cableType": "ethernet",
+      "label": "S3 VPC Endpoint",
+      "metadata": { "purpose": "Upload files, logs" }
+    },
+    {
+      "id": "e25",
+      "sourceId": "on-prem-db",
+      "targetId": "aws-rds",
+      "cableType": "serial",
+      "label": "DB Replication",
+      "metadata": { "method": "AWS DMS", "frequency": "Real-time CDC" }
+    },
+    {
+      "id": "e26",
+      "sourceId": "backup-server",
+      "targetId": "aws-s3",
+      "cableType": "serial",
+      "label": "Veeam Backup",
+      "metadata": { "schedule": "Daily at 02:00", "retention": "30 days" }
+    },
+    {
+      "id": "e27",
+      "sourceId": "azure-vnet",
+      "targetId": "azure-vm-dr",
+      "cableType": "ethernet",
+      "metadata": { "subnet": "DR-subnet" }
+    },
+    {
+      "id": "e28",
+      "sourceId": "azure-vnet",
+      "targetId": "azure-sql",
+      "cableType": "ethernet",
+      "metadata": { "subnet": "Database-subnet" }
+    },
+    {
+      "id": "e29",
+      "sourceId": "on-prem-db",
+      "targetId": "azure-sql",
+      "cableType": "serial",
+      "label": "Geo-Replication",
+      "metadata": { "method": "Oracle GoldenGate", "lag": "< 30 seconds" }
+    },
+    {
+      "id": "e30",
+      "sourceId": "azure-asr",
+      "targetId": "on-prem-file",
+      "cableType": "serial",
+      "label": "ASR Agent",
+      "metadata": { "replication": "Continuous", "rpo": "5 minutes" }
+    },
+    {
+      "id": "e31",
+      "sourceId": "gcp-vpc",
+      "targetId": "gcp-bigquery",
+      "cableType": "ethernet",
+      "metadata": { "access": "Private Google Access" }
+    },
+    {
+      "id": "e32",
+      "sourceId": "gcp-vpc",
+      "targetId": "gcp-dataflow",
+      "cableType": "ethernet",
+      "metadata": { "subnet": "Analytics-subnet" }
+    },
+    {
+      "id": "e33",
+      "sourceId": "aws-s3",
+      "targetId": "gcp-dataflow",
+      "cableType": "serial",
+      "label": "Cross-Cloud ETL",
+      "metadata": { "method": "Storage Transfer Service", "schedule": "Hourly" }
+    },
+    {
+      "id": "e34",
+      "sourceId": "gcp-dataflow",
+      "targetId": "gcp-bigquery",
+      "cableType": "ethernet",
+      "label": "Load Data",
+      "metadata": { "format": "Parquet, Avro" }
+    }
+  ],
+  "groups": [
+    {
+      "id": "on-premise",
+      "label": "On-Premise Data Center",
+      "isCollapsed": false
+    },
+    {
+      "id": "aws-cloud",
+      "label": "AWS Cloud (Production)",
+      "isCollapsed": false
+    },
+    {
+      "id": "azure-cloud",
+      "label": "Azure Cloud (Disaster Recovery)",
+      "isCollapsed": false
+    },
+    {
+      "id": "gcp-cloud",
+      "label": "Google Cloud (Analytics)",
+      "isCollapsed": false
+    }
+  ]
+}

@@ -1,0 +1,576 @@
+{
+  "nodes": [
+    {
+      "id": "core-router-nyc",
+      "label": "NYC Core Router",
+      "type": "router",
+      "groupId": "core-layer",
+      "metadata": {
+        "ip": "203.0.113.1",
+        "asn": "AS64500",
+        "model": "Juniper MX960",
+        "location": "New York City - PoP1",
+        "capacity": "400Gbps"
+      }
+    },
+    {
+      "id": "core-router-lax",
+      "label": "LAX Core Router",
+      "type": "router",
+      "groupId": "core-layer",
+      "metadata": {
+        "ip": "203.0.113.2",
+        "asn": "AS64500",
+        "model": "Juniper MX960",
+        "location": "Los Angeles - PoP2",
+        "capacity": "400Gbps"
+      }
+    },
+    {
+      "id": "core-router-chi",
+      "label": "CHI Core Router",
+      "type": "router",
+      "groupId": "core-layer",
+      "metadata": {
+        "ip": "203.0.113.3",
+        "asn": "AS64500",
+        "model": "Juniper MX960",
+        "location": "Chicago - PoP3",
+        "capacity": "400Gbps"
+      }
+    },
+    {
+      "id": "core-router-dal",
+      "label": "DAL Core Router",
+      "type": "router",
+      "groupId": "core-layer",
+      "metadata": {
+        "ip": "203.0.113.4",
+        "asn": "AS64500",
+        "model": "Juniper MX960",
+        "location": "Dallas - PoP4",
+        "capacity": "400Gbps"
+      }
+    },
+    {
+      "id": "core-router-mia",
+      "label": "MIA Core Router",
+      "type": "router",
+      "groupId": "core-layer",
+      "metadata": {
+        "ip": "203.0.113.5",
+        "asn": "AS64500",
+        "model": "Juniper MX960",
+        "location": "Miami - PoP5",
+        "capacity": "400Gbps"
+      }
+    },
+    {
+      "id": "edge-router-nyc-1",
+      "label": "NYC Edge Router 1",
+      "type": "router",
+      "groupId": "edge-nyc",
+      "metadata": {
+        "ip": "203.0.113.101",
+        "model": "Cisco ASR 9000",
+        "location": "New York - Edge",
+        "peer": "Tier 1 Provider A"
+      }
+    },
+    {
+      "id": "edge-router-nyc-2",
+      "label": "NYC Edge Router 2",
+      "type": "router",
+      "groupId": "edge-nyc",
+      "metadata": {
+        "ip": "203.0.113.102",
+        "model": "Cisco ASR 9000",
+        "location": "New York - Edge",
+        "peer": "Tier 1 Provider B"
+      }
+    },
+    {
+      "id": "edge-router-lax-1",
+      "label": "LAX Edge Router 1",
+      "type": "router",
+      "groupId": "edge-lax",
+      "metadata": {
+        "ip": "203.0.113.201",
+        "model": "Cisco ASR 9000",
+        "location": "Los Angeles - Edge",
+        "peer": "Internet Exchange"
+      }
+    },
+    {
+      "id": "edge-router-lax-2",
+      "label": "LAX Edge Router 2",
+      "type": "router",
+      "groupId": "edge-lax",
+      "metadata": {
+        "ip": "203.0.113.202",
+        "model": "Cisco ASR 9000",
+        "location": "Los Angeles - Edge",
+        "peer": "Content Delivery Network"
+      }
+    },
+    {
+      "id": "route-reflector-1",
+      "label": "Route Reflector 1",
+      "type": "router",
+      "metadata": {
+        "ip": "203.0.113.250",
+        "model": "Juniper MX204",
+        "location": "Virtual - NYC",
+        "role": "BGP Route Reflector"
+      }
+    },
+    {
+      "id": "route-reflector-2",
+      "label": "Route Reflector 2",
+      "type": "router",
+      "metadata": {
+        "ip": "203.0.113.251",
+        "model": "Juniper MX204",
+        "location": "Virtual - LAX",
+        "role": "BGP Route Reflector"
+      }
+    },
+    {
+      "id": "aggregation-switch-nyc",
+      "label": "NYC Aggregation",
+      "type": "switch",
+      "groupId": "edge-nyc",
+      "metadata": {
+        "ip": "203.0.113.110",
+        "model": "Arista 7500R3",
+        "ports": 288,
+        "location": "New York - Aggregation"
+      }
+    },
+    {
+      "id": "aggregation-switch-lax",
+      "label": "LAX Aggregation",
+      "type": "switch",
+      "groupId": "edge-lax",
+      "metadata": {
+        "ip": "203.0.113.210",
+        "model": "Arista 7500R3",
+        "ports": 288,
+        "location": "Los Angeles - Aggregation"
+      }
+    },
+    {
+      "id": "dns-server-1",
+      "label": "DNS Server 1",
+      "type": "server",
+      "groupId": "services",
+      "metadata": {
+        "ip": "8.8.8.8",
+        "os": "Linux",
+        "purpose": "Authoritative DNS",
+        "location": "NYC",
+        "queries_per_second": "1M+"
+      }
+    },
+    {
+      "id": "dns-server-2",
+      "label": "DNS Server 2",
+      "type": "server",
+      "groupId": "services",
+      "metadata": {
+        "ip": "8.8.4.4",
+        "os": "Linux",
+        "purpose": "Authoritative DNS",
+        "location": "LAX",
+        "queries_per_second": "1M+"
+      }
+    },
+    {
+      "id": "radius-server",
+      "label": "RADIUS Server",
+      "type": "server",
+      "groupId": "services",
+      "metadata": {
+        "ip": "203.0.113.50",
+        "os": "Linux",
+        "purpose": "AAA Server",
+        "location": "NYC"
+      }
+    },
+    {
+      "id": "netflow-collector",
+      "label": "NetFlow Collector",
+      "type": "server",
+      "groupId": "monitoring",
+      "metadata": {
+        "ip": "203.0.113.60",
+        "os": "Linux",
+        "purpose": "Traffic Analysis",
+        "location": "CHI"
+      }
+    },
+    {
+      "id": "nms-server",
+      "label": "Network Mgmt System",
+      "type": "server",
+      "groupId": "monitoring",
+      "metadata": {
+        "ip": "203.0.113.61",
+        "os": "Linux",
+        "purpose": "NMS/Monitoring",
+        "software": "Nagios + Grafana"
+      }
+    },
+    {
+      "id": "customer-router-1",
+      "label": "Customer Router 1",
+      "type": "device",
+      "metadata": {
+        "ip": "198.51.100.1",
+        "customer": "Enterprise Customer A",
+        "bandwidth": "10Gbps",
+        "location": "NYC Customer Site"
+      }
+    },
+    {
+      "id": "customer-router-2",
+      "label": "Customer Router 2",
+      "type": "device",
+      "metadata": {
+        "ip": "198.51.100.2",
+        "customer": "Enterprise Customer B",
+        "bandwidth": "10Gbps",
+        "location": "LAX Customer Site"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge-core-nyc-lax",
+      "sourceId": "core-router-nyc",
+      "targetId": "core-router-lax",
+      "cableType": "fiber",
+      "parallelIndex": 0,
+      "label": "100Gbps",
+      "metadata": {
+        "bandwidth": "100Gbps",
+        "length": "4500km",
+        "latency": "45ms",
+        "purpose": "Transcontinental Link"
+      }
+    },
+    {
+      "id": "edge-core-nyc-lax-backup",
+      "sourceId": "core-router-nyc",
+      "targetId": "core-router-lax",
+      "cableType": "fiber",
+      "parallelIndex": 1,
+      "label": "100Gbps Backup",
+      "metadata": {
+        "bandwidth": "100Gbps",
+        "length": "4600km",
+        "latency": "46ms",
+        "purpose": "Redundant Path"
+      }
+    },
+    {
+      "id": "edge-core-nyc-chi",
+      "sourceId": "core-router-nyc",
+      "targetId": "core-router-chi",
+      "cableType": "fiber",
+      "label": "100Gbps",
+      "metadata": {
+        "bandwidth": "100Gbps",
+        "length": "1200km",
+        "latency": "12ms"
+      }
+    },
+    {
+      "id": "edge-core-chi-dal",
+      "sourceId": "core-router-chi",
+      "targetId": "core-router-dal",
+      "cableType": "fiber",
+      "label": "100Gbps",
+      "metadata": {
+        "bandwidth": "100Gbps",
+        "length": "1400km",
+        "latency": "14ms"
+      }
+    },
+    {
+      "id": "edge-core-dal-lax",
+      "sourceId": "core-router-dal",
+      "targetId": "core-router-lax",
+      "cableType": "fiber",
+      "label": "100Gbps",
+      "metadata": {
+        "bandwidth": "100Gbps",
+        "length": "2000km",
+        "latency": "20ms"
+      }
+    },
+    {
+      "id": "edge-core-dal-mia",
+      "sourceId": "core-router-dal",
+      "targetId": "core-router-mia",
+      "cableType": "fiber",
+      "label": "100Gbps",
+      "metadata": {
+        "bandwidth": "100Gbps",
+        "length": "1700km",
+        "latency": "17ms"
+      }
+    },
+    {
+      "id": "edge-core-nyc-mia",
+      "sourceId": "core-router-nyc",
+      "targetId": "core-router-mia",
+      "cableType": "fiber",
+      "label": "100Gbps",
+      "metadata": {
+        "bandwidth": "100Gbps",
+        "length": "2000km",
+        "latency": "20ms"
+      }
+    },
+    {
+      "id": "edge-core-chi-lax",
+      "sourceId": "core-router-chi",
+      "targetId": "core-router-lax",
+      "cableType": "fiber",
+      "label": "100Gbps",
+      "metadata": {
+        "bandwidth": "100Gbps",
+        "length": "2800km",
+        "latency": "28ms"
+      }
+    },
+    {
+      "id": "edge-nyc-core-edge1",
+      "sourceId": "core-router-nyc",
+      "targetId": "edge-router-nyc-1",
+      "cableType": "fiber",
+      "label": "100Gbps",
+      "metadata": {
+        "bandwidth": "100Gbps"
+      }
+    },
+    {
+      "id": "edge-nyc-core-edge2",
+      "sourceId": "core-router-nyc",
+      "targetId": "edge-router-nyc-2",
+      "cableType": "fiber",
+      "label": "100Gbps",
+      "metadata": {
+        "bandwidth": "100Gbps"
+      }
+    },
+    {
+      "id": "edge-lax-core-edge1",
+      "sourceId": "core-router-lax",
+      "targetId": "edge-router-lax-1",
+      "cableType": "fiber",
+      "label": "100Gbps",
+      "metadata": {
+        "bandwidth": "100Gbps"
+      }
+    },
+    {
+      "id": "edge-lax-core-edge2",
+      "sourceId": "core-router-lax",
+      "targetId": "edge-router-lax-2",
+      "cableType": "fiber",
+      "label": "100Gbps",
+      "metadata": {
+        "bandwidth": "100Gbps"
+      }
+    },
+    {
+      "id": "edge-nyc-core-agg",
+      "sourceId": "core-router-nyc",
+      "targetId": "aggregation-switch-nyc",
+      "cableType": "fiber",
+      "label": "100Gbps",
+      "metadata": {
+        "bandwidth": "100Gbps"
+      }
+    },
+    {
+      "id": "edge-lax-core-agg",
+      "sourceId": "core-router-lax",
+      "targetId": "aggregation-switch-lax",
+      "cableType": "fiber",
+      "label": "100Gbps",
+      "metadata": {
+        "bandwidth": "100Gbps"
+      }
+    },
+    {
+      "id": "edge-rr1-nyc",
+      "sourceId": "route-reflector-1",
+      "targetId": "core-router-nyc",
+      "cableType": "fiber",
+      "label": "BGP",
+      "metadata": {
+        "bandwidth": "10Gbps",
+        "protocol": "iBGP"
+      }
+    },
+    {
+      "id": "edge-rr1-lax",
+      "sourceId": "route-reflector-1",
+      "targetId": "core-router-lax",
+      "cableType": "fiber",
+      "label": "BGP",
+      "metadata": {
+        "bandwidth": "10Gbps",
+        "protocol": "iBGP"
+      }
+    },
+    {
+      "id": "edge-rr2-chi",
+      "sourceId": "route-reflector-2",
+      "targetId": "core-router-chi",
+      "cableType": "fiber",
+      "label": "BGP",
+      "metadata": {
+        "bandwidth": "10Gbps",
+        "protocol": "iBGP"
+      }
+    },
+    {
+      "id": "edge-rr2-dal",
+      "sourceId": "route-reflector-2",
+      "targetId": "core-router-dal",
+      "cableType": "fiber",
+      "label": "BGP",
+      "metadata": {
+        "bandwidth": "10Gbps",
+        "protocol": "iBGP"
+      }
+    },
+    {
+      "id": "edge-rr-sync",
+      "sourceId": "route-reflector-1",
+      "targetId": "route-reflector-2",
+      "cableType": "fiber",
+      "label": "RR Sync",
+      "metadata": {
+        "bandwidth": "10Gbps",
+        "purpose": "RR Redundancy"
+      }
+    },
+    {
+      "id": "edge-agg-nyc-dns1",
+      "sourceId": "aggregation-switch-nyc",
+      "targetId": "dns-server-1",
+      "cableType": "fiber",
+      "label": "10Gbps",
+      "metadata": {
+        "bandwidth": "10Gbps"
+      }
+    },
+    {
+      "id": "edge-agg-lax-dns2",
+      "sourceId": "aggregation-switch-lax",
+      "targetId": "dns-server-2",
+      "cableType": "fiber",
+      "label": "10Gbps",
+      "metadata": {
+        "bandwidth": "10Gbps"
+      }
+    },
+    {
+      "id": "edge-agg-nyc-radius",
+      "sourceId": "aggregation-switch-nyc",
+      "targetId": "radius-server",
+      "cableType": "ethernet",
+      "label": "10Gbps",
+      "metadata": {
+        "bandwidth": "10Gbps"
+      }
+    },
+    {
+      "id": "edge-chi-netflow",
+      "sourceId": "core-router-chi",
+      "targetId": "netflow-collector",
+      "cableType": "ethernet",
+      "label": "NetFlow Export",
+      "metadata": {
+        "bandwidth": "10Gbps",
+        "protocol": "NetFlow v9"
+      }
+    },
+    {
+      "id": "edge-chi-nms",
+      "sourceId": "core-router-chi",
+      "targetId": "nms-server",
+      "cableType": "ethernet",
+      "label": "SNMP",
+      "metadata": {
+        "bandwidth": "1Gbps",
+        "protocol": "SNMPv3"
+      }
+    },
+    {
+      "id": "edge-agg-nyc-customer1",
+      "sourceId": "aggregation-switch-nyc",
+      "targetId": "customer-router-1",
+      "cableType": "fiber",
+      "label": "10Gbps",
+      "metadata": {
+        "bandwidth": "10Gbps",
+        "service": "Dedicated Internet"
+      }
+    },
+    {
+      "id": "edge-agg-lax-customer2",
+      "sourceId": "aggregation-switch-lax",
+      "targetId": "customer-router-2",
+      "cableType": "fiber",
+      "label": "10Gbps",
+      "metadata": {
+        "bandwidth": "10Gbps",
+        "service": "Dedicated Internet"
+      }
+    },
+    {
+      "id": "edge-dns-anycast",
+      "sourceId": "dns-server-1",
+      "targetId": "dns-server-2",
+      "cableType": "fiber",
+      "label": "Anycast Sync",
+      "metadata": {
+        "bandwidth": "10Gbps",
+        "purpose": "DNS Anycast Network"
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "core-layer",
+      "label": "Core Network Layer",
+      "isCollapsed": false
+    },
+    {
+      "id": "edge-nyc",
+      "label": "NYC Edge Network",
+      "isCollapsed": false
+    },
+    {
+      "id": "edge-lax",
+      "label": "LAX Edge Network",
+      "isCollapsed": false
+    },
+    {
+      "id": "services",
+      "label": "Network Services",
+      "isCollapsed": false
+    },
+    {
+      "id": "monitoring",
+      "label": "Monitoring & Management",
+      "isCollapsed": false
+    }
+  ]
+}

@@ -1,0 +1,509 @@
+{
+  "nodes": [
+    {
+      "id": "core-switch-main",
+      "label": "Campus Core Switch",
+      "type": "switch",
+      "metadata": {
+        "ip": "10.100.0.1",
+        "model": "Cisco Catalyst 9500",
+        "ports": 48,
+        "location": "Main Building - Data Center",
+        "role": "Core"
+      }
+    },
+    {
+      "id": "internet-router",
+      "label": "Internet Edge Router",
+      "type": "router",
+      "metadata": {
+        "ip": "10.100.0.254",
+        "model": "Juniper MX204",
+        "wan_ip": "198.51.100.1",
+        "bandwidth": "10Gbps",
+        "isp": "Campus ISP"
+      }
+    },
+    {
+      "id": "dist-switch-building-a",
+      "label": "Building A Dist Switch",
+      "type": "switch",
+      "groupId": "building-a",
+      "metadata": {
+        "ip": "10.101.0.1",
+        "model": "Cisco Catalyst 3850",
+        "ports": 48,
+        "location": "Administration Building",
+        "building": "Building A"
+      }
+    },
+    {
+      "id": "access-switch-a1",
+      "label": "Building A Floor 1",
+      "type": "switch",
+      "groupId": "building-a",
+      "metadata": {
+        "ip": "10.101.1.1",
+        "model": "Cisco Catalyst 2960X",
+        "ports": 24,
+        "location": "Building A - Floor 1"
+      }
+    },
+    {
+      "id": "access-switch-a2",
+      "label": "Building A Floor 2",
+      "type": "switch",
+      "groupId": "building-a",
+      "metadata": {
+        "ip": "10.101.2.1",
+        "model": "Cisco Catalyst 2960X",
+        "ports": 24,
+        "location": "Building A - Floor 2"
+      }
+    },
+    {
+      "id": "dist-switch-building-b",
+      "label": "Building B Dist Switch",
+      "type": "switch",
+      "groupId": "building-b",
+      "metadata": {
+        "ip": "10.102.0.1",
+        "model": "Cisco Catalyst 3850",
+        "ports": 48,
+        "location": "Engineering Building",
+        "building": "Building B"
+      }
+    },
+    {
+      "id": "access-switch-b1",
+      "label": "Building B Floor 1",
+      "type": "switch",
+      "groupId": "building-b",
+      "metadata": {
+        "ip": "10.102.1.1",
+        "model": "Cisco Catalyst 2960X",
+        "ports": 24,
+        "location": "Building B - Floor 1"
+      }
+    },
+    {
+      "id": "access-switch-b2",
+      "label": "Building B Floor 2",
+      "type": "switch",
+      "groupId": "building-b",
+      "metadata": {
+        "ip": "10.102.2.1",
+        "model": "Cisco Catalyst 2960X",
+        "ports": 24,
+        "location": "Building B - Floor 2"
+      }
+    },
+    {
+      "id": "dist-switch-building-c",
+      "label": "Building C Dist Switch",
+      "type": "switch",
+      "groupId": "building-c",
+      "metadata": {
+        "ip": "10.103.0.1",
+        "model": "Cisco Catalyst 3850",
+        "ports": 48,
+        "location": "Library Building",
+        "building": "Building C"
+      }
+    },
+    {
+      "id": "access-switch-c1",
+      "label": "Building C Floor 1",
+      "type": "switch",
+      "groupId": "building-c",
+      "metadata": {
+        "ip": "10.103.1.1",
+        "model": "Cisco Catalyst 2960X",
+        "ports": 24,
+        "location": "Building C - Floor 1"
+      }
+    },
+    {
+      "id": "campus-server-1",
+      "label": "Campus Portal Server",
+      "type": "server",
+      "groupId": "data-center",
+      "metadata": {
+        "ip": "10.100.10.10",
+        "os": "Ubuntu 22.04 LTS",
+        "purpose": "Campus Portal & Email",
+        "cpu": "Intel Xeon E5",
+        "ram": "64GB"
+      }
+    },
+    {
+      "id": "campus-server-2",
+      "label": "File Server",
+      "type": "server",
+      "groupId": "data-center",
+      "metadata": {
+        "ip": "10.100.10.11",
+        "os": "Windows Server 2022",
+        "purpose": "File Sharing",
+        "storage": "50TB"
+      }
+    },
+    {
+      "id": "campus-server-3",
+      "label": "ERP System",
+      "type": "server",
+      "groupId": "data-center",
+      "metadata": {
+        "ip": "10.100.10.12",
+        "os": "Red Hat Enterprise Linux 8",
+        "purpose": "Enterprise Resource Planning",
+        "application": "SAP"
+      }
+    },
+    {
+      "id": "wifi-controller",
+      "label": "WiFi Controller",
+      "type": "device",
+      "groupId": "data-center",
+      "metadata": {
+        "ip": "10.100.20.1",
+        "model": "Cisco WLC 5520",
+        "type": "Wireless Controller",
+        "aps_managed": "150"
+      }
+    },
+    {
+      "id": "workstation-admin",
+      "label": "Admin Workstation",
+      "type": "workstation",
+      "groupId": "building-a",
+      "metadata": {
+        "ip": "10.101.1.50",
+        "user": "Administration",
+        "os": "Windows 11",
+        "location": "Building A - Floor 1"
+      }
+    },
+    {
+      "id": "workstation-eng-1",
+      "label": "Engineering WS 1",
+      "type": "workstation",
+      "groupId": "building-b",
+      "metadata": {
+        "ip": "10.102.1.50",
+        "user": "Engineering Team",
+        "os": "Ubuntu 22.04",
+        "location": "Building B - Floor 1"
+      }
+    },
+    {
+      "id": "workstation-eng-2",
+      "label": "Engineering WS 2",
+      "type": "workstation",
+      "groupId": "building-b",
+      "metadata": {
+        "ip": "10.102.1.51",
+        "user": "Engineering Team",
+        "os": "Ubuntu 22.04",
+        "location": "Building B - Floor 1"
+      }
+    },
+    {
+      "id": "library-kiosk",
+      "label": "Library Kiosk",
+      "type": "workstation",
+      "groupId": "building-c",
+      "metadata": {
+        "ip": "10.103.1.100",
+        "user": "Public Access",
+        "os": "Linux",
+        "location": "Building C - Library"
+      }
+    },
+    {
+      "id": "printer-building-a",
+      "label": "Printer Building A",
+      "type": "device",
+      "groupId": "building-a",
+      "metadata": {
+        "ip": "10.101.1.200",
+        "model": "Canon imageRUNNER",
+        "type": "Network Printer"
+      }
+    },
+    {
+      "id": "printer-building-b",
+      "label": "Printer Building B",
+      "type": "device",
+      "groupId": "building-b",
+      "metadata": {
+        "ip": "10.102.1.200",
+        "model": "Canon imageRUNNER",
+        "type": "Network Printer"
+      }
+    },
+    {
+      "id": "camera-main-entrance",
+      "label": "Main Entrance Camera",
+      "type": "device",
+      "metadata": {
+        "ip": "10.100.30.10",
+        "model": "Axis P3225-LVE",
+        "type": "Security Camera",
+        "location": "Main Entrance"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge-internet-core",
+      "sourceId": "internet-router",
+      "targetId": "core-switch-main",
+      "cableType": "fiber",
+      "label": "10Gbps",
+      "metadata": {
+        "bandwidth": "10Gbps",
+        "purpose": "Internet Uplink"
+      }
+    },
+    {
+      "id": "edge-core-dist-a",
+      "sourceId": "core-switch-main",
+      "targetId": "dist-switch-building-a",
+      "cableType": "fiber",
+      "label": "10Gbps",
+      "metadata": {
+        "bandwidth": "10Gbps",
+        "length": "200m"
+      }
+    },
+    {
+      "id": "edge-core-dist-b",
+      "sourceId": "core-switch-main",
+      "targetId": "dist-switch-building-b",
+      "cableType": "fiber",
+      "label": "10Gbps",
+      "metadata": {
+        "bandwidth": "10Gbps",
+        "length": "350m"
+      }
+    },
+    {
+      "id": "edge-core-dist-c",
+      "sourceId": "core-switch-main",
+      "targetId": "dist-switch-building-c",
+      "cableType": "fiber",
+      "label": "10Gbps",
+      "metadata": {
+        "bandwidth": "10Gbps",
+        "length": "180m"
+      }
+    },
+    {
+      "id": "edge-dist-a-access-a1",
+      "sourceId": "dist-switch-building-a",
+      "targetId": "access-switch-a1",
+      "cableType": "ethernet",
+      "label": "1Gbps",
+      "metadata": {
+        "bandwidth": "1Gbps"
+      }
+    },
+    {
+      "id": "edge-dist-a-access-a2",
+      "sourceId": "dist-switch-building-a",
+      "targetId": "access-switch-a2",
+      "cableType": "ethernet",
+      "label": "1Gbps",
+      "metadata": {
+        "bandwidth": "1Gbps"
+      }
+    },
+    {
+      "id": "edge-dist-b-access-b1",
+      "sourceId": "dist-switch-building-b",
+      "targetId": "access-switch-b1",
+      "cableType": "ethernet",
+      "label": "1Gbps",
+      "metadata": {
+        "bandwidth": "1Gbps"
+      }
+    },
+    {
+      "id": "edge-dist-b-access-b2",
+      "sourceId": "dist-switch-building-b",
+      "targetId": "access-switch-b2",
+      "cableType": "ethernet",
+      "label": "1Gbps",
+      "metadata": {
+        "bandwidth": "1Gbps"
+      }
+    },
+    {
+      "id": "edge-dist-c-access-c1",
+      "sourceId": "dist-switch-building-c",
+      "targetId": "access-switch-c1",
+      "cableType": "ethernet",
+      "label": "1Gbps",
+      "metadata": {
+        "bandwidth": "1Gbps"
+      }
+    },
+    {
+      "id": "edge-core-server-1",
+      "sourceId": "core-switch-main",
+      "targetId": "campus-server-1",
+      "cableType": "fiber",
+      "label": "10Gbps",
+      "metadata": {
+        "bandwidth": "10Gbps"
+      }
+    },
+    {
+      "id": "edge-core-server-2",
+      "sourceId": "core-switch-main",
+      "targetId": "campus-server-2",
+      "cableType": "fiber",
+      "label": "10Gbps",
+      "metadata": {
+        "bandwidth": "10Gbps"
+      }
+    },
+    {
+      "id": "edge-core-server-3",
+      "sourceId": "core-switch-main",
+      "targetId": "campus-server-3",
+      "cableType": "fiber",
+      "label": "10Gbps",
+      "metadata": {
+        "bandwidth": "10Gbps"
+      }
+    },
+    {
+      "id": "edge-core-wifi-controller",
+      "sourceId": "core-switch-main",
+      "targetId": "wifi-controller",
+      "cableType": "ethernet",
+      "label": "1Gbps",
+      "metadata": {
+        "bandwidth": "1Gbps"
+      }
+    },
+    {
+      "id": "edge-core-camera",
+      "sourceId": "core-switch-main",
+      "targetId": "camera-main-entrance",
+      "cableType": "ethernet",
+      "label": "100Mbps PoE",
+      "metadata": {
+        "bandwidth": "100Mbps",
+        "poe": "enabled"
+      }
+    },
+    {
+      "id": "edge-access-a1-ws-admin",
+      "sourceId": "access-switch-a1",
+      "targetId": "workstation-admin",
+      "cableType": "ethernet",
+      "label": "1Gbps",
+      "metadata": {
+        "bandwidth": "1Gbps"
+      }
+    },
+    {
+      "id": "edge-access-a1-printer-a",
+      "sourceId": "access-switch-a1",
+      "targetId": "printer-building-a",
+      "cableType": "ethernet",
+      "label": "1Gbps",
+      "metadata": {
+        "bandwidth": "1Gbps"
+      }
+    },
+    {
+      "id": "edge-access-b1-ws-eng1",
+      "sourceId": "access-switch-b1",
+      "targetId": "workstation-eng-1",
+      "cableType": "ethernet",
+      "label": "1Gbps",
+      "metadata": {
+        "bandwidth": "1Gbps"
+      }
+    },
+    {
+      "id": "edge-access-b1-ws-eng2",
+      "sourceId": "access-switch-b1",
+      "targetId": "workstation-eng-2",
+      "cableType": "ethernet",
+      "label": "1Gbps",
+      "metadata": {
+        "bandwidth": "1Gbps"
+      }
+    },
+    {
+      "id": "edge-access-b1-printer-b",
+      "sourceId": "access-switch-b1",
+      "targetId": "printer-building-b",
+      "cableType": "ethernet",
+      "label": "1Gbps",
+      "metadata": {
+        "bandwidth": "1Gbps"
+      }
+    },
+    {
+      "id": "edge-access-c1-kiosk",
+      "sourceId": "access-switch-c1",
+      "targetId": "library-kiosk",
+      "cableType": "ethernet",
+      "label": "1Gbps",
+      "metadata": {
+        "bandwidth": "1Gbps"
+      }
+    },
+    {
+      "id": "edge-redundant-b-c",
+      "sourceId": "dist-switch-building-b",
+      "targetId": "dist-switch-building-c",
+      "cableType": "fiber",
+      "label": "10Gbps Backup",
+      "metadata": {
+        "bandwidth": "10Gbps",
+        "purpose": "Redundant Link",
+        "length": "400m"
+      }
+    },
+    {
+      "id": "edge-server-replication",
+      "sourceId": "campus-server-1",
+      "targetId": "campus-server-2",
+      "cableType": "fiber",
+      "label": "Direct Link",
+      "metadata": {
+        "bandwidth": "10Gbps",
+        "purpose": "Server-to-Server"
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "data-center",
+      "label": "Campus Data Center",
+      "isCollapsed": false
+    },
+    {
+      "id": "building-a",
+      "label": "Building A - Administration",
+      "isCollapsed": false
+    },
+    {
+      "id": "building-b",
+      "label": "Building B - Engineering",
+      "isCollapsed": false
+    },
+    {
+      "id": "building-c",
+      "label": "Building C - Library",
+      "isCollapsed": false
+    }
+  ]
+}

@@ -1,0 +1,913 @@
+{
+  "nodes": [
+    {
+      "id": "internet-gw",
+      "label": "Internet Gateway",
+      "type": "router",
+      "groupId": "edge",
+      "metadata": {
+        "model": "Juniper MX960",
+        "throughput": "960 Gbps",
+        "bgp-peers": "200+ ISPs",
+        "purpose": "Internet breakout"
+      }
+    },
+    {
+      "id": "peering-router-1",
+      "label": "Peering Router - IXP",
+      "type": "router",
+      "groupId": "edge",
+      "metadata": {
+        "model": "Cisco ASR 9010",
+        "location": "Equinix NY1",
+        "peers": "150+ at IXP",
+        "throughput": "400 Gbps"
+      }
+    },
+    {
+      "id": "cdn-cache",
+      "label": "CDN Cache Cluster",
+      "type": "server",
+      "groupId": "edge",
+      "metadata": {
+        "nodes": "20x cache servers",
+        "storage": "2 PB",
+        "hit-rate": "92%",
+        "purpose": "Netflix, YouTube, etc.",
+        "reduction": "60% transit cost savings"
+      }
+    },
+    {
+      "id": "smf-1",
+      "label": "SMF - Session Mgmt 1",
+      "type": "server",
+      "groupId": "5gc-control",
+      "metadata": {
+        "vendor": "Ericsson",
+        "function": "Session Management Function",
+        "capacity": "10M PDU sessions",
+        "protocols": "N7, N10, N11",
+        "standard": "3GPP Rel-16"
+      }
+    },
+    {
+      "id": "smf-2",
+      "label": "SMF - Session Mgmt 2",
+      "type": "server",
+      "groupId": "5gc-control",
+      "metadata": {
+        "vendor": "Ericsson",
+        "role": "Geo-redundant",
+        "capacity": "10M PDU sessions"
+      }
+    },
+    {
+      "id": "amf-1",
+      "label": "AMF - Access & Mobility 1",
+      "type": "server",
+      "groupId": "5gc-control",
+      "metadata": {
+        "vendor": "Nokia",
+        "function": "Access and Mobility Management",
+        "subscribers": "20M registered",
+        "protocols": "N1, N2, N8, N11, N12",
+        "5g-sa": "Yes"
+      }
+    },
+    {
+      "id": "amf-2",
+      "label": "AMF - Access & Mobility 2",
+      "type": "server",
+      "groupId": "5gc-control",
+      "metadata": {
+        "vendor": "Nokia",
+        "role": "Active-Active cluster"
+      }
+    },
+    {
+      "id": "pcf",
+      "label": "PCF - Policy Control",
+      "type": "server",
+      "groupId": "5gc-control",
+      "metadata": {
+        "vendor": "Oracle",
+        "function": "Policy Control Function",
+        "policies": "QoS, charging, data routing",
+        "integration": "PCRF for 4G interworking"
+      }
+    },
+    {
+      "id": "udm",
+      "label": "UDM - Unified Data Mgmt",
+      "type": "server",
+      "groupId": "5gc-control",
+      "metadata": {
+        "vendor": "Oracle",
+        "function": "Unified Data Management",
+        "database": "Subscriber profiles, auth keys",
+        "capacity": "50M subscribers"
+      }
+    },
+    {
+      "id": "ausf",
+      "label": "AUSF - Authentication",
+      "type": "server",
+      "groupId": "5gc-control",
+      "metadata": {
+        "vendor": "Ericsson",
+        "function": "Authentication Server Function",
+        "method": "5G-AKA, EAP-AKA'",
+        "hsm": "Hardware security module"
+      }
+    },
+    {
+      "id": "nrf",
+      "label": "NRF - Repository",
+      "type": "server",
+      "groupId": "5gc-control",
+      "metadata": {
+        "vendor": "Nokia",
+        "function": "NF Repository Function",
+        "purpose": "Service discovery, NF registration",
+        "protocol": "HTTP/2"
+      }
+    },
+    {
+      "id": "nssf",
+      "label": "NSSF - Slice Selection",
+      "type": "server",
+      "groupId": "5gc-control",
+      "metadata": {
+        "vendor": "Ericsson",
+        "function": "Network Slice Selection Function",
+        "slices": "eMBB, URLLC, mMTC",
+        "selection": "S-NSSAI based"
+      }
+    },
+    {
+      "id": "upf-edge-1",
+      "label": "UPF - User Plane Edge 1",
+      "type": "server",
+      "groupId": "5gc-user-plane",
+      "metadata": {
+        "vendor": "Intel/DPDK",
+        "function": "User Plane Function (Edge)",
+        "throughput": "400 Gbps",
+        "location": "Edge DC - NYC",
+        "latency": "< 5ms to RAN",
+        "mec": "Multi-access Edge Computing"
+      }
+    },
+    {
+      "id": "upf-edge-2",
+      "label": "UPF - User Plane Edge 2",
+      "type": "server",
+      "groupId": "5gc-user-plane",
+      "metadata": {
+        "location": "Edge DC - LAX",
+        "throughput": "400 Gbps"
+      }
+    },
+    {
+      "id": "upf-central",
+      "label": "UPF - User Plane Central",
+      "type": "server",
+      "groupId": "5gc-user-plane",
+      "metadata": {
+        "vendor": "Cisco",
+        "function": "Central UPF",
+        "throughput": "1 Tbps",
+        "location": "Core DC",
+        "purpose": "Aggregate, internet breakout"
+      }
+    },
+    {
+      "id": "mec-platform-1",
+      "label": "MEC Platform - NYC",
+      "type": "server",
+      "groupId": "mec",
+      "metadata": {
+        "vendor": "AWS Wavelength / Azure Edge",
+        "compute": "1000+ cores",
+        "purpose": "Ultra-low latency apps",
+        "use-cases": "AR/VR, gaming, video analytics",
+        "latency": "< 10ms"
+      }
+    },
+    {
+      "id": "mec-platform-2",
+      "label": "MEC Platform - LAX",
+      "type": "server",
+      "groupId": "mec",
+      "metadata": {
+        "vendor": "AWS Wavelength / Azure Edge",
+        "compute": "1000+ cores"
+      }
+    },
+    {
+      "id": "gnodeb-macro-1",
+      "label": "gNodeB Macro Site 1",
+      "type": "device",
+      "groupId": "ran",
+      "metadata": {
+        "vendor": "Ericsson Radio System",
+        "type": "Macro cell (3-sector)",
+        "bands": "n71 (600 MHz), n41 (2.5 GHz), n78 (3.5 GHz)",
+        "mimo": "64T64R Massive MIMO",
+        "backhaul": "Fiber 10 Gbps",
+        "coverage": "5 km radius"
+      }
+    },
+    {
+      "id": "gnodeb-macro-2",
+      "label": "gNodeB Macro Site 2",
+      "type": "device",
+      "groupId": "ran",
+      "metadata": {
+        "vendor": "Nokia AirScale",
+        "type": "Macro cell",
+        "bands": "n71, n41, n78"
+      }
+    },
+    {
+      "id": "gnodeb-small-cell",
+      "label": "gNodeB Small Cells (100+)",
+      "type": "device",
+      "groupId": "ran",
+      "metadata": {
+        "vendor": "Samsung",
+        "count": "100+ street-level small cells",
+        "bands": "n261 (mmWave 28 GHz)",
+        "mimo": "16T16R",
+        "backhaul": "Fiber 1 Gbps each",
+        "coverage": "200m radius",
+        "deployment": "Urban high-density"
+      }
+    },
+    {
+      "id": "gnodeb-indoor",
+      "label": "Indoor DAS/Small Cells",
+      "type": "device",
+      "groupId": "ran",
+      "metadata": {
+        "type": "Distributed Antenna System",
+        "locations": "Stadiums, malls, airports",
+        "count": "50 venues",
+        "capacity": "50,000 users per venue"
+      }
+    },
+    {
+      "id": "du-pool",
+      "label": "DU Pool (Distributed Unit)",
+      "type": "server",
+      "groupId": "ran",
+      "metadata": {
+        "vendor": "Ericsson",
+        "architecture": "O-RAN compliant",
+        "count": "20x servers",
+        "purpose": "Baseband processing",
+        "interface": "F1 to CU, eCPRI to RU"
+      }
+    },
+    {
+      "id": "cu-pool",
+      "label": "CU Pool (Central Unit)",
+      "type": "server",
+      "groupId": "ran",
+      "metadata": {
+        "vendor": "Nokia",
+        "split": "CU-CP + CU-UP",
+        "count": "10x servers",
+        "purpose": "RRC, PDCP processing",
+        "interface": "N2/N3 to 5GC"
+      }
+    },
+    {
+      "id": "ims-core",
+      "label": "IMS Core",
+      "type": "server",
+      "groupId": "services",
+      "metadata": {
+        "vendor": "Mavenir",
+        "function": "VoLTE, VoNR voice services",
+        "capacity": "10M simultaneous calls",
+        "codec": "EVS, AMR-WB",
+        "features": "HD Voice, WiFi calling"
+      }
+    },
+    {
+      "id": "rcs-server",
+      "label": "RCS Messaging",
+      "type": "server",
+      "groupId": "services",
+      "metadata": {
+        "vendor": "Google Jibe",
+        "function": "Rich Communication Services",
+        "features": "Group chat, file transfer, read receipts",
+        "users": "15M active"
+      }
+    },
+    {
+      "id": "ocs-charging",
+      "label": "OCS - Online Charging",
+      "type": "server",
+      "groupId": "services",
+      "metadata": {
+        "vendor": "Amdocs",
+        "function": "Real-time charging, rating",
+        "integration": "Credit control, prepaid/postpaid",
+        "transactions": "50,000 TPS"
+      }
+    },
+    {
+      "id": "cdr-mediation",
+      "label": "CDR/Mediation System",
+      "type": "server",
+      "groupId": "services",
+      "metadata": {
+        "function": "Call Detail Record processing",
+        "volume": "5B records/day",
+        "export": "Billing, analytics, fraud"
+      }
+    },
+    {
+      "id": "network-analytics",
+      "label": "Network Analytics (NWDAF)",
+      "type": "server",
+      "groupId": "management",
+      "metadata": {
+        "vendor": "Ericsson Intelligent Automation",
+        "function": "ML-based network optimization",
+        "data-sources": "UPF, AMF, SMF metrics",
+        "use-cases": "Load balancing, anomaly detection, QoE prediction"
+      }
+    },
+    {
+      "id": "son-system",
+      "label": "SON - Self-Organizing Network",
+      "type": "server",
+      "groupId": "management",
+      "metadata": {
+        "vendor": "Nokia NetAct",
+        "features": "Auto config, optimization, healing",
+        "parameters": "PCI, antenna tilt, power",
+        "cells": "10,000+ managed"
+      }
+    },
+    {
+      "id": "nms-oss",
+      "label": "NMS/OSS Platform",
+      "type": "server",
+      "groupId": "management",
+      "metadata": {
+        "vendor": "Netcracker",
+        "modules": "Fault, config, performance, inventory",
+        "integration": "5GC, RAN, transport",
+        "operators": "200+ NOC staff"
+      }
+    },
+    {
+      "id": "ues-subscribers",
+      "label": "UEs - Subscriber Devices",
+      "type": "workstation",
+      "groupId": "subscribers",
+      "metadata": {
+        "count": "25M active subscribers",
+        "devices": "Smartphones, tablets, IoT, FWA",
+        "5g-capable": "15M devices",
+        "distribution": "60% urban, 40% suburban/rural"
+      }
+    },
+    {
+      "id": "iot-devices",
+      "label": "IoT Devices (NB-IoT)",
+      "type": "device",
+      "groupId": "subscribers",
+      "metadata": {
+        "count": "50M connected devices",
+        "types": "Smart meters, trackers, sensors",
+        "slice": "mMTC slice (low power, high density)",
+        "protocol": "NB-IoT, LTE-M"
+      }
+    },
+    {
+      "id": "fwa-cpe",
+      "label": "Fixed Wireless Access CPE",
+      "type": "device",
+      "groupId": "subscribers",
+      "metadata": {
+        "count": "500K home internet customers",
+        "modem": "5G outdoor/indoor CPE",
+        "speed": "Up to 1 Gbps",
+        "use-case": "Rural broadband replacement"
+      }
+    },
+    {
+      "id": "transport-core",
+      "label": "IP/MPLS Transport Core",
+      "type": "switch",
+      "groupId": "transport",
+      "metadata": {
+        "vendor": "Juniper MX Series",
+        "nodes": "50 core routers nationwide",
+        "capacity": "100 Gbps per link",
+        "protocol": "Segment Routing, MPLS-TP",
+        "sla": "99.999% availability"
+      }
+    },
+    {
+      "id": "timing-gps",
+      "label": "GPS/PTP Timing System",
+      "type": "device",
+      "groupId": "transport",
+      "metadata": {
+        "vendor": "Microsemi TimeProvider",
+        "accuracy": "±100 nanoseconds",
+        "protocol": "PTP IEEE 1588-2008",
+        "sources": "GPS + GNSS + atomic clocks",
+        "purpose": "5G TDD synchronization"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "sourceId": "ues-subscribers",
+      "targetId": "gnodeb-macro-1",
+      "cableType": "coaxial",
+      "label": "5G NR Air Interface",
+      "metadata": { "frequency": "FR1 (600 MHz - 3.5 GHz)", "throughput": "Up to 1 Gbps DL" }
+    },
+    {
+      "id": "e2",
+      "sourceId": "ues-subscribers",
+      "targetId": "gnodeb-macro-2",
+      "cableType": "coaxial",
+      "label": "5G NR",
+      "metadata": { "frequency": "FR1" }
+    },
+    {
+      "id": "e3",
+      "sourceId": "ues-subscribers",
+      "targetId": "gnodeb-small-cell",
+      "cableType": "coaxial",
+      "label": "5G mmWave",
+      "metadata": { "frequency": "FR2 (28 GHz)", "throughput": "Up to 3 Gbps DL", "latency": "< 1ms" }
+    },
+    {
+      "id": "e4",
+      "sourceId": "ues-subscribers",
+      "targetId": "gnodeb-indoor",
+      "cableType": "coaxial",
+      "label": "Indoor 5G",
+      "metadata": { "frequency": "FR1 + FR2" }
+    },
+    {
+      "id": "e5",
+      "sourceId": "iot-devices",
+      "targetId": "gnodeb-macro-1",
+      "cableType": "coaxial",
+      "label": "NB-IoT",
+      "metadata": { "frequency": "LTE Band 12", "power": "Low power wide area" }
+    },
+    {
+      "id": "e6",
+      "sourceId": "fwa-cpe",
+      "targetId": "gnodeb-macro-1",
+      "cableType": "coaxial",
+      "label": "5G FWA",
+      "metadata": { "frequency": "n41 (2.5 GHz)", "outdoor-cpe": "High-gain antenna" }
+    },
+    {
+      "id": "e7",
+      "sourceId": "gnodeb-macro-1",
+      "targetId": "du-pool",
+      "cableType": "fiber",
+      "label": "eCPRI",
+      "metadata": { "protocol": "eCPRI over Ethernet", "bandwidth": "10 Gbps", "latency": "< 100 μs" }
+    },
+    {
+      "id": "e8",
+      "sourceId": "gnodeb-macro-2",
+      "targetId": "du-pool",
+      "cableType": "fiber",
+      "label": "eCPRI",
+      "metadata": { "bandwidth": "10 Gbps" }
+    },
+    {
+      "id": "e9",
+      "sourceId": "gnodeb-small-cell",
+      "targetId": "du-pool",
+      "cableType": "fiber",
+      "label": "eCPRI",
+      "metadata": { "bandwidth": "1 Gbps per cell", "aggregation": "100 Gbps total" }
+    },
+    {
+      "id": "e10",
+      "sourceId": "gnodeb-indoor",
+      "targetId": "du-pool",
+      "cableType": "fiber",
+      "label": "Fronthaul",
+      "metadata": { "bandwidth": "10 Gbps per venue" }
+    },
+    {
+      "id": "e11",
+      "sourceId": "du-pool",
+      "targetId": "cu-pool",
+      "cableType": "fiber",
+      "label": "F1 Interface",
+      "metadata": { "protocol": "F1-C (control), F1-U (user)", "bandwidth": "100 Gbps" }
+    },
+    {
+      "id": "e12",
+      "sourceId": "cu-pool",
+      "targetId": "amf-1",
+      "cableType": "fiber",
+      "label": "N2 Interface",
+      "metadata": { "protocol": "NGAP", "traffic": "Control plane", "bandwidth": "10 Gbps" }
+    },
+    {
+      "id": "e13",
+      "sourceId": "cu-pool",
+      "targetId": "amf-2",
+      "cableType": "fiber",
+      "label": "N2 Interface",
+      "metadata": { "protocol": "NGAP" }
+    },
+    {
+      "id": "e14",
+      "sourceId": "cu-pool",
+      "targetId": "upf-edge-1",
+      "cableType": "fiber",
+      "label": "N3 Interface",
+      "metadata": { "protocol": "GTP-U", "traffic": "User plane data", "bandwidth": "100 Gbps" }
+    },
+    {
+      "id": "e15",
+      "sourceId": "cu-pool",
+      "targetId": "upf-edge-2",
+      "cableType": "fiber",
+      "label": "N3 Interface",
+      "metadata": { "protocol": "GTP-U", "bandwidth": "100 Gbps" }
+    },
+    {
+      "id": "e16",
+      "sourceId": "amf-1",
+      "targetId": "amf-2",
+      "cableType": "ethernet",
+      "label": "Cluster Sync",
+      "metadata": { "protocol": "Diameter", "purpose": "State replication" }
+    },
+    {
+      "id": "e17",
+      "sourceId": "amf-1",
+      "targetId": "smf-1",
+      "cableType": "ethernet",
+      "label": "N11 Interface",
+      "metadata": { "protocol": "HTTP/2", "traffic": "SM messages" }
+    },
+    {
+      "id": "e18",
+      "sourceId": "amf-1",
+      "targetId": "smf-2",
+      "cableType": "ethernet",
+      "label": "N11 Interface",
+      "metadata": { "protocol": "HTTP/2" }
+    },
+    {
+      "id": "e19",
+      "sourceId": "amf-1",
+      "targetId": "ausf",
+      "cableType": "ethernet",
+      "label": "N12 Interface",
+      "metadata": { "protocol": "HTTP/2", "purpose": "Authentication" }
+    },
+    {
+      "id": "e20",
+      "sourceId": "amf-1",
+      "targetId": "udm",
+      "cableType": "ethernet",
+      "label": "N8 Interface",
+      "metadata": { "protocol": "HTTP/2", "purpose": "Subscriber data" }
+    },
+    {
+      "id": "e21",
+      "sourceId": "amf-1",
+      "targetId": "nssf",
+      "cableType": "ethernet",
+      "label": "N22 Interface",
+      "metadata": { "protocol": "HTTP/2", "purpose": "Slice selection" }
+    },
+    {
+      "id": "e22",
+      "sourceId": "smf-1",
+      "targetId": "smf-2",
+      "cableType": "ethernet",
+      "label": "Cluster Sync",
+      "metadata": { "purpose": "Session replication" }
+    },
+    {
+      "id": "e23",
+      "sourceId": "smf-1",
+      "targetId": "upf-edge-1",
+      "cableType": "fiber",
+      "label": "N4 Interface",
+      "metadata": { "protocol": "PFCP", "purpose": "Session control", "bandwidth": "10 Gbps" }
+    },
+    {
+      "id": "e24",
+      "sourceId": "smf-1",
+      "targetId": "upf-edge-2",
+      "cableType": "fiber",
+      "label": "N4 Interface",
+      "metadata": { "protocol": "PFCP" }
+    },
+    {
+      "id": "e25",
+      "sourceId": "smf-1",
+      "targetId": "upf-central",
+      "cableType": "fiber",
+      "label": "N4 Interface",
+      "metadata": { "protocol": "PFCP" }
+    },
+    {
+      "id": "e26",
+      "sourceId": "smf-1",
+      "targetId": "pcf",
+      "cableType": "ethernet",
+      "label": "N7 Interface",
+      "metadata": { "protocol": "HTTP/2", "purpose": "Policy decisions" }
+    },
+    {
+      "id": "e27",
+      "sourceId": "smf-1",
+      "targetId": "udm",
+      "cableType": "ethernet",
+      "label": "N10 Interface",
+      "metadata": { "protocol": "HTTP/2" }
+    },
+    {
+      "id": "e28",
+      "sourceId": "pcf",
+      "targetId": "udm",
+      "cableType": "ethernet",
+      "label": "N36 Interface",
+      "metadata": { "protocol": "HTTP/2" }
+    },
+    {
+      "id": "e29",
+      "sourceId": "ausf",
+      "targetId": "udm",
+      "cableType": "ethernet",
+      "label": "N13 Interface",
+      "metadata": { "protocol": "HTTP/2", "purpose": "Auth credentials" }
+    },
+    {
+      "id": "e30",
+      "sourceId": "amf-1",
+      "targetId": "nrf",
+      "cableType": "ethernet",
+      "label": "NRF Discovery",
+      "metadata": { "protocol": "HTTP/2", "purpose": "Service registration" }
+    },
+    {
+      "id": "e31",
+      "sourceId": "smf-1",
+      "targetId": "nrf",
+      "cableType": "ethernet",
+      "label": "NRF Discovery",
+      "metadata": { "protocol": "HTTP/2" }
+    },
+    {
+      "id": "e32",
+      "sourceId": "upf-edge-1",
+      "targetId": "mec-platform-1",
+      "cableType": "fiber",
+      "label": "Local Breakout",
+      "metadata": { "bandwidth": "400 Gbps", "latency": "< 2ms", "purpose": "Edge computing offload" }
+    },
+    {
+      "id": "e33",
+      "sourceId": "upf-edge-2",
+      "targetId": "mec-platform-2",
+      "cableType": "fiber",
+      "label": "Local Breakout",
+      "metadata": { "bandwidth": "400 Gbps", "latency": "< 2ms" }
+    },
+    {
+      "id": "e34",
+      "sourceId": "upf-edge-1",
+      "targetId": "upf-central",
+      "cableType": "fiber",
+      "label": "N9 Interface",
+      "metadata": { "protocol": "GTP-U", "purpose": "UPF-to-UPF", "bandwidth": "100 Gbps" }
+    },
+    {
+      "id": "e35",
+      "sourceId": "upf-edge-2",
+      "targetId": "upf-central",
+      "cableType": "fiber",
+      "label": "N9 Interface",
+      "metadata": { "protocol": "GTP-U", "bandwidth": "100 Gbps" }
+    },
+    {
+      "id": "e36",
+      "sourceId": "upf-central",
+      "targetId": "internet-gw",
+      "cableType": "fiber",
+      "label": "N6 Interface",
+      "metadata": { "protocol": "IP", "bandwidth": "400 Gbps", "purpose": "Internet breakout" }
+    },
+    {
+      "id": "e37",
+      "sourceId": "internet-gw",
+      "targetId": "peering-router-1",
+      "cableType": "fiber",
+      "label": "Peering",
+      "metadata": { "bandwidth": "400 Gbps", "location": "IXP" }
+    },
+    {
+      "id": "e38",
+      "sourceId": "internet-gw",
+      "targetId": "cdn-cache",
+      "cableType": "fiber",
+      "label": "CDN Traffic",
+      "metadata": { "bandwidth": "200 Gbps", "purpose": "Cached content delivery" }
+    },
+    {
+      "id": "e39",
+      "sourceId": "upf-central",
+      "targetId": "ims-core",
+      "cableType": "fiber",
+      "label": "N6 (VoNR)",
+      "metadata": { "bandwidth": "40 Gbps", "purpose": "Voice service" }
+    },
+    {
+      "id": "e40",
+      "sourceId": "ims-core",
+      "targetId": "rcs-server",
+      "cableType": "ethernet",
+      "label": "SIP Integration",
+      "metadata": { "protocol": "SIP", "purpose": "Messaging service" }
+    },
+    {
+      "id": "e41",
+      "sourceId": "smf-1",
+      "targetId": "ocs-charging",
+      "cableType": "ethernet",
+      "label": "Charging",
+      "metadata": { "protocol": "Diameter Gy", "purpose": "Real-time credit control" }
+    },
+    {
+      "id": "e42",
+      "sourceId": "ocs-charging",
+      "targetId": "cdr-mediation",
+      "cableType": "ethernet",
+      "label": "CDR Export",
+      "metadata": { "frequency": "Real-time", "volume": "5B records/day" }
+    },
+    {
+      "id": "e43",
+      "sourceId": "upf-edge-1",
+      "targetId": "network-analytics",
+      "cableType": "serial",
+      "label": "Telemetry",
+      "metadata": { "protocol": "gRPC", "metrics": "Throughput, latency, packet loss" }
+    },
+    {
+      "id": "e44",
+      "sourceId": "amf-1",
+      "targetId": "network-analytics",
+      "cableType": "serial",
+      "label": "Telemetry",
+      "metadata": { "metrics": "Registrations, handovers, load" }
+    },
+    {
+      "id": "e45",
+      "sourceId": "network-analytics",
+      "targetId": "son-system",
+      "cableType": "ethernet",
+      "label": "ML Insights",
+      "metadata": { "purpose": "Automated optimization" }
+    },
+    {
+      "id": "e46",
+      "sourceId": "son-system",
+      "targetId": "cu-pool",
+      "cableType": "serial",
+      "label": "Config Changes",
+      "metadata": { "protocol": "NETCONF", "purpose": "Auto optimization" }
+    },
+    {
+      "id": "e47",
+      "sourceId": "nms-oss",
+      "targetId": "amf-1",
+      "cableType": "serial",
+      "label": "SNMP/NETCONF",
+      "metadata": { "purpose": "Monitoring, config" }
+    },
+    {
+      "id": "e48",
+      "sourceId": "nms-oss",
+      "targetId": "smf-1",
+      "cableType": "serial",
+      "label": "SNMP/NETCONF",
+      "metadata": { "purpose": "Monitoring" }
+    },
+    {
+      "id": "e49",
+      "sourceId": "nms-oss",
+      "targetId": "cu-pool",
+      "cableType": "serial",
+      "label": "RAN Mgmt",
+      "metadata": { "protocol": "O1 interface (O-RAN)" }
+    },
+    {
+      "id": "e50",
+      "sourceId": "transport-core",
+      "targetId": "du-pool",
+      "cableType": "fiber",
+      "label": "Midhaul",
+      "metadata": { "bandwidth": "100 Gbps", "protocol": "Segment Routing" }
+    },
+    {
+      "id": "e51",
+      "sourceId": "transport-core",
+      "targetId": "cu-pool",
+      "cableType": "fiber",
+      "label": "Backhaul",
+      "metadata": { "bandwidth": "100 Gbps" }
+    },
+    {
+      "id": "e52",
+      "sourceId": "transport-core",
+      "targetId": "upf-edge-1",
+      "cableType": "fiber",
+      "label": "5GC Transport",
+      "metadata": { "bandwidth": "100 Gbps" }
+    },
+    {
+      "id": "e53",
+      "sourceId": "timing-gps",
+      "targetId": "du-pool",
+      "cableType": "serial",
+      "label": "PTP Timing",
+      "metadata": { "protocol": "IEEE 1588", "accuracy": "±100ns" }
+    },
+    {
+      "id": "e54",
+      "sourceId": "timing-gps",
+      "targetId": "gnodeb-macro-1",
+      "cableType": "serial",
+      "label": "GPS Sync",
+      "metadata": { "purpose": "TDD frame sync" }
+    }
+  ],
+  "groups": [
+    {
+      "id": "edge",
+      "label": "Edge Network (Internet/CDN)",
+      "isCollapsed": false
+    },
+    {
+      "id": "5gc-control",
+      "label": "5G Core - Control Plane",
+      "isCollapsed": false
+    },
+    {
+      "id": "5gc-user-plane",
+      "label": "5G Core - User Plane",
+      "isCollapsed": false
+    },
+    {
+      "id": "mec",
+      "label": "Multi-Access Edge Computing (MEC)",
+      "isCollapsed": false
+    },
+    {
+      "id": "ran",
+      "label": "Radio Access Network (5G NR)",
+      "isCollapsed": false
+    },
+    {
+      "id": "services",
+      "label": "Value-Added Services",
+      "isCollapsed": false
+    },
+    {
+      "id": "management",
+      "label": "Network Management & Analytics",
+      "isCollapsed": false
+    },
+    {
+      "id": "subscribers",
+      "label": "Subscriber Devices",
+      "isCollapsed": false
+    },
+    {
+      "id": "transport",
+      "label": "Transport Network",
+      "isCollapsed": false
+    }
+  ]
+}
