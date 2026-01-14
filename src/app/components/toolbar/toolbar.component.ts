@@ -104,35 +104,6 @@ export class ToolbarComponent {
     }
   }
 
-  debugPositions(): void {
-    // 1. Get positions from yFiles
-    const yFilesPositions = this.yFilesService.getAllNodePositions();
-
-    // 2. Get graph data from state
-    const graphData = this.graphState.getCurrentGraphData();
-
-    let debugInfo = 'Debug Positions:\n\n';
-    debugInfo += `yFiles positions: ${yFilesPositions.length}\n`;
-
-    if (graphData) {
-      const nodesWithPos = graphData.nodes.filter(n => n.x !== undefined && n.y !== undefined);
-      debugInfo += `Graph data nodes: ${graphData?.nodes.length}\n`;
-      debugInfo += `Nodes with positions: ${nodesWithPos.length}/${graphData.nodes.length}\n`;
-
-      // 3. Get persisted positions map
-      const persistedMap = this.graphState.getPersistedPositions();
-      debugInfo += `Persisted positions: ${persistedMap.size}\n`;
-
-      // 4. What would be sent to server?
-      const filename = this.graphState.getCurrentFilename();
-      debugInfo += `\nWould save to: ${filename}\n`;
-      debugInfo += `Edges with bends: ${graphData.edges.filter(e => e.bends && e.bends.length > 0).length}`;
-    }
-
-    // Show alert for user
-    alert(debugInfo);
-  }
-
   toggleFilters(): void {
     this.uiState.toggleFilterSidebar();
   }

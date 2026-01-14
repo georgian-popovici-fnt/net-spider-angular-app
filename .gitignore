@@ -78,3 +78,6 @@ Thumbs.db
 
 # User saved data backups (modified at runtime)
 /src/assets/data/backups
+
+# Old data directory (not used, files now save to src/assets/data)
+/data

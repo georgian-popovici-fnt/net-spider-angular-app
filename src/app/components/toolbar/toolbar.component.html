@@ -57,9 +57,6 @@
     <button type="button" class="toolbar-btn success" (click)="savePositions(); $event.preventDefault(); $event.stopPropagation()" [disabled]="loading$ | async" title="Save Node Positions">
       <span class="icon">💾</span>
     </button>
-    <button type="button" class="toolbar-btn" (click)="debugPositions()" [disabled]="loading$ | async" title="Debug - Show Current Positions" style="background: #ff9800;">
-      <span class="icon">🐛</span>
-    </button>
     <button type="button" class="toolbar-btn warning" (click)="clearPositions()" [disabled]="loading$ | async" title="Clear Positions">
       <span class="icon">🗑️</span>
     </button>
