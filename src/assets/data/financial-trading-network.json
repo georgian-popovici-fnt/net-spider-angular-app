@@ -58,7 +58,9 @@
         "ports": "36x 400GbE",
         "latency": "350ns port-to-port",
         "mlag": "Active"
-      }
+      },
+      "x": 603.8333333333334,
+      "y": 184
     },
     {
       "id": "core-sw-2",
@@ -69,7 +71,9 @@
         "model": "Arista 7280R3",
         "ip": "10.2.0.2",
         "mlag": "Active with Core-SW-1"
-      }
+      },
+      "x": 742,
+      "y": 378
     },
     {
       "id": "trading-sw-1",
@@ -330,7 +334,9 @@
       "metadata": {
         "providers": "3x DIA circuits",
         "bandwidth": "100 Gbps total"
-      }
+      },
+      "x": 1009.25,
+      "y": 776
     }
   ],
   "edges": [
@@ -340,7 +346,9 @@
       "targetId": "edge-fw-1",
       "cableType": "fiber",
       "label": "40G",
-      "metadata": { "bandwidth": "40 Gbps" }
+      "metadata": {
+        "bandwidth": "40 Gbps"
+      }
     },
     {
       "id": "e2",
@@ -348,7 +356,9 @@
       "targetId": "edge-fw-2",
       "cableType": "fiber",
       "label": "40G",
-      "metadata": { "bandwidth": "40 Gbps" }
+      "metadata": {
+        "bandwidth": "40 Gbps"
+      }
     },
     {
       "id": "e3",
@@ -356,7 +366,9 @@
       "targetId": "waf",
       "cableType": "fiber",
       "label": "40G",
-      "metadata": { "bandwidth": "40 Gbps" }
+      "metadata": {
+        "bandwidth": "40 Gbps"
+      }
     },
     {
       "id": "e4",
@@ -364,7 +376,9 @@
       "targetId": "waf",
       "cableType": "fiber",
       "label": "40G",
-      "metadata": { "bandwidth": "40 Gbps" }
+      "metadata": {
+        "bandwidth": "40 Gbps"
+      }
     },
     {
       "id": "e5",
@@ -372,7 +386,9 @@
       "targetId": "dmz-sw",
       "cableType": "fiber",
       "label": "100G",
-      "metadata": { "bandwidth": "100 Gbps" }
+      "metadata": {
+        "bandwidth": "100 Gbps"
+      }
     },
     {
       "id": "e6",
@@ -380,7 +396,9 @@
       "targetId": "core-sw-1",
       "cableType": "fiber",
       "label": "100G",
-      "metadata": { "bandwidth": "100 Gbps" }
+      "metadata": {
+        "bandwidth": "100 Gbps"
+      }
     },
     {
       "id": "e7",
@@ -388,7 +406,9 @@
       "targetId": "core-sw-2",
       "cableType": "fiber",
       "label": "100G",
-      "metadata": { "bandwidth": "100 Gbps" }
+      "metadata": {
+        "bandwidth": "100 Gbps"
+      }
     },
     {
       "id": "e8",
@@ -396,7 +416,10 @@
       "targetId": "core-sw-2",
       "cableType": "fiber",
       "label": "MLAG 400G",
-      "metadata": { "bandwidth": "400 Gbps", "purpose": "Peer link" }
+      "metadata": {
+        "bandwidth": "400 Gbps",
+        "purpose": "Peer link"
+      }
     },
     {
       "id": "e9",
@@ -404,7 +427,10 @@
       "targetId": "trading-sw-1",
       "cableType": "fiber",
       "label": "100G",
-      "metadata": { "bandwidth": "100 Gbps", "latency": "< 1 microsecond" }
+      "metadata": {
+        "bandwidth": "100 Gbps",
+        "latency": "< 1 microsecond"
+      }
     },
     {
       "id": "e10",
@@ -412,7 +438,9 @@
       "targetId": "trading-sw-1",
       "cableType": "fiber",
       "label": "100G",
-      "metadata": { "bandwidth": "100 Gbps" }
+      "metadata": {
+        "bandwidth": "100 Gbps"
+      }
     },
     {
       "id": "e11",
@@ -420,7 +448,9 @@
       "targetId": "trading-sw-2",
       "cableType": "fiber",
       "label": "100G",
-      "metadata": { "bandwidth": "100 Gbps" }
+      "metadata": {
+        "bandwidth": "100 Gbps"
+      }
     },
     {
       "id": "e12",
@@ -428,7 +458,9 @@
       "targetId": "trading-sw-2",
       "cableType": "fiber",
       "label": "100G",
-      "metadata": { "bandwidth": "100 Gbps" }
+      "metadata": {
+        "bandwidth": "100 Gbps"
+      }
     },
     {
       "id": "e13",
@@ -436,7 +468,10 @@
       "targetId": "market-data-sw",
       "cableType": "fiber",
       "label": "100G",
-      "metadata": { "bandwidth": "100 Gbps", "latency": "< 500ns" }
+      "metadata": {
+        "bandwidth": "100 Gbps",
+        "latency": "< 500ns"
+      }
     },
     {
       "id": "e14",
@@ -444,7 +479,9 @@
       "targetId": "market-data-sw",
       "cableType": "fiber",
       "label": "100G",
-      "metadata": { "bandwidth": "100 Gbps" }
+      "metadata": {
+        "bandwidth": "100 Gbps"
+      }
     },
     {
       "id": "e15",
@@ -452,7 +489,10 @@
       "targetId": "hft-server-1",
       "cableType": "fiber",
       "label": "100G",
-      "metadata": { "bandwidth": "100 Gbps", "kernel-bypass": "DPDK" }
+      "metadata": {
+        "bandwidth": "100 Gbps",
+        "kernel-bypass": "DPDK"
+      }
     },
     {
       "id": "e16",
@@ -460,7 +500,9 @@
       "targetId": "hft-server-2",
       "cableType": "fiber",
       "label": "100G",
-      "metadata": { "bandwidth": "100 Gbps" }
+      "metadata": {
+        "bandwidth": "100 Gbps"
+      }
     },
     {
       "id": "e17",
@@ -468,7 +510,9 @@
       "targetId": "algo-trading-1",
       "cableType": "fiber",
       "label": "2x 100G",
-      "metadata": { "bandwidth": "200 Gbps aggregate" }
+      "metadata": {
+        "bandwidth": "200 Gbps aggregate"
+      }
     },
     {
       "id": "e18",
@@ -476,7 +520,9 @@
       "targetId": "oms",
       "cableType": "fiber",
       "label": "40G",
-      "metadata": { "bandwidth": "40 Gbps" }
+      "metadata": {
+        "bandwidth": "40 Gbps"
+      }
     },
     {
       "id": "e19",
@@ -484,7 +530,9 @@
       "targetId": "oms",
       "cableType": "fiber",
       "label": "40G",
-      "metadata": { "bandwidth": "40 Gbps" }
+      "metadata": {
+        "bandwidth": "40 Gbps"
+      }
     },
     {
       "id": "e20",
@@ -492,7 +540,9 @@
       "targetId": "risk-engine",
       "cableType": "fiber",
       "label": "40G",
-      "metadata": { "bandwidth": "40 Gbps" }
+      "metadata": {
+        "bandwidth": "40 Gbps"
+      }
     },
     {
       "id": "e21",
@@ -500,7 +550,9 @@
       "targetId": "risk-engine",
       "cableType": "fiber",
       "label": "40G",
-      "metadata": { "bandwidth": "40 Gbps" }
+      "metadata": {
+        "bandwidth": "40 Gbps"
+      }
     },
     {
       "id": "e22",
@@ -508,7 +560,9 @@
       "targetId": "oms",
       "cableType": "fiber",
       "label": "Order Flow",
-      "metadata": { "latency": "< 5 microseconds" }
+      "metadata": {
+        "latency": "< 5 microseconds"
+      }
     },
     {
       "id": "e23",
@@ -516,7 +570,9 @@
       "targetId": "oms",
       "cableType": "fiber",
       "label": "Order Flow",
-      "metadata": { "latency": "< 5 microseconds" }
+      "metadata": {
+        "latency": "< 5 microseconds"
+      }
     },
     {
       "id": "e24",
@@ -524,7 +580,9 @@
       "targetId": "oms",
       "cableType": "ethernet",
       "label": "Order Flow",
-      "metadata": { "protocol": "FIX" }
+      "metadata": {
+        "protocol": "FIX"
+      }
     },
     {
       "id": "e25",
@@ -532,7 +590,9 @@
       "targetId": "risk-engine",
       "cableType": "fiber",
       "label": "Risk Checks",
-      "metadata": { "latency": "< 50 microseconds" }
+      "metadata": {
+        "latency": "< 50 microseconds"
+      }
     },
     {
       "id": "e26",
@@ -540,7 +600,9 @@
       "targetId": "fix-gateway-1",
       "cableType": "fiber",
       "label": "To Brokers",
-      "metadata": { "bandwidth": "10 Gbps" }
+      "metadata": {
+        "bandwidth": "10 Gbps"
+      }
     },
     {
       "id": "e27",
@@ -548,7 +610,9 @@
       "targetId": "fix-gateway-2",
       "cableType": "fiber",
       "label": "To Brokers",
-      "metadata": { "bandwidth": "10 Gbps" }
+      "metadata": {
+        "bandwidth": "10 Gbps"
+      }
     },
     {
       "id": "e28",
@@ -556,7 +620,9 @@
       "targetId": "internet",
       "cableType": "fiber",
       "label": "FIX Sessions",
-      "metadata": { "bandwidth": "10 Gbps" }
+      "metadata": {
+        "bandwidth": "10 Gbps"
+      }
     },
     {
       "id": "e29",
@@ -564,7 +630,9 @@
       "targetId": "market-data-srv",
       "cableType": "fiber",
       "label": "100G",
-      "metadata": { "bandwidth": "100 Gbps" }
+      "metadata": {
+        "bandwidth": "100 Gbps"
+      }
     },
     {
       "id": "e30",
@@ -572,7 +640,10 @@
       "targetId": "colocation-router",
       "cableType": "fiber",
       "label": "100G Direct",
-      "metadata": { "bandwidth": "100 Gbps", "latency": "< 200 microseconds" }
+      "metadata": {
+        "bandwidth": "100 Gbps",
+        "latency": "< 200 microseconds"
+      }
     },
     {
       "id": "e31",
@@ -580,7 +651,10 @@
       "targetId": "nasdaq-feed",
       "cableType": "fiber",
       "label": "Cross-Connect",
-      "metadata": { "bandwidth": "10 Gbps", "location": "Equinix NY4" }
+      "metadata": {
+        "bandwidth": "10 Gbps",
+        "location": "Equinix NY4"
+      }
     },
     {
       "id": "e32",
@@ -588,7 +662,10 @@
       "targetId": "nyse-feed",
       "cableType": "fiber",
       "label": "Cross-Connect",
-      "metadata": { "bandwidth": "10 Gbps", "location": "Equinix NY4" }
+      "metadata": {
+        "bandwidth": "10 Gbps",
+        "location": "Equinix NY4"
+      }
     },
     {
       "id": "e33",
@@ -596,7 +673,10 @@
       "targetId": "cme-feed",
       "cableType": "fiber",
       "label": "Cross-Connect",
-      "metadata": { "bandwidth": "10 Gbps", "location": "Equinix NY4" }
+      "metadata": {
+        "bandwidth": "10 Gbps",
+        "location": "Equinix NY4"
+      }
     },
     {
       "id": "e34",
@@ -604,7 +684,10 @@
       "targetId": "hft-server-1",
       "cableType": "fiber",
       "label": "Market Data",
-      "metadata": { "latency": "< 2 microseconds", "multicast": "IGMP" }
+      "metadata": {
+        "latency": "< 2 microseconds",
+        "multicast": "IGMP"
+      }
     },
     {
       "id": "e35",
@@ -612,7 +695,9 @@
       "targetId": "algo-trading-1",
       "cableType": "fiber",
       "label": "Market Data",
-      "metadata": { "protocol": "Custom binary" }
+      "metadata": {
+        "protocol": "Custom binary"
+      }
     },
     {
       "id": "e36",
@@ -620,7 +705,10 @@
       "targetId": "time-server",
       "cableType": "ethernet",
       "label": "PTP",
-      "metadata": { "protocol": "IEEE 1588", "accuracy": "100ns" }
+      "metadata": {
+        "protocol": "IEEE 1588",
+        "accuracy": "100ns"
+      }
     },
     {
       "id": "e37",
@@ -628,7 +716,9 @@
       "targetId": "trading-sw-1",
       "cableType": "ethernet",
       "label": "PTP Sync",
-      "metadata": { "protocol": "IEEE 1588" }
+      "metadata": {
+        "protocol": "IEEE 1588"
+      }
     },
     {
       "id": "e38",
@@ -636,28 +726,36 @@
       "targetId": "market-data-sw",
       "cableType": "ethernet",
       "label": "PTP Sync",
-      "metadata": { "protocol": "IEEE 1588" }
+      "metadata": {
+        "protocol": "IEEE 1588"
+      }
     },
     {
       "id": "e39",
       "sourceId": "core-sw-1",
       "targetId": "compliance-srv",
       "cableType": "ethernet",
-      "metadata": { "bandwidth": "10 Gbps" }
+      "metadata": {
+        "bandwidth": "10 Gbps"
+      }
     },
     {
       "id": "e40",
       "sourceId": "core-sw-1",
       "targetId": "settlement-srv",
       "cableType": "ethernet",
-      "metadata": { "bandwidth": "10 Gbps" }
+      "metadata": {
+        "bandwidth": "10 Gbps"
+      }
     },
     {
       "id": "e41",
       "sourceId": "core-sw-1",
       "targetId": "reporting-db",
       "cableType": "ethernet",
-      "metadata": { "bandwidth": "10 Gbps" }
+      "metadata": {
+        "bandwidth": "10 Gbps"
+      }
     },
     {
       "id": "e42",
@@ -665,7 +763,9 @@
       "targetId": "compliance-srv",
       "cableType": "ethernet",
       "label": "Trade Feed",
-      "metadata": { "frequency": "Real-time" }
+      "metadata": {
+        "frequency": "Real-time"
+      }
     },
     {
       "id": "e43",
@@ -673,7 +773,9 @@
       "targetId": "settlement-srv",
       "cableType": "ethernet",
       "label": "Settlement Feed",
-      "metadata": { "frequency": "EOD" }
+      "metadata": {
+        "frequency": "EOD"
+      }
     },
     {
       "id": "e44",
@@ -681,7 +783,9 @@
       "targetId": "reporting-db",
       "cableType": "ethernet",
       "label": "Data Export",
-      "metadata": { "frequency": "Continuous" }
+      "metadata": {
+        "frequency": "Continuous"
+      }
     },
     {
       "id": "e45",
@@ -689,21 +793,28 @@
       "targetId": "tape-backup",
       "cableType": "ethernet",
       "label": "Archive",
-      "metadata": { "schedule": "Daily", "retention": "7 years" }
+      "metadata": {
+        "schedule": "Daily",
+        "retention": "7 years"
+      }
     },
     {
       "id": "e46",
       "sourceId": "core-sw-1",
       "targetId": "sec-ops",
       "cableType": "ethernet",
-      "metadata": { "bandwidth": "10 Gbps" }
+      "metadata": {
+        "bandwidth": "10 Gbps"
+      }
     },
     {
       "id": "e47",
       "sourceId": "core-sw-1",
       "targetId": "bastion",
       "cableType": "ethernet",
-      "metadata": { "bandwidth": "1 Gbps" }
+      "metadata": {
+        "bandwidth": "1 Gbps"
+      }
     },
     {
       "id": "e48",
@@ -711,7 +822,9 @@
       "targetId": "edge-fw-1",
       "cableType": "serial",
       "label": "SIEM Logs",
-      "metadata": { "protocol": "Syslog, SNMP" }
+      "metadata": {
+        "protocol": "Syslog, SNMP"
+      }
     }
   ],
   "groups": [

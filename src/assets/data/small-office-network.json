@@ -9,7 +9,9 @@
         "model": "Cisco RV340",
         "wan_ip": "203.0.113.45",
         "location": "Main Office - Network Closet"
-      }
+      },
+      "x": 540.75,
+      "y": 0
     },
     {
       "id": "main-switch",
@@ -20,7 +22,9 @@
         "model": "Netgear GS724T",
         "ports": 24,
         "location": "Main Office - Network Closet"
-      }
+      },
+      "x": 540.75,
+      "y": 184
     },
     {
       "id": "wifi-ap-1",
@@ -31,7 +35,9 @@
         "model": "UniFi AP AC Pro",
         "type": "Wireless Access Point",
         "location": "Main Office Area"
-      }
+      },
+      "x": 21.5,
+      "y": 388
     },
     {
       "id": "wifi-ap-2",
@@ -42,7 +48,9 @@
         "model": "UniFi AP AC Pro",
         "type": "Wireless Access Point",
         "location": "Conference Room"
-      }
+      },
+      "x": 145,
+      "y": 388
     },
     {
       "id": "nas-server",
@@ -54,7 +62,9 @@
         "purpose": "File Storage & Backup",
         "storage": "16TB",
         "raid": "RAID 5"
-      }
+      },
+      "x": 1051.5,
+      "y": 378
     },
     {
       "id": "print-server",
@@ -64,7 +74,9 @@
         "ip": "192.168.1.100",
         "model": "HP MFP E72535z",
         "type": "Network Printer/Scanner"
-      }
+      },
+      "x": 959.5,
+      "y": 388
     },
     {
       "id": "desktop-1",
@@ -75,7 +87,9 @@
         "user": "Office Manager",
         "os": "Windows 11 Pro",
         "location": "Office 1"
-      }
+      },
+      "x": 845,
+      "y": 388
     },
     {
       "id": "desktop-2",
@@ -86,7 +100,9 @@
         "user": "Sales Team",
         "os": "Windows 11 Pro",
         "location": "Office 2"
-      }
+      },
+      "x": 728.5,
+      "y": 388
     },
     {
       "id": "desktop-3",
@@ -97,7 +113,9 @@
         "user": "Accounting",
         "os": "Windows 11 Pro",
         "location": "Office 3"
-      }
+      },
+      "x": 606,
+      "y": 388
     },
     {
       "id": "laptop-1",
@@ -108,7 +126,9 @@
         "user": "CEO",
         "os": "macOS Sonoma",
         "connection": "WiFi"
-      }
+      },
+      "x": 16.5,
+      "y": 582
     },
     {
       "id": "voip-phone-1",
@@ -119,7 +139,9 @@
         "model": "Cisco 8841",
         "type": "VoIP Phone",
         "extension": "101"
-      }
+      },
+      "x": 490.5,
+      "y": 388
     },
     {
       "id": "voip-phone-2",
@@ -130,7 +152,9 @@
         "model": "Cisco 8841",
         "type": "VoIP Phone",
         "extension": "102"
-      }
+      },
+      "x": 386.5,
+      "y": 388
     },
     {
       "id": "security-camera",
@@ -141,7 +165,9 @@
         "model": "Hikvision DS-2CD2385",
         "type": "IP Camera",
         "location": "Main Entrance"
-      }
+      },
+      "x": 274.5,
+      "y": 388
     }
   ],
   "edges": [
@@ -165,7 +191,17 @@
       "metadata": {
         "bandwidth": "1Gbps",
         "port": "Port 1"
-      }
+      },
+      "bends": [
+        {
+          "x": 616.75,
+          "y": 254
+        },
+        {
+          "x": 1091.5,
+          "y": 254
+        }
+      ]
     },
     {
       "id": "edge-switch-printer",
@@ -176,7 +212,17 @@
       "metadata": {
         "bandwidth": "1Gbps",
         "port": "Port 2"
-      }
+      },
+      "bends": [
+        {
+          "x": 608.75,
+          "y": 264
+        },
+        {
+          "x": 989.5,
+          "y": 264
+        }
+      ]
     },
     {
       "id": "edge-switch-ap1",
@@ -188,7 +234,17 @@
         "bandwidth": "1Gbps",
         "port": "Port 10",
         "poe": "enabled"
-      }
+      },
+      "bends": [
+        {
+          "x": 544.75,
+          "y": 254
+        },
+        {
+          "x": 51.5,
+          "y": 254
+        }
+      ]
     },
     {
       "id": "edge-switch-ap2",
@@ -200,7 +256,17 @@
         "bandwidth": "1Gbps",
         "port": "Port 11",
         "poe": "enabled"
-      }
+      },
+      "bends": [
+        {
+          "x": 552.75,
+          "y": 264
+        },
+        {
+          "x": 175,
+          "y": 264
+        }
+      ]
     },
     {
       "id": "edge-switch-desktop1",
@@ -211,7 +277,17 @@
       "metadata": {
         "bandwidth": "1Gbps",
         "port": "Port 15"
-      }
+      },
+      "bends": [
+        {
+          "x": 600.75,
+          "y": 274
+        },
+        {
+          "x": 880,
+          "y": 274
+        }
+      ]
     },
     {
       "id": "edge-switch-desktop2",
@@ -222,7 +298,17 @@
       "metadata": {
         "bandwidth": "1Gbps",
         "port": "Port 16"
-      }
+      },
+      "bends": [
+        {
+          "x": 592.75,
+          "y": 284
+        },
+        {
+          "x": 763.5,
+          "y": 284
+        }
+      ]
     },
     {
       "id": "edge-switch-desktop3",
@@ -233,7 +319,17 @@
       "metadata": {
         "bandwidth": "1Gbps",
         "port": "Port 17"
-      }
+      },
+      "bends": [
+        {
+          "x": 584.75,
+          "y": 294
+        },
+        {
+          "x": 641,
+          "y": 294
+        }
+      ]
     },
     {
       "id": "edge-ap1-laptop",
@@ -256,7 +352,17 @@
         "bandwidth": "100Mbps",
         "port": "Port 20",
         "poe": "enabled"
-      }
+      },
+      "bends": [
+        {
+          "x": 576.75,
+          "y": 294
+        },
+        {
+          "x": 520.5,
+          "y": 294
+        }
+      ]
     },
     {
       "id": "edge-switch-voip2",
@@ -268,7 +374,17 @@
         "bandwidth": "100Mbps",
         "port": "Port 21",
         "poe": "enabled"
-      }
+      },
+      "bends": [
+        {
+          "x": 568.75,
+          "y": 284
+        },
+        {
+          "x": 416.5,
+          "y": 284
+        }
+      ]
     },
     {
       "id": "edge-switch-camera",
@@ -280,7 +396,17 @@
         "bandwidth": "100Mbps",
         "port": "Port 24",
         "poe": "enabled"
-      }
+      },
+      "bends": [
+        {
+          "x": 560.75,
+          "y": 274
+        },
+        {
+          "x": 304.5,
+          "y": 274
+        }
+      ]
     }
   ],
   "groups": []

@@ -72,4 +72,106 @@ describe('StorageService', () => {
     const loaded = service.loadPositions();
     expect(loaded).toBeNull();
   });
+
+  describe('Styling Rules', () => {
+    it('should save and load styling rules', () => {
+      const rules = [
+        {
+          id: 'rule-1',
+          name: 'Test Rule',
+          enabled: true,
+          target: 'node' as const,
+          condition: { attribute: 'type', operator: 'equals' as const, value: 'router' },
+          nodeStyle: { fillColor: '#ff0000' },
+          priority: 1
+        }
+      ];
+
+      service.saveStylingRules(rules);
+      const loaded = service.loadStylingRules();
+
+      expect(loaded).not.toBeNull();
+      expect(loaded?.length).toBe(1);
+      expect(loaded?.[0].id).toBe('rule-1');
+      expect(loaded?.[0].name).toBe('Test Rule');
+    });
+
+    it('should return null if no styling rules are saved', () => {
+      const loaded = service.loadStylingRules();
+      expect(loaded).toBeNull();
+    });
+
+    it('should clear styling rules', () => {
+      const rules = [
+        {
+          id: 'rule-1',
+          name: 'Test Rule',
+          enabled: true,
+          target: 'node' as const,
+          condition: { attribute: 'type', operator: 'equals' as const, value: 'router' },
+          priority: 1
+        }
+      ];
+
+      service.saveStylingRules(rules);
+      expect(service.loadStylingRules()).not.toBeNull();
+
+      service.clearStylingRules();
+      expect(service.loadStylingRules()).toBeNull();
+    });
+
+    it('should handle styling rules storage errors gracefully', () => {
+      spyOn(localStorage, 'setItem').and.throwError('Quota exceeded');
+
+      const rules = [
+        {
+          id: 'rule-1',
+          name: 'Test Rule',
+          enabled: true,
+          target: 'node' as const,
+          condition: { attribute: 'type', operator: 'equals' as const, value: 'router' },
+          priority: 1
+        }
+      ];
+
+      expect(() => service.saveStylingRules(rules)).not.toThrow();
+    });
+
+    it('should handle styling rules JSON parse errors gracefully', () => {
+      localStorage.setItem('netspider-styling-rules', 'invalid json');
+
+      const loaded = service.loadStylingRules();
+      expect(loaded).toBeNull();
+    });
+
+    it('should save multiple styling rules', () => {
+      const rules = [
+        {
+          id: 'rule-1',
+          name: 'Router Rule',
+          enabled: true,
+          target: 'node' as const,
+          condition: { attribute: 'type', operator: 'equals' as const, value: 'router' },
+          nodeStyle: { fillColor: '#ff0000' },
+          priority: 1
+        },
+        {
+          id: 'rule-2',
+          name: 'Switch Rule',
+          enabled: false,
+          target: 'node' as const,
+          condition: { attribute: 'type', operator: 'equals' as const, value: 'switch' },
+          nodeStyle: { fillColor: '#00ff00' },
+          priority: 2
+        }
+      ];
+
+      service.saveStylingRules(rules);
+      const loaded = service.loadStylingRules();
+
+      expect(loaded?.length).toBe(2);
+      expect(loaded?.[0].name).toBe('Router Rule');
+      expect(loaded?.[1].name).toBe('Switch Rule');
+    });
+  });
 });

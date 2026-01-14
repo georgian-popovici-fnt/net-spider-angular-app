@@ -10,7 +10,9 @@
         "ip": "10.0.0.1",
         "throughput": "60 Gbps",
         "compliance": "HIPAA, HITRUST"
-      }
+      },
+      "x": 337.5003968253968,
+      "y": 184
     },
     {
       "id": "edge-fw-2",
@@ -21,7 +23,9 @@
         "model": "Palo Alto PA-5260",
         "ip": "10.0.0.2",
         "role": "HA Active-Passive"
-      }
+      },
+      "x": 224.50039682539682,
+      "y": 184
     },
     {
       "id": "vpn-gateway",
@@ -34,7 +38,9 @@
         "users": "5000 concurrent",
         "purpose": "Remote physician/staff access",
         "mfa": "Duo Security required"
-      }
+      },
+      "x": 144.00039682539682,
+      "y": 562
     },
     {
       "id": "dmz-sw",
@@ -45,7 +51,9 @@
         "model": "Cisco Nexus 9300",
         "ip": "10.0.1.1",
         "ports": "48x 10GbE"
-      }
+      },
+      "x": 244.50039682539682,
+      "y": 368
     },
     {
       "id": "web-portal",
@@ -58,7 +66,9 @@
         "users": "50,000 patients",
         "features": "Appointments, test results, billing",
         "ssl": "TLS 1.3, A+ rating"
-      }
+      },
+      "x": 20.000396825396827,
+      "y": 552
     },
     {
       "id": "core-fw-1",
@@ -70,7 +80,9 @@
         "ip": "172.16.0.1",
         "zone": "Internal segmentation",
         "inspection": "Deep SSL inspection"
-      }
+      },
+      "x": 1257.222619047619,
+      "y": 562
     },
     {
       "id": "core-fw-2",
@@ -81,7 +93,9 @@
         "model": "Fortinet FortiGate 1800F",
         "ip": "172.16.0.2",
         "role": "HA Active-Passive"
-      }
+      },
+      "x": 254.50039682539682,
+      "y": 562
     },
     {
       "id": "core-sw-1",
@@ -93,7 +107,9 @@
         "ip": "172.16.1.1",
         "ports": "32x 100GbE",
         "uptime": "99.999%"
-      }
+      },
+      "x": 1257.222619047619,
+      "y": 756
     },
     {
       "id": "core-sw-2",
@@ -104,7 +120,9 @@
         "model": "Arista 7280R",
         "ip": "172.16.1.2",
         "role": "MLAG peer with Core-SW-1"
-      }
+      },
+      "x": 140.00039682539682,
+      "y": 990
     },
     {
       "id": "ehr-cluster",
@@ -119,7 +137,9 @@
         "users": "8,000 concurrent clinicians",
         "purpose": "Electronic Health Records",
         "compliance": "HIPAA, SOC 2"
-      }
+      },
+      "x": 725.6718253968254,
+      "y": 1801
     },
     {
       "id": "ehr-db-primary",
@@ -131,7 +151,9 @@
         "storage": "500 TB",
         "records": "15M patient records",
         "ha": "RAC with automatic failover"
-      }
+      },
+      "x": 725.6718253968254,
+      "y": 2005
     },
     {
       "id": "ehr-db-standby",
@@ -142,7 +164,9 @@
         "db": "Oracle Exadata X9M",
         "role": "Synchronous replication",
         "rto": "< 30 seconds"
-      }
+      },
+      "x": 705.6718253968254,
+      "y": 2209
     },
     {
       "id": "pacs-server",
@@ -156,7 +180,9 @@
         "studies": "5M+ radiology studies",
         "protocol": "DICOM",
         "viewers": "300 concurrent"
-      }
+      },
+      "x": 1897.6948412698412,
+      "y": 1592
     },
     {
       "id": "pacs-storage",
@@ -168,7 +194,9 @@
         "storage": "3 PB raw capacity",
         "protocol": "NFS, SMB",
         "retention": "7 years + long-term archive"
-      }
+      },
+      "x": 1917.9448412698412,
+      "y": 1801
     },
     {
       "id": "ris-server",
@@ -180,7 +208,9 @@
         "ip": "172.17.0.100",
         "purpose": "Scheduling, reporting, billing",
         "integration": "HL7 to EHR"
-      }
+      },
+      "x": 552.0003968253968,
+      "y": 980
     },
     {
       "id": "modality-gateway",
@@ -191,7 +221,9 @@
         "software": "Laurel Bridge DCF",
         "purpose": "Route images from modalities",
         "throughput": "5,000 studies/day"
-      }
+      },
+      "x": 1938.33373015873,
+      "y": 1398
     },
     {
       "id": "lab-lis",
@@ -203,7 +235,9 @@
         "ip": "172.18.0.50",
         "tests": "10,000+ per day",
         "integration": "HL7 v2.5 to EHR"
-      }
+      },
+      "x": 418.5003968253968,
+      "y": 980
     },
     {
       "id": "pharmacy-system",
@@ -215,7 +249,9 @@
         "ip": "172.18.0.100",
         "dispensers": "200+ automated cabinets",
         "integration": "HL7 to EHR, barcode validation"
-      }
+      },
+      "x": 806.0003968253968,
+      "y": 980
     },
     {
       "id": "blood-bank",
@@ -227,7 +263,9 @@
         "ip": "172.18.0.150",
         "purpose": "Blood inventory, transfusion tracking",
         "compliance": "FDA 21 CFR Part 11"
-      }
+      },
+      "x": 674.5003968253968,
+      "y": 980
     },
     {
       "id": "nurse-station-sw-1",
@@ -239,7 +277,9 @@
         "ip": "172.20.3.1",
         "location": "Medical/Surgical Floor 3",
         "poe": "PoE+ for IP phones, badges"
-      }
+      },
+      "x": 1095.0003968253968,
+      "y": 990
     },
     {
       "id": "nurse-station-sw-2",
@@ -250,7 +290,9 @@
         "model": "Cisco Catalyst 9300",
         "ip": "172.20.4.1",
         "location": "ICU Floor 4"
-      }
+      },
+      "x": 1430.9448412698412,
+      "y": 990
     },
     {
       "id": "nurse-station-sw-3",
@@ -261,7 +303,9 @@
         "model": "Cisco Catalyst 9300",
         "ip": "172.20.5.1",
         "location": "Pediatrics Floor 5"
-      }
+      },
+      "x": 1620.9448412698412,
+      "y": 990
     },
     {
       "id": "bedside-monitors",
@@ -274,7 +318,9 @@
         "data": "Vitals, ECG, SpO2, BP",
         "protocol": "HL7 v2.6 (ADT, ORU)",
         "central-station": "8 nurse stations"
-      }
+      },
+      "x": 1122.0003968253968,
+      "y": 1194
     },
     {
       "id": "infusion-pumps",
@@ -286,7 +332,9 @@
         "count": "500+ pumps",
         "connectivity": "WiFi, auto drug library updates",
         "alerts": "Real-time to EHR"
-      }
+      },
+      "x": 969.5003968253968,
+      "y": 1194
     },
     {
       "id": "telemetry-server",
@@ -298,7 +346,9 @@
         "ip": "172.20.0.50",
         "monitors": "300+ connected",
         "alarms": "Centralized alarm management"
-      }
+      },
+      "x": 882.6718253968254,
+      "y": 1388
     },
     {
       "id": "or-sw",
@@ -310,7 +360,9 @@
         "ip": "172.21.0.1",
         "location": "OR Suite (12 rooms)",
         "certification": "UL 60601-1 medical grade"
-      }
+      },
+      "x": 1113.4448412698412,
+      "y": 1398
     },
     {
       "id": "surgical-system",
@@ -322,7 +374,9 @@
         "ip": "172.21.0.50",
         "purpose": "OR scheduling, preference cards",
         "rooms": "12 ORs + 4 procedure rooms"
-      }
+      },
+      "x": 965.4448412698413,
+      "y": 1592
     },
     {
       "id": "anesthesia-devices",
@@ -334,7 +388,9 @@
         "count": "12 machines",
         "data": "Ventilation, gases, vitals",
         "integration": "AIMS (Anesthesia Info System)"
-      }
+      },
+      "x": 1143.4448412698412,
+      "y": 1602
     },
     {
       "id": "radiology-sw",
@@ -346,7 +402,9 @@
         "ip": "172.17.1.1",
         "ports": "48x 25GbE",
         "purpose": "High-bandwidth imaging"
-      }
+      },
+      "x": 2026.3337301587303,
+      "y": 990
     },
     {
       "id": "ct-scanner",
@@ -358,7 +416,9 @@
         "ip": "172.17.10.10",
         "protocol": "DICOM C-STORE",
         "throughput": "500 MB/study"
-      }
+      },
+      "x": 2036.3337301587303,
+      "y": 1194
     },
     {
       "id": "mri-scanner",
@@ -370,7 +430,9 @@
         "ip": "172.17.10.20",
         "protocol": "DICOM C-STORE",
         "throughput": "1 GB/study"
-      }
+      },
+      "x": 1938.33373015873,
+      "y": 1194
     },
     {
       "id": "xray-system",
@@ -382,7 +444,9 @@
         "ip": "172.17.10.30",
         "rooms": "6 X-ray rooms",
         "protocol": "DICOM"
-      }
+      },
+      "x": 2155.8337301587303,
+      "y": 1194
     },
     {
       "id": "backup-server",
@@ -394,7 +458,9 @@
         "storage": "5 PB",
         "schedule": "Hourly snapshots, daily backups",
         "retention": "30 days local + 7 years cloud"
-      }
+      },
+      "x": 1917.9448412698412,
+      "y": 2209
     },
     {
       "id": "siem-server",
@@ -406,7 +472,9 @@
         "logs": "20 TB/day",
         "monitoring": "24x7 SOC team",
         "compliance": "HIPAA audit logs (6 years)"
-      }
+      },
+      "x": 2402.8337301587303,
+      "y": 980
     },
     {
       "id": "ad-dc-1",
@@ -417,7 +485,9 @@
         "os": "Windows Server 2022",
         "users": "12,000 accounts",
         "role": "Primary domain controller"
-      }
+      },
+      "x": 267.5003968253968,
+      "y": 980
     },
     {
       "id": "ad-dc-2",
@@ -427,7 +497,9 @@
       "metadata": {
         "os": "Windows Server 2022",
         "role": "Secondary DC, DNS"
-      }
+      },
+      "x": 270.83373015873013,
+      "y": 1184
     },
     {
       "id": "internet",
@@ -436,7 +508,9 @@
       "metadata": {
         "bandwidth": "20 Gbps",
         "providers": "Dual DIA circuits"
-      }
+      },
+      "x": 291.0003968253968,
+      "y": 0
     }
   ],
   "edges": [
@@ -446,7 +520,19 @@
       "targetId": "edge-fw-1",
       "cableType": "fiber",
       "label": "10G",
-      "metadata": { "bandwidth": "10 Gbps" }
+      "metadata": {
+        "bandwidth": "10 Gbps"
+      },
+      "bends": [
+        {
+          "x": 336.0003968253968,
+          "y": 70
+        },
+        {
+          "x": 377.5003968253968,
+          "y": 70
+        }
+      ]
     },
     {
       "id": "e2",
@@ -454,7 +540,19 @@
       "targetId": "edge-fw-2",
       "cableType": "fiber",
       "label": "10G",
-      "metadata": { "bandwidth": "10 Gbps" }
+      "metadata": {
+        "bandwidth": "10 Gbps"
+      },
+      "bends": [
+        {
+          "x": 306.0003968253968,
+          "y": 70
+        },
+        {
+          "x": 264.5003968253968,
+          "y": 70
+        }
+      ]
     },
     {
       "id": "e3",
@@ -462,7 +560,19 @@
       "targetId": "dmz-sw",
       "cableType": "fiber",
       "label": "40G",
-      "metadata": { "bandwidth": "40 Gbps" }
+      "metadata": {
+        "bandwidth": "40 Gbps"
+      },
+      "bends": [
+        {
+          "x": 357.5003968253968,
+          "y": 328
+        },
+        {
+          "x": 304.5003968253968,
+          "y": 328
+        }
+      ]
     },
     {
       "id": "e4",
@@ -470,7 +580,9 @@
       "targetId": "dmz-sw",
       "cableType": "fiber",
       "label": "40G",
-      "metadata": { "bandwidth": "40 Gbps" }
+      "metadata": {
+        "bandwidth": "40 Gbps"
+      }
     },
     {
       "id": "e5",
@@ -478,7 +590,19 @@
       "targetId": "web-portal",
       "cableType": "ethernet",
       "label": "10G",
-      "metadata": { "bandwidth": "10 Gbps" }
+      "metadata": {
+        "bandwidth": "10 Gbps"
+      },
+      "bends": [
+        {
+          "x": 254.50039682539682,
+          "y": 438
+        },
+        {
+          "x": 60.00039682539683,
+          "y": 438
+        }
+      ]
     },
     {
       "id": "e6",
@@ -486,7 +610,19 @@
       "targetId": "vpn-gateway",
       "cableType": "ethernet",
       "label": "10G",
-      "metadata": { "bandwidth": "10 Gbps" }
+      "metadata": {
+        "bandwidth": "10 Gbps"
+      },
+      "bends": [
+        {
+          "x": 274.5003968253968,
+          "y": 448
+        },
+        {
+          "x": 184.00039682539682,
+          "y": 448
+        }
+      ]
     },
     {
       "id": "e7",
@@ -494,7 +630,19 @@
       "targetId": "core-fw-1",
       "cableType": "fiber",
       "label": "40G",
-      "metadata": { "bandwidth": "40 Gbps" }
+      "metadata": {
+        "bandwidth": "40 Gbps"
+      },
+      "bends": [
+        {
+          "x": 314.5003968253968,
+          "y": 438
+        },
+        {
+          "x": 1297.222619047619,
+          "y": 438
+        }
+      ]
     },
     {
       "id": "e8",
@@ -502,7 +650,9 @@
       "targetId": "core-fw-2",
       "cableType": "fiber",
       "label": "40G",
-      "metadata": { "bandwidth": "40 Gbps" }
+      "metadata": {
+        "bandwidth": "40 Gbps"
+      }
     },
     {
       "id": "e9",
@@ -510,7 +660,9 @@
       "targetId": "core-sw-1",
       "cableType": "fiber",
       "label": "100G",
-      "metadata": { "bandwidth": "100 Gbps" }
+      "metadata": {
+        "bandwidth": "100 Gbps"
+      }
     },
     {
       "id": "e10",
@@ -518,7 +670,27 @@
       "targetId": "core-sw-2",
       "cableType": "fiber",
       "label": "100G",
-      "metadata": { "bandwidth": "100 Gbps" }
+      "metadata": {
+        "bandwidth": "100 Gbps"
+      },
+      "bends": [
+        {
+          "x": 294.5003968253968,
+          "y": 632
+        },
+        {
+          "x": 216.0559523809524,
+          "y": 632
+        },
+        {
+          "x": 216.0559523809524,
+          "y": 940
+        },
+        {
+          "x": 160.00039682539682,
+          "y": 940
+        }
+      ]
     },
     {
       "id": "e11",
@@ -526,7 +698,27 @@
       "targetId": "core-sw-2",
       "cableType": "fiber",
       "label": "MLAG 200G",
-      "metadata": { "bandwidth": "2x 100 Gbps" }
+      "metadata": {
+        "bandwidth": "2x 100 Gbps"
+      },
+      "bends": [
+        {
+          "x": 1259.4448412698412,
+          "y": 826
+        },
+        {
+          "x": 269.55595238095236,
+          "y": 826
+        },
+        {
+          "x": 269.55595238095236,
+          "y": 950
+        },
+        {
+          "x": 200.00039682539682,
+          "y": 950
+        }
+      ]
     },
     {
       "id": "e12",
@@ -534,7 +726,28 @@
       "targetId": "ehr-cluster",
       "cableType": "fiber",
       "label": "40G",
-      "metadata": { "bandwidth": "40 Gbps", "vlan": "EHR-App-VLAN" }
+      "metadata": {
+        "bandwidth": "40 Gbps",
+        "vlan": "EHR-App-VLAN"
+      },
+      "bends": [
+        {
+          "x": 1299.4448412698412,
+          "y": 906
+        },
+        {
+          "x": 1310.9448412698412,
+          "y": 906
+        },
+        {
+          "x": 1310.9448412698412,
+          "y": 1776
+        },
+        {
+          "x": 794.7627344877345,
+          "y": 1776
+        }
+      ]
     },
     {
       "id": "e13",
@@ -542,7 +755,27 @@
       "targetId": "ehr-cluster",
       "cableType": "fiber",
       "label": "40G",
-      "metadata": { "bandwidth": "40 Gbps" }
+      "metadata": {
+        "bandwidth": "40 Gbps"
+      },
+      "bends": [
+        {
+          "x": 180.00039682539682,
+          "y": 1060
+        },
+        {
+          "x": 173.33373015873016,
+          "y": 1060
+        },
+        {
+          "x": 173.33373015873016,
+          "y": 1774
+        },
+        {
+          "x": 736.5809163059163,
+          "y": 1774
+        }
+      ]
     },
     {
       "id": "e14",
@@ -550,7 +783,36 @@
       "targetId": "ehr-db-primary",
       "cableType": "fiber",
       "label": "100G",
-      "metadata": { "bandwidth": "100 Gbps", "vlan": "EHR-DB-VLAN" }
+      "metadata": {
+        "bandwidth": "100 Gbps",
+        "vlan": "EHR-DB-VLAN"
+      },
+      "bends": [
+        {
+          "x": 1312.7781746031746,
+          "y": 876
+        },
+        {
+          "x": 1820.9448412698412,
+          "y": 876
+        },
+        {
+          "x": 1820.9448412698412,
+          "y": 1336
+        },
+        {
+          "x": 1817.4448412698412,
+          "y": 1336
+        },
+        {
+          "x": 1817.4448412698412,
+          "y": 1965
+        },
+        {
+          "x": 792.338492063492,
+          "y": 1965
+        }
+      ]
     },
     {
       "id": "e15",
@@ -558,7 +820,27 @@
       "targetId": "ehr-db-primary",
       "cableType": "fiber",
       "label": "100G",
-      "metadata": { "bandwidth": "100 Gbps" }
+      "metadata": {
+        "bandwidth": "100 Gbps"
+      },
+      "bends": [
+        {
+          "x": 153.33373015873016,
+          "y": 1132
+        },
+        {
+          "x": 15.000396825396825,
+          "y": 1132
+        },
+        {
+          "x": 15.000396825396825,
+          "y": 1965
+        },
+        {
+          "x": 739.0051587301588,
+          "y": 1965
+        }
+      ]
     },
     {
       "id": "e16",
@@ -566,7 +848,11 @@
       "targetId": "ehr-db-standby",
       "cableType": "fiber",
       "label": "RAC Interconnect",
-      "metadata": { "bandwidth": "100 Gbps", "latency": "< 1ms", "purpose": "DB sync" }
+      "metadata": {
+        "bandwidth": "100 Gbps",
+        "latency": "< 1ms",
+        "purpose": "DB sync"
+      }
     },
     {
       "id": "e17",
@@ -574,7 +860,9 @@
       "targetId": "ehr-db-primary",
       "cableType": "fiber",
       "label": "SQL Traffic",
-      "metadata": { "bandwidth": "40 Gbps" }
+      "metadata": {
+        "bandwidth": "40 Gbps"
+      }
     },
     {
       "id": "e18",
@@ -582,7 +870,20 @@
       "targetId": "ehr-cluster",
       "cableType": "serial",
       "label": "API Calls",
-      "metadata": { "protocol": "HTTPS REST", "traffic": "Patient portal queries" }
+      "metadata": {
+        "protocol": "HTTPS REST",
+        "traffic": "Patient portal queries"
+      },
+      "bends": [
+        {
+          "x": 60.00039682539683,
+          "y": 1784
+        },
+        {
+          "x": 729.308189033189,
+          "y": 1784
+        }
+      ]
     },
     {
       "id": "e19",
@@ -590,7 +891,28 @@
       "targetId": "pacs-server",
       "cableType": "fiber",
       "label": "40G",
-      "metadata": { "bandwidth": "40 Gbps", "vlan": "Imaging-VLAN" }
+      "metadata": {
+        "bandwidth": "40 Gbps",
+        "vlan": "Imaging-VLAN"
+      },
+      "bends": [
+        {
+          "x": 1317.222619047619,
+          "y": 866
+        },
+        {
+          "x": 1836.8892857142857,
+          "y": 866
+        },
+        {
+          "x": 1836.8892857142857,
+          "y": 1552
+        },
+        {
+          "x": 1917.6948412698412,
+          "y": 1552
+        }
+      ]
     },
     {
       "id": "e20",
@@ -598,7 +920,20 @@
       "targetId": "pacs-storage",
       "cableType": "fiber",
       "label": "100G",
-      "metadata": { "bandwidth": "100 Gbps", "protocol": "NFS v4" }
+      "metadata": {
+        "bandwidth": "100 Gbps",
+        "protocol": "NFS v4"
+      },
+      "bends": [
+        {
+          "x": 1957.6948412698412,
+          "y": 1682
+        },
+        {
+          "x": 1957.9448412698412,
+          "y": 1682
+        }
+      ]
     },
     {
       "id": "e21",
@@ -606,7 +941,19 @@
       "targetId": "ris-server",
       "cableType": "ethernet",
       "label": "10G",
-      "metadata": { "bandwidth": "10 Gbps" }
+      "metadata": {
+        "bandwidth": "10 Gbps"
+      },
+      "bends": [
+        {
+          "x": 1272.7781746031746,
+          "y": 856
+        },
+        {
+          "x": 592.0003968253968,
+          "y": 856
+        }
+      ]
     },
     {
       "id": "e22",
@@ -614,7 +961,27 @@
       "targetId": "modality-gateway",
       "cableType": "ethernet",
       "label": "10G",
-      "metadata": { "bandwidth": "10 Gbps" }
+      "metadata": {
+        "bandwidth": "10 Gbps"
+      },
+      "bends": [
+        {
+          "x": 1321.6670634920633,
+          "y": 856
+        },
+        {
+          "x": 1852.83373015873,
+          "y": 856
+        },
+        {
+          "x": 1852.83373015873,
+          "y": 1348
+        },
+        {
+          "x": 1948.33373015873,
+          "y": 1348
+        }
+      ]
     },
     {
       "id": "e23",
@@ -622,7 +989,20 @@
       "targetId": "pacs-server",
       "cableType": "fiber",
       "label": "DICOM",
-      "metadata": { "protocol": "DICOM C-STORE", "bandwidth": "40 Gbps" }
+      "metadata": {
+        "protocol": "DICOM C-STORE",
+        "bandwidth": "40 Gbps"
+      },
+      "bends": [
+        {
+          "x": 1978.33373015873,
+          "y": 1552
+        },
+        {
+          "x": 1957.6948412698412,
+          "y": 1552
+        }
+      ]
     },
     {
       "id": "e24",
@@ -630,7 +1010,20 @@
       "targetId": "ehr-cluster",
       "cableType": "serial",
       "label": "HL7 Feed",
-      "metadata": { "protocol": "HL7 v2.5", "messages": "Orders, results" }
+      "metadata": {
+        "protocol": "HL7 v2.5",
+        "messages": "Orders, results"
+      },
+      "bends": [
+        {
+          "x": 592.0003968253968,
+          "y": 1754
+        },
+        {
+          "x": 751.1263708513709,
+          "y": 1754
+        }
+      ]
     },
     {
       "id": "e25",
@@ -638,7 +1031,28 @@
       "targetId": "ehr-cluster",
       "cableType": "serial",
       "label": "Context Share",
-      "metadata": { "protocol": "HL7 CCOW", "purpose": "Launch viewer from EHR" }
+      "metadata": {
+        "protocol": "HL7 CCOW",
+        "purpose": "Launch viewer from EHR"
+      },
+      "bends": [
+        {
+          "x": 1917.6948412698412,
+          "y": 1682
+        },
+        {
+          "x": 1884.4448412698412,
+          "y": 1682
+        },
+        {
+          "x": 1884.4448412698412,
+          "y": 1786
+        },
+        {
+          "x": 802.0354617604618,
+          "y": 1786
+        }
+      ]
     },
     {
       "id": "e26",
@@ -646,7 +1060,19 @@
       "targetId": "lab-lis",
       "cableType": "ethernet",
       "label": "10G",
-      "metadata": { "bandwidth": "10 Gbps" }
+      "metadata": {
+        "bandwidth": "10 Gbps"
+      },
+      "bends": [
+        {
+          "x": 1268.33373015873,
+          "y": 846
+        },
+        {
+          "x": 458.5003968253968,
+          "y": 846
+        }
+      ]
     },
     {
       "id": "e27",
@@ -654,14 +1080,38 @@
       "targetId": "pharmacy-system",
       "cableType": "ethernet",
       "label": "10G",
-      "metadata": { "bandwidth": "10 Gbps" }
+      "metadata": {
+        "bandwidth": "10 Gbps"
+      },
+      "bends": [
+        {
+          "x": 1281.6670634920633,
+          "y": 876
+        },
+        {
+          "x": 846.0003968253968,
+          "y": 876
+        }
+      ]
     },
     {
       "id": "e28",
       "sourceId": "core-sw-1",
       "targetId": "blood-bank",
       "cableType": "ethernet",
-      "metadata": { "bandwidth": "1 Gbps" }
+      "metadata": {
+        "bandwidth": "1 Gbps"
+      },
+      "bends": [
+        {
+          "x": 1277.222619047619,
+          "y": 866
+        },
+        {
+          "x": 714.5003968253968,
+          "y": 866
+        }
+      ]
     },
     {
       "id": "e29",
@@ -669,7 +1119,20 @@
       "targetId": "ehr-cluster",
       "cableType": "serial",
       "label": "HL7 Results",
-      "metadata": { "protocol": "HL7 v2.5 ORU", "messages": "10,000/day" }
+      "metadata": {
+        "protocol": "HL7 v2.5 ORU",
+        "messages": "10,000/day"
+      },
+      "bends": [
+        {
+          "x": 458.5003968253968,
+          "y": 1764
+        },
+        {
+          "x": 743.8536435786435,
+          "y": 1764
+        }
+      ]
     },
     {
       "id": "e30",
@@ -677,7 +1140,20 @@
       "targetId": "ehr-cluster",
       "cableType": "serial",
       "label": "HL7 Orders",
-      "metadata": { "protocol": "HL7 v2.5 RDE", "validation": "Barcode scanning" }
+      "metadata": {
+        "protocol": "HL7 v2.5 RDE",
+        "validation": "Barcode scanning"
+      },
+      "bends": [
+        {
+          "x": 846.0003968253968,
+          "y": 1070
+        },
+        {
+          "x": 765.6718253968254,
+          "y": 1070
+        }
+      ]
     },
     {
       "id": "e31",
@@ -685,7 +1161,28 @@
       "targetId": "ehr-cluster",
       "cableType": "serial",
       "label": "HL7 Transfusion",
-      "metadata": { "protocol": "HL7 v2.5", "compliance": "FDA 21 CFR Part 11" }
+      "metadata": {
+        "protocol": "HL7 v2.5",
+        "compliance": "FDA 21 CFR Part 11"
+      },
+      "bends": [
+        {
+          "x": 714.5003968253968,
+          "y": 1070
+        },
+        {
+          "x": 682.8988095238095,
+          "y": 1070
+        },
+        {
+          "x": 682.8988095238095,
+          "y": 1744
+        },
+        {
+          "x": 758.3990981240981,
+          "y": 1744
+        }
+      ]
     },
     {
       "id": "e32",
@@ -693,7 +1190,19 @@
       "targetId": "nurse-station-sw-1",
       "cableType": "fiber",
       "label": "10G",
-      "metadata": { "bandwidth": "10 Gbps" }
+      "metadata": {
+        "bandwidth": "10 Gbps"
+      },
+      "bends": [
+        {
+          "x": 1290.5559523809522,
+          "y": 896
+        },
+        {
+          "x": 1135.0003968253968,
+          "y": 896
+        }
+      ]
     },
     {
       "id": "e33",
@@ -701,7 +1210,19 @@
       "targetId": "nurse-station-sw-2",
       "cableType": "fiber",
       "label": "10G",
-      "metadata": { "bandwidth": "10 Gbps" }
+      "metadata": {
+        "bandwidth": "10 Gbps"
+      },
+      "bends": [
+        {
+          "x": 1303.8892857142857,
+          "y": 896
+        },
+        {
+          "x": 1470.9448412698412,
+          "y": 896
+        }
+      ]
     },
     {
       "id": "e34",
@@ -709,7 +1230,19 @@
       "targetId": "nurse-station-sw-3",
       "cableType": "fiber",
       "label": "10G",
-      "metadata": { "bandwidth": "10 Gbps" }
+      "metadata": {
+        "bandwidth": "10 Gbps"
+      },
+      "bends": [
+        {
+          "x": 1308.33373015873,
+          "y": 886
+        },
+        {
+          "x": 1660.9448412698412,
+          "y": 886
+        }
+      ]
     },
     {
       "id": "e35",
@@ -717,7 +1250,20 @@
       "targetId": "bedside-monitors",
       "cableType": "ethernet",
       "label": "PoE+",
-      "metadata": { "standard": "802.3at", "power": "30W per port" }
+      "metadata": {
+        "standard": "802.3at",
+        "power": "30W per port"
+      },
+      "bends": [
+        {
+          "x": 1155.0003968253968,
+          "y": 1060
+        },
+        {
+          "x": 1152.0003968253968,
+          "y": 1060
+        }
+      ]
     },
     {
       "id": "e36",
@@ -725,7 +1271,20 @@
       "targetId": "infusion-pumps",
       "cableType": "coaxial",
       "label": "WiFi",
-      "metadata": { "frequency": "5 GHz", "ssid": "Medical-IoT" }
+      "metadata": {
+        "frequency": "5 GHz",
+        "ssid": "Medical-IoT"
+      },
+      "bends": [
+        {
+          "x": 1115.0003968253968,
+          "y": 1060
+        },
+        {
+          "x": 999.5003968253968,
+          "y": 1060
+        }
+      ]
     },
     {
       "id": "e37",
@@ -733,7 +1292,43 @@
       "targetId": "telemetry-server",
       "cableType": "ethernet",
       "label": "10G",
-      "metadata": { "bandwidth": "10 Gbps" }
+      "metadata": {
+        "bandwidth": "10 Gbps"
+      },
+      "bends": [
+        {
+          "x": 1286.111507936508,
+          "y": 886
+        },
+        {
+          "x": 975.0003968253968,
+          "y": 886
+        },
+        {
+          "x": 975.0003968253968,
+          "y": 1070
+        },
+        {
+          "x": 956.0003968253968,
+          "y": 1070
+        },
+        {
+          "x": 956.0003968253968,
+          "y": 1144
+        },
+        {
+          "x": 860.0003968253968,
+          "y": 1144
+        },
+        {
+          "x": 860.0003968253968,
+          "y": 1336
+        },
+        {
+          "x": 902.6718253968254,
+          "y": 1336
+        }
+      ]
     },
     {
       "id": "e38",
@@ -741,7 +1336,20 @@
       "targetId": "telemetry-server",
       "cableType": "serial",
       "label": "Vitals Data",
-      "metadata": { "protocol": "HL7 v2.6 ORU", "frequency": "Every 5 seconds" }
+      "metadata": {
+        "protocol": "HL7 v2.6 ORU",
+        "frequency": "Every 5 seconds"
+      },
+      "bends": [
+        {
+          "x": 1152.0003968253968,
+          "y": 1348
+        },
+        {
+          "x": 942.6718253968254,
+          "y": 1348
+        }
+      ]
     },
     {
       "id": "e39",
@@ -749,7 +1357,28 @@
       "targetId": "ehr-cluster",
       "cableType": "serial",
       "label": "Vitals to EHR",
-      "metadata": { "protocol": "HL7 v2.6", "storage": "Flowsheet documentation" }
+      "metadata": {
+        "protocol": "HL7 v2.6",
+        "storage": "Flowsheet documentation"
+      },
+      "bends": [
+        {
+          "x": 922.6718253968254,
+          "y": 1478
+        },
+        {
+          "x": 808.9448412698413,
+          "y": 1478
+        },
+        {
+          "x": 808.9448412698413,
+          "y": 1744
+        },
+        {
+          "x": 772.9445526695526,
+          "y": 1744
+        }
+      ]
     },
     {
       "id": "e40",
@@ -757,14 +1386,39 @@
       "targetId": "or-sw",
       "cableType": "fiber",
       "label": "10G",
-      "metadata": { "bandwidth": "10 Gbps", "redundant": "Dual path" }
+      "metadata": {
+        "bandwidth": "10 Gbps",
+        "redundant": "Dual path"
+      },
+      "bends": [
+        {
+          "x": 1295.0003968253968,
+          "y": 1358
+        },
+        {
+          "x": 1153.4448412698412,
+          "y": 1358
+        }
+      ]
     },
     {
       "id": "e41",
       "sourceId": "or-sw",
       "targetId": "surgical-system",
       "cableType": "ethernet",
-      "metadata": { "bandwidth": "10 Gbps" }
+      "metadata": {
+        "bandwidth": "10 Gbps"
+      },
+      "bends": [
+        {
+          "x": 1133.4448412698412,
+          "y": 1478
+        },
+        {
+          "x": 1005.4448412698413,
+          "y": 1478
+        }
+      ]
     },
     {
       "id": "e42",
@@ -772,7 +1426,10 @@
       "targetId": "anesthesia-devices",
       "cableType": "ethernet",
       "label": "Medical Grade",
-      "metadata": { "certification": "UL 60601-1", "devices": "12 machines" }
+      "metadata": {
+        "certification": "UL 60601-1",
+        "devices": "12 machines"
+      }
     },
     {
       "id": "e43",
@@ -780,7 +1437,20 @@
       "targetId": "ehr-cluster",
       "cableType": "serial",
       "label": "HL7 OR Events",
-      "metadata": { "protocol": "HL7 v2.5 SIU", "messages": "Scheduling, notes" }
+      "metadata": {
+        "protocol": "HL7 v2.5 SIU",
+        "messages": "Scheduling, notes"
+      },
+      "bends": [
+        {
+          "x": 1005.4448412698413,
+          "y": 1756
+        },
+        {
+          "x": 780.2172799422799,
+          "y": 1756
+        }
+      ]
     },
     {
       "id": "e44",
@@ -788,7 +1458,20 @@
       "targetId": "ehr-cluster",
       "cableType": "serial",
       "label": "AIMS Data",
-      "metadata": { "protocol": "HL7 v2.6", "data": "Anesthesia record" }
+      "metadata": {
+        "protocol": "HL7 v2.6",
+        "data": "Anesthesia record"
+      },
+      "bends": [
+        {
+          "x": 1173.4448412698412,
+          "y": 1766
+        },
+        {
+          "x": 787.4900072150073,
+          "y": 1766
+        }
+      ]
     },
     {
       "id": "e45",
@@ -796,7 +1479,20 @@
       "targetId": "radiology-sw",
       "cableType": "fiber",
       "label": "100G",
-      "metadata": { "bandwidth": "100 Gbps", "purpose": "High-bandwidth imaging" }
+      "metadata": {
+        "bandwidth": "100 Gbps",
+        "purpose": "High-bandwidth imaging"
+      },
+      "bends": [
+        {
+          "x": 1326.111507936508,
+          "y": 846
+        },
+        {
+          "x": 2066.3337301587303,
+          "y": 846
+        }
+      ]
     },
     {
       "id": "e46",
@@ -804,7 +1500,9 @@
       "targetId": "ct-scanner",
       "cableType": "fiber",
       "label": "25G",
-      "metadata": { "bandwidth": "25 Gbps" }
+      "metadata": {
+        "bandwidth": "25 Gbps"
+      }
     },
     {
       "id": "e47",
@@ -812,7 +1510,19 @@
       "targetId": "mri-scanner",
       "cableType": "fiber",
       "label": "25G",
-      "metadata": { "bandwidth": "25 Gbps" }
+      "metadata": {
+        "bandwidth": "25 Gbps"
+      },
+      "bends": [
+        {
+          "x": 2039.6670634920636,
+          "y": 1060
+        },
+        {
+          "x": 1968.33373015873,
+          "y": 1060
+        }
+      ]
     },
     {
       "id": "e48",
@@ -820,7 +1530,19 @@
       "targetId": "xray-system",
       "cableType": "ethernet",
       "label": "10G",
-      "metadata": { "bandwidth": "10 Gbps" }
+      "metadata": {
+        "bandwidth": "10 Gbps"
+      },
+      "bends": [
+        {
+          "x": 2093.000396825397,
+          "y": 1060
+        },
+        {
+          "x": 2185.8337301587303,
+          "y": 1060
+        }
+      ]
     },
     {
       "id": "e49",
@@ -828,7 +1550,20 @@
       "targetId": "modality-gateway",
       "cableType": "fiber",
       "label": "DICOM",
-      "metadata": { "protocol": "DICOM C-STORE", "study-size": "500 MB avg" }
+      "metadata": {
+        "protocol": "DICOM C-STORE",
+        "study-size": "500 MB avg"
+      },
+      "bends": [
+        {
+          "x": 2066.3337301587303,
+          "y": 1348
+        },
+        {
+          "x": 1988.33373015873,
+          "y": 1348
+        }
+      ]
     },
     {
       "id": "e50",
@@ -836,7 +1571,10 @@
       "targetId": "modality-gateway",
       "cableType": "fiber",
       "label": "DICOM",
-      "metadata": { "protocol": "DICOM C-STORE", "study-size": "1 GB avg" }
+      "metadata": {
+        "protocol": "DICOM C-STORE",
+        "study-size": "1 GB avg"
+      }
     },
     {
       "id": "e51",
@@ -844,7 +1582,19 @@
       "targetId": "modality-gateway",
       "cableType": "ethernet",
       "label": "DICOM",
-      "metadata": { "protocol": "DICOM C-STORE" }
+      "metadata": {
+        "protocol": "DICOM C-STORE"
+      },
+      "bends": [
+        {
+          "x": 2185.8337301587303,
+          "y": 1358
+        },
+        {
+          "x": 2008.33373015873,
+          "y": 1358
+        }
+      ]
     },
     {
       "id": "e52",
@@ -852,7 +1602,27 @@
       "targetId": "backup-server",
       "cableType": "fiber",
       "label": "40G",
-      "metadata": { "bandwidth": "40 Gbps" }
+      "metadata": {
+        "bandwidth": "40 Gbps"
+      },
+      "bends": [
+        {
+          "x": 1330.5559523809522,
+          "y": 836
+        },
+        {
+          "x": 2322.8337301587303,
+          "y": 836
+        },
+        {
+          "x": 2322.8337301587303,
+          "y": 2157
+        },
+        {
+          "x": 1984.611507936508,
+          "y": 2157
+        }
+      ]
     },
     {
       "id": "e53",
@@ -860,7 +1630,28 @@
       "targetId": "backup-server",
       "cableType": "fiber",
       "label": "Backup Traffic",
-      "metadata": { "schedule": "Hourly snapshots", "bandwidth": "40 Gbps" }
+      "metadata": {
+        "schedule": "Hourly snapshots",
+        "bandwidth": "40 Gbps"
+      },
+      "bends": [
+        {
+          "x": 785.6718253968254,
+          "y": 2095
+        },
+        {
+          "x": 851.6718253968254,
+          "y": 2095
+        },
+        {
+          "x": 851.6718253968254,
+          "y": 2169
+        },
+        {
+          "x": 1931.2781746031744,
+          "y": 2169
+        }
+      ]
     },
     {
       "id": "e54",
@@ -868,7 +1659,10 @@
       "targetId": "backup-server",
       "cableType": "fiber",
       "label": "Image Backup",
-      "metadata": { "schedule": "Daily", "bandwidth": "100 Gbps" }
+      "metadata": {
+        "schedule": "Daily",
+        "bandwidth": "100 Gbps"
+      }
     },
     {
       "id": "e55",
@@ -876,7 +1670,19 @@
       "targetId": "siem-server",
       "cableType": "ethernet",
       "label": "10G",
-      "metadata": { "bandwidth": "10 Gbps" }
+      "metadata": {
+        "bandwidth": "10 Gbps"
+      },
+      "bends": [
+        {
+          "x": 1335.0003968253968,
+          "y": 826
+        },
+        {
+          "x": 2422.8337301587303,
+          "y": 826
+        }
+      ]
     },
     {
       "id": "e56",
@@ -884,21 +1690,74 @@
       "targetId": "siem-server",
       "cableType": "serial",
       "label": "Syslog",
-      "metadata": { "logs": "All firewall logs", "retention": "6 years" }
+      "metadata": {
+        "logs": "All firewall logs",
+        "retention": "6 years"
+      },
+      "bends": [
+        {
+          "x": 397.5003968253968,
+          "y": 254
+        },
+        {
+          "x": 2454.3337301587303,
+          "y": 254
+        },
+        {
+          "x": 2454.3337301587303,
+          "y": 940
+        },
+        {
+          "x": 2462.8337301587303,
+          "y": 940
+        }
+      ]
     },
     {
       "id": "e57",
       "sourceId": "core-sw-1",
       "targetId": "ad-dc-1",
       "cableType": "ethernet",
-      "metadata": { "bandwidth": "10 Gbps" }
+      "metadata": {
+        "bandwidth": "10 Gbps"
+      },
+      "bends": [
+        {
+          "x": 1263.8892857142857,
+          "y": 836
+        },
+        {
+          "x": 307.5003968253968,
+          "y": 836
+        }
+      ]
     },
     {
       "id": "e58",
       "sourceId": "core-sw-2",
       "targetId": "ad-dc-2",
       "cableType": "ethernet",
-      "metadata": { "bandwidth": "10 Gbps" }
+      "metadata": {
+        "bandwidth": "10 Gbps"
+      },
+      "bends": [
+        {
+          "x": 206.66706349206348,
+          "y": 1070
+        },
+        {
+          "x": 247.50039682539682,
+          "y": 1070
+        },
+        {
+          "x": 247.50039682539682,
+          "y": 1144
+        },
+        {
+          "x": 290.83373015873013,
+          "y": 1144
+        }
+      ]
     },
     {
       "id": "e59",
@@ -906,7 +1765,19 @@
       "targetId": "ad-dc-2",
       "cableType": "ethernet",
       "label": "AD Replication",
-      "metadata": { "protocol": "LDAP, DNS" }
+      "metadata": {
+        "protocol": "LDAP, DNS"
+      },
+      "bends": [
+        {
+          "x": 307.5003968253968,
+          "y": 1144
+        },
+        {
+          "x": 330.83373015873013,
+          "y": 1144
+        }
+      ]
     }
   ],
   "groups": [

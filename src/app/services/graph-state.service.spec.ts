@@ -306,4 +306,196 @@ describe('GraphStateService', () => {
       });
     });
   });
+
+  describe('Delete Operations', () => {
+    beforeEach(() => {
+      const graphData: GraphData = {
+        nodes: [
+          { id: 'node-1', label: 'Node 1', type: NodeType.ROUTER, x: 100, y: 200 },
+          { id: 'node-2', label: 'Node 2', type: NodeType.SWITCH, x: 300, y: 400 }
+        ],
+        edges: [
+          { id: 'edge-1', sourceId: 'node-1', targetId: 'node-2', cableType: CableType.FIBER },
+          { id: 'edge-2', sourceId: 'node-2', targetId: 'node-1', cableType: CableType.ETHERNET }
+        ]
+      };
+      service.loadGraphData(graphData);
+    });
+
+    describe('deleteNode', () => {
+      it('should delete a node', (done) => {
+        service.deleteNode('node-1');
+
+        service.graphData$.subscribe(data => {
+          if (data && data.nodes.length === 1) {
+            expect(data.nodes.length).toBe(1);
+            expect(data.nodes.find(n => n.id === 'node-1')).toBeUndefined();
+            expect(data.nodes.find(n => n.id === 'node-2')).toBeDefined();
+            done();
+          }
+        });
+      });
+
+      it('should delete all connected edges when deleting a node', (done) => {
+        service.deleteNode('node-1');
+
+        service.graphData$.subscribe(data => {
+          if (data && data.edges.length === 0) {
+            expect(data.edges.length).toBe(0);
+            expect(data.edges.find(e => e.id === 'edge-1')).toBeUndefined();
+            expect(data.edges.find(e => e.id === 'edge-2')).toBeUndefined();
+            done();
+          }
+        });
+      });
+
+      it('should remove node position from persisted positions', () => {
+        service.updateNodePosition('node-1', 100, 200);
+        service.deleteNode('node-1');
+
+        const positions = service.getPersistedPositions();
+        expect(positions.get('node-1')).toBeUndefined();
+      });
+
+      it('should save positions to storage after deletion', () => {
+        service.deleteNode('node-1');
+
+        expect(storageService.savePositions).toHaveBeenCalled();
+      });
+
+      it('should clear selection after deleting node', (done) => {
+        service.setSelection(['node-1'], []);
+        service.deleteNode('node-1');
+
+        service.selection$.subscribe(selection => {
+          if (selection.selectionType === 'none') {
+            expect(selection.selectedNodes.length).toBe(0);
+            expect(selection.selectedEdges.length).toBe(0);
+            done();
+          }
+        });
+      });
+
+      it('should handle deletion of non-existent node gracefully', () => {
+        const initialNodeCount = service.getCurrentGraphData()?.nodes.length || 0;
+
+        service.deleteNode('non-existent-node');
+
+        const currentNodeCount = service.getCurrentGraphData()?.nodes.length || 0;
+        expect(currentNodeCount).toBe(initialNodeCount);
+      });
+
+      it('should handle deletion when graph data is null', () => {
+        const emptyService = new GraphStateService(storageService);
+
+        expect(() => emptyService.deleteNode('node-1')).not.toThrow();
+      });
+
+      it('should emit updated graph data after deletion', (done) => {
+        let emitCount = 0;
+
+        service.graphData$.subscribe(data => {
+          emitCount++;
+          if (emitCount === 2 && data) {
+            // First emit is from loadGraphData, second is from deleteNode
+            expect(data.nodes.length).toBe(1);
+            done();
+          }
+        });
+
+        service.deleteNode('node-1');
+      });
+    });
+
+    describe('deleteEdge', () => {
+      it('should delete an edge', (done) => {
+        service.deleteEdge('edge-1');
+
+        service.graphData$.subscribe(data => {
+          if (data && data.edges.length === 1) {
+            expect(data.edges.length).toBe(1);
+            expect(data.edges.find(e => e.id === 'edge-1')).toBeUndefined();
+            expect(data.edges.find(e => e.id === 'edge-2')).toBeDefined();
+            done();
+          }
+        });
+      });
+
+      it('should not affect nodes when deleting edge', (done) => {
+        service.deleteEdge('edge-1');
+
+        service.graphData$.subscribe(data => {
+          if (data && data.edges.length === 1) {
+            expect(data.nodes.length).toBe(2);
+            expect(data.nodes.find(n => n.id === 'node-1')).toBeDefined();
+            expect(data.nodes.find(n => n.id === 'node-2')).toBeDefined();
+            done();
+          }
+        });
+      });
+
+      it('should clear selection after deleting edge', (done) => {
+        service.setSelection([], ['edge-1']);
+        service.deleteEdge('edge-1');
+
+        service.selection$.subscribe(selection => {
+          if (selection.selectionType === 'none') {
+            expect(selection.selectedNodes.length).toBe(0);
+            expect(selection.selectedEdges.length).toBe(0);
+            done();
+          }
+        });
+      });
+
+      it('should handle deletion of non-existent edge gracefully', () => {
+        const initialEdgeCount = service.getCurrentGraphData()?.edges.length || 0;
+
+        service.deleteEdge('non-existent-edge');
+
+        const currentEdgeCount = service.getCurrentGraphData()?.edges.length || 0;
+        expect(currentEdgeCount).toBe(initialEdgeCount);
+      });
+
+      it('should handle deletion when graph data is null', () => {
+        const emptyService = new GraphStateService(storageService);
+
+        expect(() => emptyService.deleteEdge('edge-1')).not.toThrow();
+      });
+
+      it('should emit updated graph data after deletion', (done) => {
+        let emitCount = 0;
+
+        service.graphData$.subscribe(data => {
+          emitCount++;
+          if (emitCount === 2 && data) {
+            // First emit is from loadGraphData, second is from deleteEdge
+            expect(data.edges.length).toBe(1);
+            done();
+          }
+        });
+
+        service.deleteEdge('edge-1');
+      });
+    });
+
+    describe('savePositionsToStorage', () => {
+      it('should call storageService.savePositions', () => {
+        service.updateNodePosition('node-1', 150, 250);
+        service.savePositionsToStorage();
+
+        expect(storageService.savePositions).toHaveBeenCalledTimes(1);
+      });
+
+      it('should save all current positions', () => {
+        service.updateNodePosition('node-1', 100, 200);
+        service.updateNodePosition('node-2', 300, 400);
+        service.savePositionsToStorage();
+
+        const savedPositions = storageService.savePositions.calls.mostRecent().args[0];
+        expect(savedPositions.size).toBe(2);
+        expect(savedPositions.get('node-1')).toEqual({ x: 100, y: 200 });
+        expect(savedPositions.get('node-2')).toEqual({ x: 300, y: 400 });
+      });
+    });
+  });
 });

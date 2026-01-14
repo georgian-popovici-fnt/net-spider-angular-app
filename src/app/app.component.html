@@ -1,7 +1,14 @@
 <div class="app-layout">
-  <!-- Filter Sidebar (Left) - Conditionally shown -->
-  @if (filterSidebarVisible()) {
-    <app-filter-sidebar class="filter-sidebar"></app-filter-sidebar>
+  <!-- Left Sidebar Container - Stacked sidebars -->
+  @if (filterSidebarVisible() || stylingSidebarVisible()) {
+    <div class="left-sidebars">
+      @if (filterSidebarVisible()) {
+        <app-filter-sidebar class="filter-sidebar"></app-filter-sidebar>
+      }
+      @if (stylingSidebarVisible()) {
+        <app-styling-sidebar class="styling-sidebar"></app-styling-sidebar>
+      }
+    </div>
   }
 
   <!-- Main Content Area (Right) -->
@@ -17,3 +24,6 @@
     </div>
   </div>
 </div>
+
+<!-- Notification Toast -->
+<app-notification></app-notification>

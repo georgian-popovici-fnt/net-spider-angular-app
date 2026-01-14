@@ -11,6 +11,9 @@ export class UIStateService {
   // Filter sidebar visibility - hidden by default
   readonly filterSidebarVisible = signal(false);
 
+  // Styling sidebar visibility - hidden by default
+  readonly stylingSidebarVisible = signal(false);
+
   constructor() {}
 
   toggleFilterSidebar(): void {
@@ -23,5 +26,17 @@ export class UIStateService {
 
   hideFilterSidebar(): void {
     this.filterSidebarVisible.set(false);
+  }
+
+  toggleStylingSidebar(): void {
+    this.stylingSidebarVisible.update(v => !v);
+  }
+
+  showStylingSidebar(): void {
+    this.stylingSidebarVisible.set(true);
+  }
+
+  hideStylingSidebar(): void {
+    this.stylingSidebarVisible.set(false);
   }
 }

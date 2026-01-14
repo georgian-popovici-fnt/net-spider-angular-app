@@ -1,0 +1,7 @@
+<div class="notification-container" *ngIf="notification" [class.visible]="isVisible" [class]="'notification-' + notification.type">
+  <div class="notification-content">
+    <span class="notification-icon">{{ getIcon() }}</span>
+    <span class="notification-message">{{ notification.message }}</span>
+    <button class="notification-close" (click)="close()">×</button>
+  </div>
+</div>

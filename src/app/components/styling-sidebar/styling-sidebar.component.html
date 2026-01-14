@@ -1,0 +1,168 @@
+<div class="styling-sidebar" [class.collapsed]="isCollapsed()">
+  <!-- Header -->
+  <div class="styling-header">
+    <div class="styling-title">
+      <span class="styling-icon">🎨</span>
+      <h3>Styling</h3>
+    </div>
+    <button class="collapse-btn" (click)="toggleCollapse()" title="Toggle sidebar">
+      {{ isCollapsed() ? '▶' : '◀' }}
+    </button>
+  </div>
+
+  <!-- Content (hidden when collapsed) -->
+  <div class="styling-content" *ngIf="!isCollapsed()">
+    <!-- Statistics -->
+    <div class="styling-section stats-section">
+      <div class="section-header">
+        <span class="section-icon">📊</span>
+        <h4>Statistics</h4>
+      </div>
+      <div class="section-content">
+        <div class="stat-item">
+          <span class="stat-label">Active Rules:</span>
+          <span class="stat-value">{{ activeRulesCount() }} / {{ totalRulesCount() }}</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Elements Styled:</span>
+          <span class="stat-value">{{ appliedCount() }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Create New Rule -->
+    <div class="styling-section">
+      <div class="section-header">
+        <span class="section-icon">➕</span>
+        <h4>Create Rule</h4>
+      </div>
+      <div class="section-content">
+        <div class="form-group">
+          <label>Rule Name</label>
+          <input
+            type="text"
+            class="form-input"
+            placeholder="e.g., Highlight Routers"
+            [(ngModel)]="newRuleName"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Target</label>
+          <select class="form-select" [(ngModel)]="newRuleTarget" (change)="onTargetChange()">
+            <option *ngFor="let opt of targetOptions" [value]="opt.value">
+              {{ opt.label }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Condition</label>
+          <div class="condition-inputs">
+            <input
+              type="text"
+              class="form-input attribute-input"
+              placeholder="Attribute (e.g., type)"
+              [(ngModel)]="newRuleAttribute"
+              list="attributes-list"
+            />
+            <datalist id="attributes-list">
+              <option *ngFor="let attr of (newRuleTarget === 'edge' ? edgeAttributes : nodeAttributes)" [value]="attr">
+            </datalist>
+
+            <select class="form-select operator-select" [(ngModel)]="newRuleOperator">
+              <option *ngFor="let opt of operatorOptions" [value]="opt.value">
+                {{ opt.label }}
+              </option>
+            </select>
+
+            <input
+              type="text"
+              class="form-input value-input"
+              placeholder="Value (e.g., router)"
+              [(ngModel)]="newRuleValue"
+            />
+          </div>
+        </div>
+
+        <!-- Node Style Options -->
+        <div class="form-group" *ngIf="newRuleTarget === 'node' || newRuleTarget === 'both'">
+          <label>Node Style</label>
+          <div class="style-inputs">
+            <div class="color-input-group">
+              <label class="small-label">Fill Color</label>
+              <input type="color" class="color-picker" [(ngModel)]="fillColor" />
+              <input type="text" class="color-text" [(ngModel)]="fillColor" />
+            </div>
+            <div class="color-input-group">
+              <label class="small-label">Stroke Color</label>
+              <input type="color" class="color-picker" [(ngModel)]="strokeColor" />
+              <input type="text" class="color-text" [(ngModel)]="strokeColor" />
+            </div>
+            <div class="number-input-group">
+              <label class="small-label">Stroke Width</label>
+              <input type="number" class="form-input" min="1" max="10" [(ngModel)]="strokeWidth" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Edge Style Options -->
+        <div class="form-group" *ngIf="newRuleTarget === 'edge' || newRuleTarget === 'both'">
+          <label>Edge Style</label>
+          <div class="style-inputs">
+            <div class="color-input-group">
+              <label class="small-label">Stroke Color</label>
+              <input type="color" class="color-picker" [(ngModel)]="edgeStrokeColor" />
+              <input type="text" class="color-text" [(ngModel)]="edgeStrokeColor" />
+            </div>
+            <div class="number-input-group">
+              <label class="small-label">Stroke Width</label>
+              <input type="number" class="form-input" min="1" max="10" [(ngModel)]="edgeStrokeWidth" />
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-primary" (click)="addRule()">
+          Add Rule
+        </button>
+      </div>
+    </div>
+
+    <!-- Existing Rules -->
+    <div class="styling-section" *ngIf="rules().length > 0">
+      <div class="section-header">
+        <span class="section-icon">📝</span>
+        <h4>Rules ({{ rules().length }})</h4>
+      </div>
+      <div class="section-content">
+        <div class="rules-list">
+          <div *ngFor="let rule of rules()" class="rule-item">
+            <div class="rule-header">
+              <label class="rule-checkbox">
+                <input
+                  type="checkbox"
+                  [checked]="rule.enabled"
+                  (change)="toggleRule(rule.id, $any($event.target).checked)"
+                />
+                <span class="rule-name">{{ rule.name }}</span>
+              </label>
+              <button class="delete-btn" (click)="removeRule(rule.id)" title="Delete rule">
+                🗑️
+              </button>
+            </div>
+            <div class="rule-description">
+              {{ getRuleDescription(rule) }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Clear All Styles -->
+    <div class="styling-section">
+      <button class="btn-warning" (click)="clearAllRules()" [disabled]="rules().length === 0">
+        Clear All Styles
+      </button>
+    </div>
+  </div>
+</div>

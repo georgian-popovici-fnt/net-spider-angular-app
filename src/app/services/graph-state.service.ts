@@ -41,6 +41,9 @@ export class GraphStateService {
   });
   private loadingSubject = new BehaviorSubject<boolean>(false);
 
+  // Currently loaded filename (for persistence)
+  private currentFilename: string | null = null;
+
   // Public observables
   readonly graphData$: Observable<GraphData | null> = this.graphDataSubject.asObservable();
   readonly selection$: Observable<SelectionState> = this.selectionSubject.asObservable();
@@ -50,8 +53,18 @@ export class GraphStateService {
   // Persisted positions
   private nodePositions = new Map<string, Position>();
 
+  // Flag to prevent accidental clears during operations
+  private preserveGraphData = false;
+
   constructor(private storageService: StorageService) {
     this.loadPositionsFromStorage();
+  }
+
+  /**
+   * Set preserve graph data flag to prevent accidental clears
+   */
+  setPreserveGraphData(preserve: boolean): void {
+    this.preserveGraphData = preserve;
   }
 
   // ========== Commands ==========
@@ -59,41 +72,78 @@ export class GraphStateService {
   /**
    * Load graph data and merge with persisted positions
    */
-  loadGraphData(data: GraphData): void {
+  loadGraphData(data: GraphData, filename?: string): void {
+    // If preserve flag is set, don't load new data
+    if (this.preserveGraphData) {
+      return;
+    }
+
     this.loadingSubject.next(true);
 
-    console.log('[GraphState] Loading graph data:', data.nodes.length, 'nodes,', data.edges.length, 'edges');
+    // Track the loaded filename for persistence
+    if (filename) {
+      this.currentFilename = filename;
+    }
 
-    // Merge persisted positions into node data
-    data.nodes.forEach(node => {
-      const persistedPos = this.nodePositions.get(node.id);
-      if (persistedPos) {
-        node.x = persistedPos.x;
-        node.y = persistedPos.y;
-      }
-    });
+    // Check if data already has positions (from saved file)
+    const hasPositionsInData = data.nodes.some(node => node.x !== undefined && node.y !== undefined);
+
+    if (hasPositionsInData) {
+      // CRITICAL: If the data has positions (from saved file), ALWAYS trust those
+      // The file is the source of truth, not localStorage
+
+      // Clear the nodePositions map first to avoid conflicts
+      this.nodePositions.clear();
+
+      // Set new positions from file
+      data.nodes.forEach(node => {
+        if (node.x !== undefined && node.y !== undefined) {
+          this.nodePositions.set(node.id, { x: node.x, y: node.y });
+        }
+      });
+
+      // Save to localStorage to keep it in sync
+      this.savePositionsToStorage();
+    } else {
+      // If data doesn't have positions, try to use positions from localStorage
+      data.nodes.forEach(node => {
+        const persistedPos = this.nodePositions.get(node.id);
+        if (persistedPos) {
+          node.x = persistedPos.x;
+          node.y = persistedPos.y;
+        }
+      });
+    }
 
     this.graphDataSubject.next(data);
-    console.log('[GraphState] Graph data set. Current value:', this.graphDataSubject.value ? 'EXISTS' : 'NULL');
     this.loadingSubject.next(false);
+  }
+
+  /**
+   * Get the currently loaded filename
+   */
+  getCurrentFilename(): string | null {
+    return this.currentFilename;
+  }
+
+  /**
+   * Set the currently loaded filename
+   */
+  setCurrentFilename(filename: string | null): void {
+    this.currentFilename = filename;
   }
 
   /**
    * Update selection state
    */
   setSelection(nodeIds: string[], edgeIds: string[]): void {
-    console.log('[GraphState] setSelection called with:', { nodeIds, edgeIds });
-
     const data = this.graphDataSubject.value;
     if (!data) {
-      console.log('[GraphState] No graph data available');
       return;
     }
 
     const selectedNodes = data.nodes.filter(n => nodeIds.includes(n.id));
     const selectedEdges = data.edges.filter(e => edgeIds.includes(e.id));
-
-    console.log('[GraphState] Found nodes:', selectedNodes.length, 'edges:', selectedEdges.length);
 
     let selectionType: SelectionState['selectionType'] = 'none';
     if (selectedNodes.length > 0 && selectedEdges.length === 0) {
@@ -110,7 +160,6 @@ export class GraphStateService {
       selectionType
     };
 
-    console.log('[GraphState] Setting selection state:', newSelection);
     this.selectionSubject.next(newSelection);
   }
 
@@ -148,6 +197,31 @@ export class GraphStateService {
   updateNodePositions(updates: Array<{ id: string; x: number; y: number }>): void {
     updates.forEach(update => {
       this.updateNodePosition(update.id, update.x, update.y);
+    });
+  }
+
+  /**
+   * Update edge bend points
+   */
+  updateEdgeBends(edgeBends: Array<{ id: string; bends: Array<{ x: number; y: number }> }>): void {
+    const data = this.graphDataSubject.value;
+    if (!data) {
+      return;
+    }
+
+    edgeBends.forEach(edgeBend => {
+      const edge = data.edges.find(e => e.id === edgeBend.id);
+      if (edge) {
+        edge.bends = edgeBend.bends;
+      }
+    });
+
+    // Clear bends for edges that don't have any
+    data.edges.forEach(edge => {
+      const hasBends = edgeBends.some(eb => eb.id === edge.id);
+      if (!hasBends) {
+        edge.bends = undefined;
+      }
     });
   }
 
@@ -263,12 +337,33 @@ export class GraphStateService {
   }
 
   /**
-   * Get current graph data
+   * Get current graph data with updated positions
    */
   getCurrentGraphData(): GraphData | null {
     const data = this.graphDataSubject.value;
-    console.log('[GraphState] getCurrentGraphData called. Data:', data ? `${data.nodes.length} nodes` : 'NULL');
-    return data;
+
+    if (!data) {
+      return null;
+    }
+
+    // Return a deep copy with the latest node positions from nodePositions map
+    const result = {
+      ...data,
+      nodes: data.nodes.map(node => {
+        const persistedPos = this.nodePositions.get(node.id);
+        if (persistedPos) {
+          return {
+            ...node,
+            x: persistedPos.x,
+            y: persistedPos.y
+          };
+        }
+        return { ...node };
+      }),
+      edges: [...data.edges]
+    };
+
+    return result;
   }
 
   // ========== Persistence ==========
@@ -307,6 +402,70 @@ export class GraphStateService {
       });
       this.loadGraphData(data);
     }
+  }
+
+  /**
+   * Delete a node and all connected edges
+   */
+  deleteNode(nodeId: string): void {
+    const data = this.graphDataSubject.value;
+    if (!data) {
+      return;
+    }
+
+    // Remove the node
+    const nodeIndex = data.nodes.findIndex(n => n.id === nodeId);
+    if (nodeIndex === -1) {
+      return;
+    }
+
+    data.nodes.splice(nodeIndex, 1);
+
+    // Remove all edges connected to this node
+    const edgesToRemove = data.edges.filter(
+      e => e.sourceId === nodeId || e.targetId === nodeId
+    );
+
+    edgesToRemove.forEach(edge => {
+      const edgeIndex = data.edges.findIndex(e => e.id === edge.id);
+      if (edgeIndex !== -1) {
+        data.edges.splice(edgeIndex, 1);
+      }
+    });
+
+    // Remove from persisted positions
+    this.nodePositions.delete(nodeId);
+    this.savePositionsToStorage();
+
+    // Clear selection
+    this.clearSelection();
+
+    // Emit updated graph data
+    this.graphDataSubject.next({ ...data });
+  }
+
+  /**
+   * Delete an edge
+   */
+  deleteEdge(edgeId: string): void {
+    const data = this.graphDataSubject.value;
+    if (!data) {
+      return;
+    }
+
+    // Remove the edge
+    const edgeIndex = data.edges.findIndex(e => e.id === edgeId);
+    if (edgeIndex === -1) {
+      return;
+    }
+
+    data.edges.splice(edgeIndex, 1);
+
+    // Clear selection
+    this.clearSelection();
+
+    // Emit updated graph data
+    this.graphDataSubject.next({ ...data });
   }
 
   // ========== Private Helpers ==========

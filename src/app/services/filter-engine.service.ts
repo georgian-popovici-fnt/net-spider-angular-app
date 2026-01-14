@@ -130,7 +130,6 @@ export class FilterEngineService {
    * Toggle node type filter
    */
   toggleNodeType(nodeType: string, enabled: boolean): void {
-    console.log('[FilterEngine] Toggle node type:', nodeType, 'enabled:', enabled);
 
     this.filterStateSignal.update(state => {
       const facets = [...state.facets];
@@ -147,7 +146,6 @@ export class FilterEngineService {
         typeFacet.selectedValues.delete(nodeType);
       }
 
-      console.log('[FilterEngine] Updated type facet:', Array.from(typeFacet.selectedValues));
       return { ...state, facets };
     });
   }
@@ -156,7 +154,6 @@ export class FilterEngineService {
    * Toggle cable type filter
    */
   toggleCableType(cableType: string, enabled: boolean): void {
-    console.log('[FilterEngine] Toggle cable type:', cableType, 'enabled:', enabled);
 
     this.filterStateSignal.update(state => {
       const facets = [...state.facets];
@@ -173,7 +170,6 @@ export class FilterEngineService {
         cableFacet.selectedValues.delete(cableType);
       }
 
-      console.log('[FilterEngine] Updated cable type facet:', Array.from(cableFacet.selectedValues));
       return { ...state, facets };
     });
   }
@@ -196,7 +192,6 @@ export class FilterEngineService {
 
       const matches = searchIn.some(text => text.includes(query));
       if (!matches) {
-        console.log(`[FilterEngine] Node ${node.id} FAILED text search`);
         return false;
       }
     }
@@ -212,7 +207,6 @@ export class FilterEngineService {
       if (isFilteringActive) {
         const passes = typeFacet.selectedValues.has(node.type);
         if (!passes) {
-          console.log(`[FilterEngine] Node ${node.id} (${node.type}) FAILED type filter. Selected types:`, Array.from(typeFacet.selectedValues));
           return false;
         }
       }
@@ -245,7 +239,6 @@ export class FilterEngineService {
       if (isFilteringActive) {
         const passes = cableFacet.selectedValues.has(edge.cableType);
         if (!passes) {
-          console.log(`[FilterEngine] Edge ${edge.id} (${edge.cableType}) FAILED cable type filter. Selected types:`, Array.from(cableFacet.selectedValues));
           return false;
         }
       }

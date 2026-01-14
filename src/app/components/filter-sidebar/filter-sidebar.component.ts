@@ -41,7 +41,6 @@ export class FilterSidebarComponent implements OnInit {
   ngOnInit(): void {
     // Ensure sidebar is always expanded on load
     this.isCollapsed.set(false);
-    console.log('[FilterSidebar] Initialized as expanded');
   }
 
   toggleCollapse(): void {
@@ -67,7 +66,6 @@ export class FilterSidebarComponent implements OnInit {
     } else {
       this.selectedTypes.add(nodeType);
     }
-    console.log('[FilterSidebar] Node type toggled:', nodeType, 'Selected types:', Array.from(this.selectedTypes));
     this.onNodeTypeChange(nodeType);
   }
 
@@ -82,7 +80,6 @@ export class FilterSidebarComponent implements OnInit {
     } else {
       this.selectedCableTypes.add(cableType);
     }
-    console.log('[FilterSidebar] Cable type toggled:', cableType, 'Selected types:', Array.from(this.selectedCableTypes));
     this.onCableTypeChange(cableType);
   }
 

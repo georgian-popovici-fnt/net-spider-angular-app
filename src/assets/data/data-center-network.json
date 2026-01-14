@@ -9,7 +9,9 @@
         "model": "Cisco Nexus 9500",
         "location": "Data Center 1 - Core",
         "uptime": "99.99%"
-      }
+      },
+      "x": 165.5,
+      "y": 0
     },
     {
       "id": "core-router-dc2",
@@ -20,7 +22,9 @@
         "model": "Cisco Nexus 9500",
         "location": "Data Center 2 - Core",
         "uptime": "99.99%"
-      }
+      },
+      "x": 11.5,
+      "y": 184.00000000000003
     },
     {
       "id": "firewall-1",
@@ -31,7 +35,9 @@
         "model": "Palo Alto PA-5260",
         "location": "Data Center 1 - DMZ",
         "throughput": "100Gbps"
-      }
+      },
+      "x": 131.5,
+      "y": 184.00000000000003
     },
     {
       "id": "firewall-2",
@@ -42,7 +48,9 @@
         "model": "Palo Alto PA-5260",
         "location": "Data Center 2 - DMZ",
         "throughput": "100Gbps"
-      }
+      },
+      "x": 31.5,
+      "y": 368
     },
     {
       "id": "spine-switch-1",
@@ -54,7 +62,9 @@
         "model": "Arista 7280R3",
         "ports": 32,
         "location": "DC1 - Spine Layer"
-      }
+      },
+      "x": 245,
+      "y": 184.00000000000003
     },
     {
       "id": "spine-switch-2",
@@ -66,7 +76,9 @@
         "model": "Arista 7280R3",
         "ports": 32,
         "location": "DC1 - Spine Layer"
-      }
+      },
+      "x": 452,
+      "y": 184.00000000000003
     },
     {
       "id": "leaf-switch-1",
@@ -78,7 +90,9 @@
         "model": "Arista 7050X3",
         "ports": 48,
         "location": "DC1 - Row A"
-      }
+      },
+      "x": 312.5,
+      "y": 368
     },
     {
       "id": "leaf-switch-2",
@@ -90,7 +104,9 @@
         "model": "Arista 7050X3",
         "ports": 48,
         "location": "DC1 - Row B"
-      }
+      },
+      "x": 196,
+      "y": 368
     },
     {
       "id": "leaf-switch-3",
@@ -102,7 +118,9 @@
         "model": "Arista 7050X3",
         "ports": 48,
         "location": "DC1 - Storage Row"
-      }
+      },
+      "x": 501,
+      "y": 368
     },
     {
       "id": "web-server-1",
@@ -116,7 +134,9 @@
         "cpu": "AMD EPYC 7763",
         "ram": "256GB",
         "status": "Active"
-      }
+      },
+      "x": 89.5,
+      "y": 756
     },
     {
       "id": "web-server-2",
@@ -130,7 +150,9 @@
         "cpu": "AMD EPYC 7763",
         "ram": "256GB",
         "status": "Active"
-      }
+      },
+      "x": 199.5,
+      "y": 756
     },
     {
       "id": "app-server-1",
@@ -144,7 +166,9 @@
         "cpu": "Intel Xeon Platinum 8380",
         "ram": "512GB",
         "status": "Active"
-      }
+      },
+      "x": 89.5,
+      "y": 960
     },
     {
       "id": "app-server-2",
@@ -158,7 +182,9 @@
         "cpu": "Intel Xeon Platinum 8380",
         "ram": "512GB",
         "status": "Active"
-      }
+      },
+      "x": 199.5,
+      "y": 960
     },
     {
       "id": "db-server-1",
@@ -173,7 +199,9 @@
         "ram": "1TB",
         "storage": "100TB NVMe",
         "status": "Active"
-      }
+      },
+      "x": 144.5,
+      "y": 1164
     },
     {
       "id": "db-server-2",
@@ -188,7 +216,9 @@
         "ram": "1TB",
         "storage": "100TB NVMe",
         "status": "Standby"
-      }
+      },
+      "x": 144.5,
+      "y": 1368
     },
     {
       "id": "storage-server-1",
@@ -201,7 +231,9 @@
         "purpose": "Primary Storage",
         "storage": "500TB",
         "protocol": "NFS/iSCSI"
-      }
+      },
+      "x": 628,
+      "y": 552
     },
     {
       "id": "storage-server-2",
@@ -214,7 +246,9 @@
         "purpose": "Backup Storage",
         "storage": "500TB",
         "protocol": "NFS/iSCSI"
-      }
+      },
+      "x": 554.5,
+      "y": 756
     },
     {
       "id": "load-balancer-1",
@@ -226,7 +260,9 @@
         "model": "F5 BIG-IP i5800",
         "type": "Load Balancer",
         "throughput": "40Gbps"
-      }
+      },
+      "x": 342.5,
+      "y": 562
     },
     {
       "id": "load-balancer-2",
@@ -238,7 +274,9 @@
         "model": "F5 BIG-IP i5800",
         "type": "Load Balancer",
         "throughput": "40Gbps"
-      }
+      },
+      "x": 94.5,
+      "y": 562
     },
     {
       "id": "monitoring-server",
@@ -250,7 +288,9 @@
         "os": "Ubuntu 22.04 LTS",
         "purpose": "Prometheus/Grafana",
         "monitoring": "All DC1 Infrastructure"
-      }
+      },
+      "x": 208.5,
+      "y": 552
     }
   ],
   "edges": [

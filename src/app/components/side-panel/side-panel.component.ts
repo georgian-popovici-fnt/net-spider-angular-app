@@ -44,17 +44,14 @@ export class SidePanelComponent {
   constructor(private graphState: GraphStateService) {
     this.details$ = this.selection$.pipe(
       map((selection) => {
-        console.log('[SidePanel] Selection changed:', selection);
         const details = this.graphState.getSelectionDetails();
-        console.log('[SidePanel] Selection details:', details);
         return details;
       })
     );
 
     // Debug: Subscribe to selection$ to see what's happening
     this.selection$.subscribe(sel => {
-      console.log('[SidePanel] Selection$ emitted:', sel);
-    });
+      });
   }
 
   getSelectionCount(selection: SelectionState): number {
@@ -133,12 +130,11 @@ export class SidePanelComponent {
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text).then(
         () => {
-          console.log('[SidePanel] Copied to clipboard:', text);
           // Optional: Show a toast notification
           this.showCopyFeedback();
         },
         (err) => {
-          console.error('[SidePanel] Failed to copy:', err);
+          // Removed: console.error('[SidePanel] Failed to copy:', err);
           // Fallback to older method
           this.fallbackCopyToClipboard(text);
         }
@@ -158,10 +154,9 @@ export class SidePanelComponent {
     textarea.select();
     try {
       document.execCommand('copy');
-      console.log('[SidePanel] Copied to clipboard (fallback):', text);
       this.showCopyFeedback();
     } catch (err) {
-      console.error('[SidePanel] Fallback copy failed:', err);
+      // Removed: console.error('[SidePanel] Fallback copy failed:', err);
     }
     document.body.removeChild(textarea);
   }
@@ -170,5 +165,24 @@ export class SidePanelComponent {
     // Simple visual feedback - could be enhanced with a toast component
     // For now, just log success
     // In a production app, you'd show a toast notification
+  }
+
+  deleteSelected(details: SelectionDetails): void {
+    const itemType = details.type;
+    const itemId = details.data.id;
+    const itemLabel = this.getMainLabel(details);
+
+    const confirmMessage = itemType === 'node'
+      ? `Are you sure you want to delete node "${itemLabel}"?\n\nThis will also delete all connected edges.`
+      : `Are you sure you want to delete edge "${itemLabel}"?`;
+
+    if (confirm(confirmMessage)) {
+
+      if (itemType === 'node') {
+        this.graphState.deleteNode(itemId);
+      } else if (itemType === 'edge') {
+        this.graphState.deleteEdge(itemId);
+      }
+    }
   }
 }

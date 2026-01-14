@@ -35,9 +35,14 @@ export class DiagramCanvasComponent implements AfterViewInit, OnDestroy {
     this.graphState.graphData$
       .pipe(takeUntil(this.destroy$))
       .subscribe(data => {
-        if (data) {
-          console.log('[DiagramCanvas] Graph data received:', data.nodes.length, 'nodes,', data.edges.length, 'edges');
-          const positions = this.graphState.getPersistedPositions();
+        if (data && data.nodes && data.nodes.length > 0) {
+          // Check if data already has positions (from saved file)
+          const hasPositionsInData = data.nodes.some(n => n.x !== undefined && n.y !== undefined);
+
+          // Only pass persisted positions map if data doesn't have positions
+          // This ensures file data always takes priority
+          const positions = hasPositionsInData ? undefined : this.graphState.getPersistedPositions();
+
           this.yFilesService.renderGraph(data, positions);
 
           // Update filter statistics
@@ -45,9 +50,9 @@ export class DiagramCanvasComponent implements AfterViewInit, OnDestroy {
 
           // Apply current filters to newly rendered graph
           setTimeout(() => {
-            console.log('[DiagramCanvas] Applying filters after graph render...');
             this.applyCurrentFilters();
           }, 100);
+        } else {
         }
       });
 
@@ -55,7 +60,6 @@ export class DiagramCanvasComponent implements AfterViewInit, OnDestroy {
     this.yFilesService.onSelectionChanged()
       .pipe(takeUntil(this.destroy$))
       .subscribe(selection => {
-        console.log('[DiagramCanvas] Received selection from yFiles:', selection);
         this.graphState.setSelection(selection.nodeIds, selection.edgeIds);
       });
 
@@ -79,7 +83,6 @@ export class DiagramCanvasComponent implements AfterViewInit, OnDestroy {
         debounceTime(300) // Debounce to avoid too many updates while typing
       )
       .subscribe(() => {
-        console.log('[DiagramCanvas] Filter changed, applying filters');
         this.applyCurrentFilters();
       });
   }
@@ -90,8 +93,6 @@ export class DiagramCanvasComponent implements AfterViewInit, OnDestroy {
       console.warn('[DiagramCanvas] No graph data available for filtering');
       return;
     }
-
-    console.log('[DiagramCanvas] Applying filters to graph with', graphData.nodes.length, 'nodes');
 
     // Create predicate functions
     const nodePredicate = (nodeId: string): boolean => {
@@ -155,11 +156,6 @@ export class DiagramCanvasComponent implements AfterViewInit, OnDestroy {
       totalEdges,
       visibleEdges,
       hiddenEdges: totalEdges - visibleEdges
-    });
-
-    console.log('[DiagramCanvas] Filter stats updated:', {
-      nodes: `${visibleNodes}/${totalNodes}`,
-      edges: `${visibleEdges}/${totalEdges}`
     });
   }
 

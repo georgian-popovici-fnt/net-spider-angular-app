@@ -25,6 +25,7 @@ export interface EdgeData {
   cableType: CableType;
   parallelIndex?: number;  // For multiple cables between same nodes
   label?: string;
+  bends?: Array<{ x: number; y: number }>;  // Edge routing bend points (persisted)
   metadata?: Record<string, any>;
 }
 

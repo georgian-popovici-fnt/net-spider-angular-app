@@ -66,12 +66,19 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "liveReload": false,
+            "watch": false,
+            "hmr": false
+          },
           "configurations": {
             "production": {
               "buildTarget": "net-spider-pilot:build:production"
             },
             "development": {
-              "buildTarget": "net-spider-pilot:build:development"
+              "buildTarget": "net-spider-pilot:build:development",
+              "liveReload": false,
+              "watch": false
             }
           },
           "defaultConfiguration": "development"

@@ -21,7 +21,7 @@
           <option value="5g-mobile-core-network">5G Mobile Core Network (37 nodes)</option>
         </optgroup>
       </select>
-      <button class="toolbar-btn primary" (click)="loadMockData()" [disabled]="loading$ | async" title="Load selected topology">
+      <button type="button" class="toolbar-btn primary" (click)="loadMockData()" [disabled]="loading$ | async" title="Load selected topology">
         <span class="icon">📊</span>
         <span class="label">Load</span>
       </button>
@@ -31,29 +31,76 @@
   <div class="toolbar-divider"></div>
 
   <div class="toolbar-section">
-    <button class="toolbar-btn" (click)="applyLayout()" [disabled]="loading$ | async" title="Auto Layout">
+    <button type="button" class="toolbar-btn" (click)="applyLayout()" [disabled]="loading$ | async" title="Auto Layout">
       <span class="icon">🔄</span>
     </button>
-    <button class="toolbar-btn" (click)="rerouteEdges()" [disabled]="loading$ | async" title="Re-route Edges">
+    <button type="button" class="toolbar-btn" (click)="rerouteEdges()" [disabled]="loading$ | async" title="Re-route Edges">
       <span class="icon">↔️</span>
     </button>
-    <button class="toolbar-btn" (click)="resetView()" [disabled]="loading$ | async" title="Reset View">
+    <button type="button" class="toolbar-btn" (click)="resetView()" [disabled]="loading$ | async" title="Reset View">
       <span class="icon">⊡</span>
     </button>
-    <button class="toolbar-btn" (click)="toggleFilters()" [disabled]="loading$ | async" [title]="filterVisible() ? 'Hide Filters' : 'Show Filters'">
+    <button type="button" class="toolbar-btn" (click)="toggleFilters()" [disabled]="loading$ | async" [title]="filterVisible() ? 'Hide Filters' : 'Show Filters'">
       <span class="icon">🔍</span>
+    </button>
+    <button type="button" class="toolbar-btn" (click)="toggleStyling()" [disabled]="loading$ | async" [title]="stylingVisible() ? 'Hide Styling' : 'Show Styling'">
+      <span class="icon">🎨</span>
     </button>
   </div>
 
   <div class="toolbar-divider"></div>
 
   <div class="toolbar-section">
-    <button class="toolbar-btn" (click)="toggleBackground()" [disabled]="loading$ | async" title="Toggle Background">
+    <button type="button" class="toolbar-btn" (click)="toggleBackground()" [disabled]="loading$ | async" title="Toggle Background">
       <span class="icon">🖼️</span>
     </button>
-    <button class="toolbar-btn warning" (click)="clearPositions()" [disabled]="loading$ | async" title="Clear Positions">
+    <button type="button" class="toolbar-btn success" (click)="savePositions(); $event.preventDefault(); $event.stopPropagation()" [disabled]="loading$ | async" title="Save Node Positions">
+      <span class="icon">💾</span>
+    </button>
+    <button type="button" class="toolbar-btn" (click)="debugPositions()" [disabled]="loading$ | async" title="Debug - Show Current Positions" style="background: #ff9800;">
+      <span class="icon">🐛</span>
+    </button>
+    <button type="button" class="toolbar-btn warning" (click)="clearPositions()" [disabled]="loading$ | async" title="Clear Positions">
       <span class="icon">🗑️</span>
     </button>
+  </div>
+
+  <div class="toolbar-divider"></div>
+
+  <div class="toolbar-section export-section">
+    <div class="export-dropdown">
+      <button type="button" class="toolbar-btn primary"
+              (click)="toggleExportMenu()"
+              [disabled]="loading$ | async"
+              title="Export Diagram">
+        <span class="icon">📥</span>
+        <span class="label">Export</span>
+        <span class="arrow">▼</span>
+      </button>
+
+      <div class="export-menu" *ngIf="showExportMenu">
+        <button type="button" class="export-option" (click)="exportAsPNG()" [disabled]="loading$ | async">
+          <span class="icon">🖼️</span>
+          <span class="label">Export as PNG</span>
+          <span class="description">High-quality raster image</span>
+        </button>
+        <button type="button" class="export-option" (click)="exportAsSVG()" [disabled]="loading$ | async">
+          <span class="icon">📐</span>
+          <span class="label">Export as SVG</span>
+          <span class="description">Scalable vector graphics</span>
+        </button>
+        <button type="button" class="export-option" (click)="exportAsPDF()" [disabled]="loading$ | async">
+          <span class="icon">📄</span>
+          <span class="label">Export as PDF</span>
+          <span class="description">Portable document format</span>
+        </button>
+        <button type="button" class="export-option" (click)="exportAsJSON()" [disabled]="loading$ | async">
+          <span class="icon">📋</span>
+          <span class="label">Export as JSON</span>
+          <span class="description">Graph data with positions</span>
+        </button>
+      </div>
+    </div>
   </div>
 
   <div class="toolbar-spacer"></div>

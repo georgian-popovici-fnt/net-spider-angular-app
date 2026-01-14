@@ -10,7 +10,9 @@
         "download": "1Gbps",
         "upload": "50Mbps",
         "isp": "Cable Provider"
-      }
+      },
+      "x": 757.25,
+      "y": 0
     },
     {
       "id": "home-router",
@@ -21,7 +23,9 @@
         "model": "ASUS RT-AX86U",
         "wifi": "WiFi 6 (802.11ax)",
         "location": "Living Room"
-      }
+      },
+      "x": 757.25,
+      "y": 184
     },
     {
       "id": "mesh-node-1",
@@ -32,7 +36,9 @@
         "model": "ASUS ZenWiFi AX",
         "type": "Mesh WiFi Node",
         "location": "Home Office"
-      }
+      },
+      "x": 99,
+      "y": 388
     },
     {
       "id": "mesh-node-2",
@@ -43,7 +49,9 @@
         "model": "ASUS ZenWiFi AX",
         "type": "Mesh WiFi Node",
         "location": "Master Bedroom"
-      }
+      },
+      "x": 581.5,
+      "y": 388
     },
     {
       "id": "work-laptop",
@@ -55,7 +63,9 @@
         "user": "Remote Worker",
         "connection": "WiFi",
         "vpn": "Company VPN Active"
-      }
+      },
+      "x": 10,
+      "y": 572
     },
     {
       "id": "personal-desktop",
@@ -67,7 +77,9 @@
         "user": "Personal Use",
         "connection": "Ethernet",
         "specs": "RTX 4080, i9-13900K"
-      }
+      },
+      "x": 351,
+      "y": 388
     },
     {
       "id": "tablet",
@@ -78,7 +90,9 @@
         "os": "iPadOS",
         "connection": "WiFi",
         "location": "Mobile"
-      }
+      },
+      "x": 702,
+      "y": 388
     },
     {
       "id": "smartphone",
@@ -89,7 +103,9 @@
         "type": "Mobile Device",
         "connection": "WiFi",
         "location": "Mobile"
-      }
+      },
+      "x": 1429,
+      "y": 388
     },
     {
       "id": "nas-home",
@@ -101,7 +117,9 @@
         "purpose": "Media & Backup",
         "storage": "8TB",
         "location": "Office Closet"
-      }
+      },
+      "x": 283.5,
+      "y": 756
     },
     {
       "id": "smart-tv",
@@ -113,7 +131,9 @@
         "type": "Smart TV",
         "connection": "WiFi",
         "location": "Living Room"
-      }
+      },
+      "x": 461,
+      "y": 388
     },
     {
       "id": "streaming-device",
@@ -124,7 +144,9 @@
         "type": "Streaming Device",
         "connection": "Ethernet",
         "location": "Living Room"
-      }
+      },
+      "x": 1335,
+      "y": 388
     },
     {
       "id": "smart-speaker",
@@ -135,7 +157,9 @@
         "model": "Amazon Echo Studio",
         "type": "IoT Device",
         "connection": "WiFi"
-      }
+      },
+      "x": 581.5,
+      "y": 572
     },
     {
       "id": "smart-thermostat",
@@ -146,7 +170,9 @@
         "model": "Nest Learning",
         "type": "IoT Device",
         "connection": "WiFi"
-      }
+      },
+      "x": 1222.5,
+      "y": 388
     },
     {
       "id": "security-camera-1",
@@ -157,7 +183,9 @@
         "model": "Ring Video Doorbell Pro",
         "type": "Security Camera",
         "location": "Front Door"
-      }
+      },
+      "x": 1092,
+      "y": 388
     },
     {
       "id": "security-camera-2",
@@ -168,7 +196,9 @@
         "model": "Arlo Pro 4",
         "type": "Security Camera",
         "location": "Backyard"
-      }
+      },
+      "x": 961.5,
+      "y": 388
     },
     {
       "id": "printer-home",
@@ -179,7 +209,9 @@
         "model": "HP OfficeJet Pro 9015e",
         "type": "WiFi Printer",
         "location": "Home Office"
-      }
+      },
+      "x": 115.5,
+      "y": 572
     },
     {
       "id": "guest-network",
@@ -190,7 +222,9 @@
         "type": "Virtual Network",
         "isolation": "Enabled",
         "bandwidth_limit": "50Mbps"
-      }
+      },
+      "x": 827.5,
+      "y": 388
     }
   ],
   "edges": [
@@ -214,7 +248,17 @@
       "metadata": {
         "connection": "5GHz Wireless",
         "bandwidth": "1200Mbps"
-      }
+      },
+      "bends": [
+        {
+          "x": 760.5833333333333,
+          "y": 254
+        },
+        {
+          "x": 129,
+          "y": 254
+        }
+      ]
     },
     {
       "id": "edge-router-mesh2",
@@ -225,7 +269,17 @@
       "metadata": {
         "connection": "5GHz Wireless",
         "bandwidth": "1200Mbps"
-      }
+      },
+      "bends": [
+        {
+          "x": 787.25,
+          "y": 294
+        },
+        {
+          "x": 611.5,
+          "y": 294
+        }
+      ]
     },
     {
       "id": "edge-mesh1-laptop",
@@ -236,7 +290,17 @@
       "metadata": {
         "connection": "WiFi 6",
         "bandwidth": "1200Mbps"
-      }
+      },
+      "bends": [
+        {
+          "x": 114,
+          "y": 458
+        },
+        {
+          "x": 45,
+          "y": 458
+        }
+      ]
     },
     {
       "id": "edge-router-desktop",
@@ -247,7 +311,17 @@
       "metadata": {
         "bandwidth": "1Gbps",
         "cable": "Cat6a"
-      }
+      },
+      "bends": [
+        {
+          "x": 773.9166666666666,
+          "y": 274
+        },
+        {
+          "x": 386,
+          "y": 274
+        }
+      ]
     },
     {
       "id": "edge-router-nas",
@@ -258,7 +332,25 @@
       "metadata": {
         "bandwidth": "1Gbps",
         "cable": "Cat6"
-      }
+      },
+      "bends": [
+        {
+          "x": 767.25,
+          "y": 264
+        },
+        {
+          "x": 261,
+          "y": 264
+        },
+        {
+          "x": 261,
+          "y": 704
+        },
+        {
+          "x": 313.5,
+          "y": 704
+        }
+      ]
     },
     {
       "id": "edge-router-appletv",
@@ -269,7 +361,17 @@
       "metadata": {
         "bandwidth": "1Gbps",
         "cable": "Cat6"
-      }
+      },
+      "bends": [
+        {
+          "x": 827.25,
+          "y": 264
+        },
+        {
+          "x": 1365,
+          "y": 264
+        }
+      ]
     },
     {
       "id": "edge-router-tablet",
@@ -280,7 +382,17 @@
       "metadata": {
         "connection": "WiFi 6",
         "bandwidth": "866Mbps"
-      }
+      },
+      "bends": [
+        {
+          "x": 793.9166666666666,
+          "y": 304
+        },
+        {
+          "x": 737,
+          "y": 304
+        }
+      ]
     },
     {
       "id": "edge-router-phone",
@@ -291,7 +403,17 @@
       "metadata": {
         "connection": "WiFi 6",
         "bandwidth": "866Mbps"
-      }
+      },
+      "bends": [
+        {
+          "x": 833.9166666666666,
+          "y": 254
+        },
+        {
+          "x": 1459,
+          "y": 254
+        }
+      ]
     },
     {
       "id": "edge-router-tv",
@@ -302,7 +424,17 @@
       "metadata": {
         "connection": "WiFi 5",
         "bandwidth": "433Mbps"
-      }
+      },
+      "bends": [
+        {
+          "x": 780.5833333333333,
+          "y": 284
+        },
+        {
+          "x": 491,
+          "y": 284
+        }
+      ]
     },
     {
       "id": "edge-mesh2-speaker",
@@ -324,7 +456,17 @@
       "metadata": {
         "connection": "WiFi 4",
         "bandwidth": "150Mbps"
-      }
+      },
+      "bends": [
+        {
+          "x": 820.5833333333334,
+          "y": 274
+        },
+        {
+          "x": 1252.5,
+          "y": 274
+        }
+      ]
     },
     {
       "id": "edge-router-camera1",
@@ -335,7 +477,17 @@
       "metadata": {
         "connection": "WiFi 5",
         "bandwidth": "300Mbps"
-      }
+      },
+      "bends": [
+        {
+          "x": 813.9166666666666,
+          "y": 284
+        },
+        {
+          "x": 1122,
+          "y": 284
+        }
+      ]
     },
     {
       "id": "edge-router-camera2",
@@ -346,7 +498,17 @@
       "metadata": {
         "connection": "WiFi 5",
         "bandwidth": "300Mbps"
-      }
+      },
+      "bends": [
+        {
+          "x": 807.25,
+          "y": 294
+        },
+        {
+          "x": 991.5,
+          "y": 294
+        }
+      ]
     },
     {
       "id": "edge-mesh1-printer",
@@ -357,7 +519,17 @@
       "metadata": {
         "connection": "WiFi 5",
         "bandwidth": "300Mbps"
-      }
+      },
+      "bends": [
+        {
+          "x": 144,
+          "y": 458
+        },
+        {
+          "x": 145.5,
+          "y": 458
+        }
+      ]
     },
     {
       "id": "edge-router-guest",
@@ -368,7 +540,17 @@
       "metadata": {
         "connection": "Virtual SSID",
         "isolation": "Enabled"
-      }
+      },
+      "bends": [
+        {
+          "x": 800.5833333333334,
+          "y": 304
+        },
+        {
+          "x": 857.5,
+          "y": 304
+        }
+      ]
     },
     {
       "id": "edge-laptop-nas",
@@ -379,7 +561,17 @@
       "metadata": {
         "protocol": "SMB",
         "purpose": "Time Machine Backup"
-      }
+      },
+      "bends": [
+        {
+          "x": 45,
+          "y": 716
+        },
+        {
+          "x": 293.5,
+          "y": 716
+        }
+      ]
     },
     {
       "id": "edge-desktop-nas",
@@ -390,7 +582,17 @@
       "metadata": {
         "protocol": "SMB",
         "purpose": "Media Streaming"
-      }
+      },
+      "bends": [
+        {
+          "x": 386,
+          "y": 704
+        },
+        {
+          "x": 333.5,
+          "y": 704
+        }
+      ]
     },
     {
       "id": "edge-tv-nas",
@@ -401,7 +603,25 @@
       "metadata": {
         "protocol": "DLNA",
         "purpose": "Media Streaming"
-      }
+      },
+      "bends": [
+        {
+          "x": 491,
+          "y": 458
+        },
+        {
+          "x": 463.5,
+          "y": 458
+        },
+        {
+          "x": 463.5,
+          "y": 714
+        },
+        {
+          "x": 353.5,
+          "y": 714
+        }
+      ]
     }
   ],
   "groups": []

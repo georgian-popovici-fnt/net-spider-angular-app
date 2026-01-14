@@ -8,9 +8,18 @@
   overflow: hidden;
 }
 
-.filter-sidebar {
+.left-sidebars {
+  display: flex;
+  flex-direction: column;
   flex-shrink: 0;
   height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.filter-sidebar,
+.styling-sidebar {
+  flex-shrink: 0;
 }
 
 .app-container {

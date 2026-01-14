@@ -8,7 +8,6 @@ fetch('/assets/license.json')
   .then(response => response.json())
   .then(licenseData => {
     License.value = licenseData;
-    console.log('[yFiles] License loaded successfully');
     return bootstrapApplication(AppComponent, appConfig);
   })
   .catch((err) => {

@@ -24,6 +24,9 @@
             <h4>{{ getMainLabel(details) }}</h4>
             <span class="subtitle">{{ formatSelectionType(details.type) }}</span>
           </div>
+          <button class="delete-btn" (click)="deleteSelected(details)" title="Delete this {{ details.type }}">
+            🗑️
+          </button>
         </div>
 
         <!-- Organized Property Sections -->
