@@ -9,7 +9,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "postinstall": "node scripts/check-yfiles.js || true"
   },
   "private": true,
   "dependencies": {
@@ -24,8 +25,7 @@
     "jspdf": "^4.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.6.0",
-    "yfiles": "file:./lib/yfiles-30.0.4+eval.tgz",
-    "zone.js": "~0.14.0"
+    "zone.js": "~0.15.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^19.0.0",
