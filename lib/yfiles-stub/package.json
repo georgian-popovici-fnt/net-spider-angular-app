@@ -1,8 +1,0 @@
-{
-  "name": "yfiles",
-  "version": "30.0.4-stub",
-  "description": "Stub package for yFiles for HTML - Replace with actual yFiles library",
-  "main": "index.js",
-  "types": "index.d.ts",
-  "private": true
-}

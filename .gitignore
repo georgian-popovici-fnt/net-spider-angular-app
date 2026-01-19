@@ -75,6 +75,7 @@ Thumbs.db
 *.swp
 *.swo
 *~
+/tmpclaude-*
 
 # User saved data backups (modified at runtime)
 /src/assets/data/backups
