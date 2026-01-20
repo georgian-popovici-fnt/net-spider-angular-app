@@ -4,6 +4,20 @@
 
 A production-ready pilot application that demonstrates NetSpider-style network and floor-plan diagram visualization. Built to evaluate yFiles for HTML as a long-term framework for enterprise network topology management.
 
+## 🚨 Important: yFiles Installation Required
+
+**This application is fully built and ready to use**, but requires the yFiles for HTML library to run. yFiles is a commercial product from yWorks and must be manually installed.
+
+**👉 See [YFILES_INSTALLATION.md](YFILES_INSTALLATION.md) for complete installation instructions.**
+
+Quick summary:
+1. Request free evaluation license at [yworks.com](https://www.yworks.com/products/yfiles-for-html/evaluate)
+2. Download yFiles package (`.tgz` file)
+3. Place in `lib/` directory
+4. Run `npm install`
+
+An evaluation license is already included in this repository (`lib/license.json`, valid until March 2026).
+
 ## 🎯 Project Overview
 
 NetSpider Pilot is a **client-ready demonstration application** that showcases:
@@ -45,15 +59,22 @@ NetSpider Pilot is a **client-ready demonstration application** that showcases:
 ### Prerequisites
 - Node.js 18+ and npm 9+
 - Modern web browser
+- **yFiles for HTML** library (see [YFILES_INSTALLATION.md](YFILES_INSTALLATION.md))
 
 ### Installation
+
+**Step 1: Get yFiles** (one-time setup)
+
+Follow the instructions in [YFILES_INSTALLATION.md](YFILES_INSTALLATION.md) to download and install yFiles for HTML.
+
+**Step 2: Install Dependencies**
 
 ```bash
 # Clone the repository
 git clone <repository-url>
 cd net-spider-angular-app
 
-# Install dependencies
+# Install dependencies (after yFiles is in lib/)
 npm install
 
 # Start development server
